@@ -4,7 +4,11 @@
 <div id='canvas'></div>
 
 <script>
-  let canvas = Sprinting('#canvas')
+  const S = Sprinting
 
-  // etc
+  let world = new S.World('#canvas')
+  world.add(
+    new S.Square(),
+    20, 20
+  )
 </script>
