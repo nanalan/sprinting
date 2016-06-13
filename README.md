@@ -3,4 +3,4 @@
 > __v0.0.1 super alpha__
 
 ### API Documentation
-See [documentation.md](blob/master/documentation.md).
+See [documentation.md](documentation.md).
