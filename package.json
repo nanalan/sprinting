@@ -1,32 +1,8 @@
 {
-  "name": "sprinting",
-  "version": "0.0.1",
-  "description": "draw with canvas",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nanalan/sprinting.git"
-  },
-  "keywords": [
-    "render",
-    "draw",
-    "dom",
-    "canvas"
-  ],
-  "authors": [
-    "nanalan",
-    "kvackkvack",
-    "liam4"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/nanalan/sprinting/issues"
-  },
-  "homepage": "https://github.com/nanalan/sprinting#readme",
   "dependencies": {
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
-    "gulp-insert": "^0.5.0",
     "gulp-markdox": "^0.1.1",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",

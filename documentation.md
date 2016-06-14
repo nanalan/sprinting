@@ -1,120 +1,123 @@
 # API Documentation
-> Unless otherwise stated, everything is under the scope of `Sprinting`.
 
-<!-- Start src\sprinting.js -->
+## Constants
 
-## World(element)
+### Sprinting.**INTERNAL_KEY**  
 
-> A World is a general container for all Things.
+Internal key used to unlock & run internal methods.
 
-```
+###  Sprinting.**VALIDATE_KEY**(_key_) 
+
+Internal method for validating a given `key`
+
+**Returns**  _Boolean_ 
+
+#### Arguments
+
+ `key` 
+
+### Sprinting.**version**  
+
+## The World
+
+###  *internal*  Sprinting.**World**(_element_) 
+
+The World contains all the Things.
+
+```js
 let world = new Sprinting.World(document.getElementById('world'))
 ```
 
-### Params:
+#### Arguments
 
-* **HTMLElement** *element* DOM element to draw to. **Required**.
+ *HTMLElement* `element` DOM element to draw to. **Required**.
 
-## World.add(something, x, y)(something, x, y)
+###  *internal*  Sprinting.**World.add**(_something, x, y_) 
 
-> Adds a Thing to the World.
+Adds a [Thing](#things) to the [World](#the-world).
 
-```
+```js
 world.add(new Sprinting.Square(100), 20, 30)
 ```
 
-### Params:
+#### Arguments
 
-* **Sprinting.Thing** *something* Thing to add to World. **Required**.
-* **Number** *x* x-position of Thing. **Defaults to `0`**.
-* **Number** *y* y-position of Thing. **Defaults to `0`**.
+ *Thing* `something` The [thing](#things) to add to [World](#the-world). **Required**.
+ *Number* `x` x-position of Thing. **Default**: `0`.
+ *Number* `y` y-position of Thing. **Default**: `0`.
 
-## **private** World._draw()(symbol)
+###  Sprinting.**World._draw**(_key_) 
 
-> Draws each one of this.things.
+Draws every [Thing](#things) in the [World](#the-world).
 
-### Params:
+#### Arguments
 
-* **Symbol** *symbol* Symbol which, for the function to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
+ *Symbol* `key` [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
 
-## **abstract** Thing()
+## Things
 
-> Class from which anything addable to a World inherits.
+###  *internal*  Sprinting.**Thing**(_symbol_) 
 
-### Params:
+Something that is contained within the [World](#the-world).
 
-* **Symbol** *symbol* Symbol which, for the constructor to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
+#### Arguments
 
-## **abstract** Shape(stroke, fill) *extends Thing*
+ *Symbol* `symbol` Symbol which, for the constructor to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
 
-> A Shape is a Thing with a stroke and a fill.
+### Sprinting.**prototype**  
 
-### Params:
+## Shapes
 
-* **Symbol** *symbol* Symbol which, for the constructor to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
-* **Sprinting.Color** *stroke* The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#000000"`**.
-* **Sprinting.Color** *fill* The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#FFFFFF"`**.
+###  Sprinting.**Shape**(_key, stroke, fill_)  _extends Thing_ 
 
-## **abstract**, **private** Shape._draw()(symbol, x, y)
+A Shape is a [Thing](#things) with a stroke and fill.
 
-> Draws the shape to the screen at a specified x and y.
+#### Arguments
 
-### Params:
+ *Symbol* `key` [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
+ *Color|String* `stroke` The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#000000"`**.
+ *Color|String* `fill` The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#FFFFFF"`**.
 
-* **Symbol** *symbol* Symbol which, for the function to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
-* **Number** *x* x-position at which to draw the Shape.
-* **Number** *y* y-position at which to draw the Shape.
+###  *internal*  Sprinting.**Shape._draw**(_key_) 
 
-## Rectangle(width, height, stroke, fill)
+Draws this Shape to the screen.
 
-> A Rectangle is a Shape with a width and a height.
+#### Arguments
 
-```
-let myRectangle = new Rectangle(100, 100)
-world.add(myRectangle, 0, 0)
-```
+ *Symbol* `key` [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
 
-### Params:
+### Sprinting.**prototype**  
 
-* **Number** *width* The width of the Rectangle. **Defaults to `50`**.
-* **Number** *height* The height of the Rectangle. **Defaults to `50`**.
-* **Sprinting.Color** *stroke* The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#000000"`**
-* **Sprinting.Color** *fill* The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#FFFFFF"`**
+## Rectangles
 
-## **private** Rectangle._draw()(symbol, x, y)
+###  *internal*  Sprinting.**Rectangle**(_width, height, stroke, fill_) 
 
-> Draws the Rectangle to the screen at a specified x and y.
-
-### Params:
-
-* **Symbol** *symbol* Symbol which, for the function to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
-* **Number** *x* x-position at which to draw the Shape.
-* **Number** *y* y-position at which to draw the Shape.
-
-## Square(size, stroke, fill)
-
-> A Square is a Rectangle but with a constructor specifying only size, not both width and height.
+A Rectangle is a [Shape](#shapes) with a width and a height.
 
 ```
-let mySquare = new Square(100)
-world.add(mySquare, 0, 0)
+let rect = new Sprinting.Rectangle(100, 100)
+world.add(rect, 25, 25))
 ```
 
-### Params:
+#### Arguments
 
-* **Number** *size* The size of the Square. **Defaults to 50**.
-* **sprinting.Color** *stroke* The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#000000"`**
-* **sprinting.Color** *fill* The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#FFFFFF"`**
+ *Number* `width` **Default**: `50`.
+ *Number* `height` **Default**: `50`.
+ *Color* `stroke` The outline color of the Shape. **Default**: `"#000000"`
+ *Color* `fill` The inside color of the Shape. **Default**: `"#FFFFFF"`
 
-## **private** Square._draw()(symbol, x, y)
+###  *internal*  Sprinting.**Square**(_length, stroke, fill_)  _extends Rectangle_ 
 
-> Draws the Square to the screen at a specified x and y.
+A Square is a Rectangle but with side length (rather than width and height).
 
-### Params:
+```
+let mySquare = new Sprinting.Square(100)
+world.add(mySquare)
+```
 
-* **Symbol** *symbol* Symbol which, for the function to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
-* **Number** *x* x-position at which to draw the Shape.
-* **Number** *y* y-position at which to draw the Shape.
+#### Arguments
 
-<!-- End src\sprinting.js -->
+ *Number* `length` **Default**: `50`
+ *Color* `stroke` **Default**: `#000000`
+ *Color* `fill` **Default**: `#FFFFFF`
 

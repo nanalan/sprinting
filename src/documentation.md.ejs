@@ -1,0 +1,31 @@
+# API Documentation
+
+<? docfiles.forEach(function(doc) { ?>
+  <? doc.javadoc.forEach(function(comment) { ?>
+    <? if (comment.name) { ?>
+      <? if (comment.isMethod || comment.isFunction) { ?>
+        ### <? if (!comment.ignore) { ?> *internal* <? } ?> Sprinting.**<?= comment.name ?>**(_<?= comment.paramStr ?>_) <? if (comment.see) { ?> _extends <?= comment.see ?>_ <? } ?>
+      <? } else { ?>
+        ### Sprinting.**<?= comment.name ?>** <? if (comment.hasType) { ?> <?= comment.tagType ?> <? } ?> <? if (comment.see) { ?> _Extends <?= comment.see ?>_ <? } ?>
+      <? } ?>
+    <? } ?>
+
+    <? if (comment.deprecated) { ?>
+      > **Warning: Deprecated**. This method/property *should not be used* as it may disappear in later versions.
+    <? } ?>
+
+    <?= comment.description ?>
+
+    <? if (comment.returnTags.length > 0) { ?>
+      <? comment.returnTags.forEach(function(returnTag) { ?>
+        **Returns** <? if (returnTag.types.length > 0) { ?> _<?= returnTag.joinedTypes ?>_<? } ?> <?= returnTag.description ?>
+      <? }) ?>
+    <? } ?>
+
+    <? if (comment.paramTags.length > 0) { ?>
+      #### Arguments
+      <? comment.paramTags.forEach(function(paramTag) { ?>
+        <? if (paramTag.types.length > 0) { ?> *<?= paramTag.joinedTypes ?>*<? } ?> `<?= paramTag.name ?>` <?= paramTag.description ?><? }) ?>
+    <? } ?>
+  <? }) ?>
+<? }) ?>

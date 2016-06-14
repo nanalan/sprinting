@@ -1,6 +1,15 @@
-!function() { 'use strict'
+!function() {
   let sprinting = {}
 
+  /**
+   * ## Constants
+  */
+
+  /*!
+   * Internal key used to unlock & run internal methods.
+   *
+   * @name INTERNAL_KEY
+  */
   Object.defineProperty(sprinting, 'INTERNAL_KEY', {
     configurable: false,
     enumerable: false,
@@ -8,13 +17,30 @@
     writable: false
   })
 
+  /*!
+   * Internal method for validating a given `key`
+   *
+   * @function VALIDATE_KEY
+   * @param key
+   * @returns {Boolean}
+  */
   Object.defineProperty(sprinting, 'VALIDATE_KEY', {
     configurable: false,
     enumerable: false,
     value: function(symbol, err) {
-      if(symbol != sprinting.INTERNAL_KEY)
+      if(symbol !== sprinting.INTERNAL_KEY)
         throw new Error(err)
     },
+    writable: false
+  })
+
+  /*
+   * @name version
+  */
+  Object.defineProperty(sprinting, 'version', {
+    configurable: false,
+    enumerable: false,
+    value: '0.0.1',
     writable: false
   })
 
@@ -24,13 +50,17 @@
   sprinting.Color = Color
 
   /**
-   * > A World is a general container for all Things.
+   * ## The World
+  */
+
+  /**
+   * The World contains all the Things.
    *
-   * ```
+   * ```js
    * let world = new Sprinting.World(document.getElementById('world'))
    * ```
    *
-   * @class World(element)
+   * @function World
    * @param {HTMLElement} element DOM element to draw to. **Required**.
    */
   function World(element) {
@@ -44,16 +74,16 @@
   }
 
   /**
-   * > Adds a Thing to the World.
+   * Adds a [Thing](#things) to the [World](#the-world).
    *
-   * ```
+   * ```js
    * world.add(new Sprinting.Square(100), 20, 30)
    * ```
    *
-   * @function World.add(something, x, y)
-   * @param {Sprinting.Thing} something Thing to add to World. **Required**.
-   * @param {Number} x x-position of Thing. **Defaults to `0`**.
-   * @param {Number} y y-position of Thing. **Defaults to `0`**.
+   * @function World.add
+   * @param {Thing} something The [thing](#things) to add to [World](#the-world). **Required**.
+   * @param {Number} x x-position of Thing. **Default**: `0`.
+   * @param {Number} y y-position of Thing. **Default**: `0`.
    */
   World.prototype.add = function(something, x = 0, y = 0) {
     if(!something instanceof sprinting.Thing)
@@ -66,12 +96,11 @@
     this.things.push({inst: something, x, y})
   }
 
-  /**
-   * > Draws each one of this.things.
+  /*!
+   * Draws every [Thing](#things) in the [World](#the-world).
    *
-   * @param {Symbol} symbol Symbol which, for the function to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
-   * @function **private** World._draw()
-   *
+   * @function World._draw
+   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
    */
   World.prototype._draw = function(symbol) {
     sprinting.VALIDATE_KEY(symbol, 'World._draw(): World._draw() is private and should not be called.')
@@ -84,9 +113,13 @@
   sprinting.World = World
 
   /**
-   * > Class from which anything addable to a World inherits.
+   * ## Things
+   */
+
+  /**
+   * Something that is contained within the [World](#the-world).
    *
-   * @class **abstract** Thing()
+   * @function Thing
    * @param {Symbol} symbol Symbol which, for the constructor to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
    */
 
@@ -95,17 +128,22 @@
   }
   sprinting.Thing = Thing
 
+  /**
+   * ## Shapes
+   */
+
   Shape.prototype = new sprinting.Thing(sprinting.INTERNAL_KEY)
   Shape.prototype.constructor = Shape
   Shape.prototype.uber = sprinting.Thing.prototype
 
-  /**
-   * > A Shape is a Thing with a stroke and a fill.
+  /*!
+   * A Shape is a [Thing](#things) with a stroke and fill.
    *
-   * @class **abstract** Shape(stroke, fill) *extends Thing*
-   * @param {Symbol} symbol Symbol which, for the constructor to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
-   * @param {Sprinting.Color} stroke The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#000000"`**.
-   * @param {Sprinting.Color} fill   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#FFFFFF"`**.
+   * @function Shape
+   * @see Thing
+   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
+   * @param {Color | String} stroke The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#000000"`**.
+   * @param {Color | String} fill   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#FFFFFF"`**.
    */
   function Shape(symbol, stroke = '#000000', fill = '#FFFFFF') {
     sprinting.VALIDATE_KEY(symbol, 'new Shape(): Illegal construction of abstract class Shape.')
@@ -118,14 +156,12 @@
   }
 
   /**
-   * > Draws the shape to the screen at a specified x and y.
+   * Draws this Shape to the screen.
    *
-   * @function **abstract**, **private** Shape._draw()
-   * @param {Symbol} symbol Symbol which, for the function to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
-   * @param {Number} x x-position at which to draw the Shape.
-   * @param {Number} y y-position at which to draw the Shape.
+   * @function Shape._draw
+   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
    */
-  Shape._draw = function(symbol, x, y) {
+  Shape._draw = function(symbol) {
     if(!x instanceof Number)
       throw new TypeError('Shape.draw(): arg 2 must be a Number.')
     if(!y instanceof Number)
@@ -136,22 +172,26 @@
 
   sprinting.Shape = Shape
 
+  /**
+   * ## Rectangles
+   */
+
   Rectangle.prototype = new sprinting.Shape(sprinting.INTERNAL_KEY)
   Rectangle.prototype.constructor = Rectangle
   Rectangle.prototype.uber = sprinting.Shape.prototype
 
   /**
-   * > A Rectangle is a Shape with a width and a height.
+   * A Rectangle is a [Shape](#shapes) with a width and a height.
    *
    * ```
-   * let myRectangle = new Rectangle(100, 100)
-   * world.add(myRectangle, 0, 0)
+   * let rect = new Sprinting.Rectangle(100, 100)
+   * world.add(rect, 25, 25))
    * ```
    *
-   * @param {Number} width The width of the Rectangle. **Defaults to `50`**.
-   * @param {Number} height The height of the Rectangle. **Defaults to `50`**.
-   * @param {Sprinting.Color} stroke The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#000000"`**
-   * @param {Sprinting.Color} fill   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#FFFFFF"`**
+   * @param {Number} width  **Default**: `50`.
+   * @param {Number} height **Default**: `50`.
+   * @param {Color}  stroke  The outline color of the Shape. **Default**: `"#000000"`
+   * @param {Color}  fill    The inside  color of the Shape. **Default**: `"#FFFFFF"`
    */
   function Rectangle(width = 50, height = 50, stroke, fill) {
     this.uber.constructor(sprinting.INTERNAL_KEY, stroke, fill)
@@ -164,16 +204,8 @@
     this.width = width, this.height = height
   }
 
-  /**
-   * > Draws the Rectangle to the screen at a specified x and y.
-   *
-   * @function **private** Rectangle._draw()
-   * @param {Symbol} symbol Symbol which, for the function to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
-   * @param {Number} x x-position at which to draw the Shape.
-   * @param {Number} y y-position at which to draw the Shape.
-   */
-  Rectangle.prototype._draw = function(symbol, x, y) {
-    uber._draw(symbol, x, y)
+  Rectangle.prototype._draw = function(key) {
+    uber._draw(key)
 
     // @TODO
   }
@@ -185,35 +217,30 @@
   Square.prototype.uber = sprinting.Rectangle.prototype
 
  /**
-  * > A Square is a Rectangle but with a constructor specifying only size, not both width and height.
+  * A Square is a Rectangle but with side length (rather than width and height).
   *
   * ```
-  * let mySquare = new Square(100)
-  * world.add(mySquare, 0, 0)
+  * let mySquare = new Sprinting.Square(100)
+  * world.add(mySquare)
   * ```
   *
-  * @param {Number} size The size of the Square. **Defaults to 50**.
-  * @param {sprinting.Color} stroke The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#000000"`**
-  * @param {sprinting.Color} fill   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#FFFFFF"`**
+  * @see Rectangle
+  * @param {Number} length **Default**: `50`
+  * @param {Color}  stroke **Default**: `#000000`
+  * @param {Color}  fill   **Default**: `#FFFFFF`
   */
- function Square(size = 50, stroke, fill) {
-    this.uber.constructor(size, size, stroke, fill)
+  function Square(length = 50, stroke, fill) {
+    this.uber.constructor(length, length, stroke, fill)
     Object.assign(this, this.uber) // Update our properties to be the same as our uber
   }
 
-  /**
-   * > Draws the Square to the screen at a specified x and y.
-   *
-   * @function **private** Square._draw()
-   * @param {Symbol} symbol Symbol which, for the function to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
-   * @param {Number} x x-position at which to draw the Shape.
-   * @param {Number} y y-position at which to draw the Shape.
-   */
   Square.prototype._draw = function(symbol, x, y) {
     this.uber._draw(symbol, x, y)
   }
 
   sprinting.Square = Square
+
+  /* */
 
   Object.defineProperty(window, 'Sprinting', {
     configurable: false,

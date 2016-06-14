@@ -5,7 +5,6 @@ const clean = require('gulp-clean')
 const uglify = require('gulp-uglify')
 const markdox = require('gulp-markdox')
 const rename = require('gulp-rename')
-const insert = require('gulp-insert')
 const concat = require('gulp-concat')
 
 gulp.task('default', ['docs'], () => {
@@ -29,12 +28,16 @@ gulp.task('default', ['docs'], () => {
 
 gulp.task('docs', ['clean'], () => {
   gulp.src('src/**/*.js')
-    .pipe(markdox())
+    .pipe(markdox({
+      template: 'src/documentation.md.ejs'
+    }))
     .pipe(concat('documentation.md'))
-    .pipe(insert.prepend('# API Documentation\n> Unless otherwise stated, everything is under the scope of `Sprinting`.'))
     .pipe(gulp.dest('./'))
 })
 
 gulp.task('clean', () => gulp.src('dist', { read: false }).pipe(clean()) )
 
-gulp.task('watch', () => gulp.watch('src/**/*.js', ['default']))
+gulp.task('watch', () => {
+  gulp.watch('src/**/*.js', ['default'])
+  gulp.watch('src/documentation.md.ejs', ['docs'])
+})
