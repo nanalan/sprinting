@@ -1,14 +1,21 @@
-<!doctype html>
-<script src='../dist/sprinting.js'></script>
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+  <script src='../dist/sprinting.js'></script>
+</head>
 
-<div id='canvas'></div>
+<body>
+  <div id='canvas'></div>
 
-<script>
-  const S = Sprinting
+  <script>
+    const S = Sprinting
 
-  let world = new S.World('#canvas')
-  world.add(
-    new S.Square(),
-    20, 20
-  )
-</script>
+    let world = new S.World('#canvas')
+    world.add(
+      new S.Square,
+      20, 20
+    )
+  </script>
+</body>
+</html>
