@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+  <script src='../dist/sprinting.js'></script>
+</head>
+
+<body>
+  <div id='canvas'></div>
+
+  <script>
+    const S = Sprinting
+
+    let canvas = new S.DRAW.World(document.body, S.DRAW.World.USAGE_CANVAS)
+    let ctx    = canvas.context
+
+    console.log(canvas, ctx)
+  </script>
+</body>
+</html>

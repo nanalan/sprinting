@@ -3,6 +3,26 @@
 
   let sprinting = {}
   sprinting = require('./constants')(sprinting)
+
+
+  /*!
+   * Internal object containing the drawing API used by Sprinting.
+   *
+   * @name DRAW
+   */
+  sprinting.DEFINE_INTERNAL('DRAW', {})
+
+  /**
+   * # Properties of sprinting.DRAW
+   */
+
+  sprinting = require('./draw/world')(sprinting)
+  sprinting.DRAW.Shape = require('./draw/shapes')(sprinting.DRAW)
+
+  /**
+   * # Properties of sprinting
+   */
+
   sprinting = require('./world')(sprinting)
   sprinting = require('./color')(sprinting)
   sprinting = require('./things')(sprinting)

@@ -1,9 +1,41 @@
 # Documentation
 
+## Colors
+
+### Sprinting.**Color**  
+
+A color (of both sprinting and sprinting.DRAW) for use by the drawing API or sprinting itself.
+The `string` property is always equal to the color created in string-form, while `values` is the value of the argument of the same name.
+Please note that there are no specific RGBA or HSLA, but if using RGB or HSL you can specify a fourth argument to be the alpha.
+
+#### Arguments
+
+ *Function* `type` Either Color.PLAIN, Color.HEX, Color.RGB or Color.HSL.
+ `...values` Values to specify the color in accordance to the type.
+
 
 
 
 ## Constants
+
+###  *internal*  Sprinting.**DEFINE_INTERNAL**(_name, value_) 
+
+[defineProperty description]
+
+#### Arguments
+
+ *String* `name` **Required**.
+ `value` **Default**: `undefined`.
+
+###  *internal*  Sprinting.**DEFINE_CONSTANT**(_object, name, value_) 
+
+Internal function used to specify a constant property.
+
+#### Arguments
+
+ *Object* `object` **Required**.
+ *String* `name` **Required**.
+ `value` **Default**: `undefined`.
 
 ### Sprinting.**INTERNAL_KEY**  
 
@@ -19,23 +51,33 @@ Internal method for validating a given `key`
 
  `key` 
 
-### Sprinting.**version**  
+### Sprinting.**VERSION**  
+
+Internal variable with the current version of Sprinting.
 
 
 
+
+### Sprinting.**DRAW**  
+
+Internal object containing the drawing API used by Sprinting.
+
+# Properties of sprinting.DRAW
+
+# Properties of sprinting
 
 
 
 
 ## Things
 
-###  Sprinting.**Thing**(_symbol_) 
+###  Sprinting.**Thing**(_key_) 
 
 Something that is contained within the [World](#the-world).
 
 #### Arguments
 
- *Symbol* `symbol` Symbol which, for the constructor to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
+ *Symbol* `key` [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
 
 
 
@@ -78,7 +120,7 @@ world.add(rect, 25, 25))
 
  *Number* `width` **Default**: `50`.
  *Number* `height` **Default**: `50`.
- *Color* `stroke` The outline color of t-he Shape. **Default**: `"#000000"`
+ *Color* `stroke` The outline color of the Shape. **Default**: `"#000000"`
  *Color* `fill` The inside color of the Shape. **Default**: `"#FFFFFF"`
 
 ###  Sprinting.**Square**(_length, stroke, fill_)  _extends Rectangle_ 
@@ -111,7 +153,7 @@ let world = new Sprinting.World(document.getElementById('world'))
 
 #### Arguments
 
- *HTMLElement* `element` DOM element to draw to. **Required**.
+ *HTMLElement|String* `element` DOM element to draw to. **Required**.
 
 ###  Sprinting.**World.add**(_something, x, y_) 
 
@@ -134,4 +176,64 @@ Draws every [Thing](#things) in the [World](#the-world).
 #### Arguments
 
  *Symbol* `key` [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
+
+
+
+
+
+
+
+
+
+
+## Shapes
+
+###  Sprinting.**Shape**(_fn_) 
+
+A Shape has the property `drawFn` set in construction to `fn` with the single parameter `world`.
+
+#### Arguments
+
+ *Function* `fn` 
+
+###  Sprinting.**draw**(_world_) 
+
+Calls `this.drawFn`.
+
+#### Arguments
+
+ *sprinting.DRAW.World* `world` The argument to call `this.drawFn` with.
+
+
+
+
+### Sprinting.**DRAW.World**  
+
+A World by itself is not very useful, but -- similar to HTML5 Canvas -- it has a `context` property which provides drawing functions and inherits from DrawingContext.
+
+```
+let canvas = new Sprinting.DRAW.World(document.body, Sprinting.DRAW.World.USAGE_CANVAS)
+let ctx    = canvas.context
+```
+
+#### Arguments
+
+ *HTMLElement|String* `element` DOM element to draw to. **Required**.
+ *Number* `usage` Either DRAW.World.USAGE_CANVAS or DRAW.World.USAGE_DOM. **Required**.
+
+###  *internal*  Sprinting.**DrawingContext**(_key_) 
+
+An inheritor of DrawingContext provides drawing functions for a specific usage. They should not be constructed on their own but rather through `Sprinting.DRAW.World`.
+
+#### Arguments
+
+ *Symbol* `key` [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
+
+###  *internal*  Sprinting.**dcInit**(_world_) 
+
+The constructor used by inheritors of DrawingContext.
+
+#### Arguments
+
+ *Sprinting.DRAW.World* `world` The World that the DrawingContext belongs in.
 
