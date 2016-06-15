@@ -11,11 +11,9 @@ module.exports = function(sprinting) {
    * ```
    *
    * @function World
-   * @param {HTMLElement} element DOM element to draw to. **Required**.
+   * @param {HTMLElement|String} element DOM element to draw to. **Required**.
    */
   function World(element) {
-    console.log(typeof element)
-
     if(!(element instanceof HTMLElement || typeof element === 'string'))
       throw new TypeError('new World(): arg 1 must be an HTMLElement or string.')
 

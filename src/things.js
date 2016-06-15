@@ -7,7 +7,7 @@ module.exports = function(sprinting) {
    * Something that is contained within the [World](#the-world).
    *
    * @function Thing
-   * @param {Symbol} symbol Symbol which, for the constructor to be callable, must be the hidden Sprinting.INTERNAL_KEY. **Required**.
+   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
    */
   function Thing(symbol) {
     sprinting.VALIDATE_KEY(symbol, 'new Thing(): Illegal construction of abstract class Thing.')

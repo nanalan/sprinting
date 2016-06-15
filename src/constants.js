@@ -4,16 +4,34 @@ module.exports = function(sprinting) {
   */
 
   /*!
+   * [defineProperty description]
+   *
+   * @function DEFINE_INTERNAL
+   * @param {String} name
+   * @param value
+   */
+
+  // If only you could define a function by calling itself...
+  
+  Object.defineProperty(sprinting, 'DEFINE_INTERNAL', {
+    configurable: false, enumerable: false,
+    value: function(name, value) {
+      Object.defineProperty(sprinting, name, {
+        configurable: false,
+        enumerable: false,
+        value,
+        writable: false
+      })
+    },
+    writable: false
+  })
+
+  /*!
    * Internal key used to unlock & run internal methods.
    *
    * @name INTERNAL_KEY
   */
-  Object.defineProperty(sprinting, 'INTERNAL_KEY', {
-    configurable: false,
-    enumerable: false,
-    value: Symbol('InternalAPI'),
-    writable: false
-  })
+  sprinting.DEFINE_INTERNAL('INTERNAL_KEY', Symbol('InternalAPI'))
 
   /*!
    * Internal method for validating a given `key`
@@ -22,25 +40,17 @@ module.exports = function(sprinting) {
    * @param key
    * @returns {Boolean}
   */
-  Object.defineProperty(sprinting, 'VALIDATE_KEY', {
-    configurable: false,
-    enumerable: false,
-    value: function(symbol, err) {
-      if(symbol !== sprinting.INTERNAL_KEY)
-        throw new Error(err)
-    },
-    writable: false
+  sprinting.DEFINE_INTERNAL('VALIDATE_KEY', function(symbol, err) {
+    if(symbol !== sprinting.INTERNAL_KEY)
+      throw new Error(err)
   })
 
-  /*
-   * @name version
+  /*!
+   * Internal variable with the current version of Sprinting.
+   *
+   * @name VERSION
   */
-  Object.defineProperty(sprinting, 'version', {
-    configurable: false,
-    enumerable: false,
-    value: '0.0.1',
-    writable: false
-  })
+  sprinting.DEFINE_INTERNAL('VERSION', '0.0.1')
 
   return sprinting
 }

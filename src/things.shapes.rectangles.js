@@ -1,4 +1,4 @@
-module.exports = function(sprinting) { 
+module.exports = function(sprinting) {
   /**
    * ## Rectangles and Squares
    */
@@ -17,7 +17,7 @@ module.exports = function(sprinting) {
    *
    * @param {Number} width  **Default**: `50`.
    * @param {Number} height **Default**: `50`.
-   * @param {Color}  stroke  The outline color of t-he Shape. **Default**: `"#000000"`
+   * @param {Color}  stroke  The outline color of the Shape. **Default**: `"#000000"`
    * @param {Color}  fill    The inside  color of the Shape. **Default**: `"#FFFFFF"`
    */
   function Rectangle(width = 50, height = 50, stroke, fill) {
@@ -38,6 +38,11 @@ module.exports = function(sprinting) {
   }
 
   sprinting.Rectangle = Rectangle
+
+
+  Square.prototype = new sprinting.Rectangle
+  Square.prototype.constructor = Square
+  Square.prototype.uber = sprinting.Rectangle.prototype
 
   /**
   * A Square is a Rectangle but with side length (rather than width and height).
