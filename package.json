@@ -10,7 +10,6 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-traceur": "^0.17.2",
     "gulp-uglify": "^1.5.3",
-    "hopsdoc": "git+https://github.com/xing/hopsdoc.git",
     "jsdoc": "^3.4.0",
     "minami": "^1.1.1"
   }
