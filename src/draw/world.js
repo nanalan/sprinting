@@ -11,6 +11,7 @@ module.exports = function(sprinting) {
    * ```
    *
    * @class DRAW.World
+   * @private
    * @param {HTMLElement|String} element DOM element to draw to. **Required**.
    * @param {Number} usage Either DRAW.World.USAGE_CANVAS or DRAW.World.USAGE_DOM. **Required**.
    */

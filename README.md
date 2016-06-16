@@ -13,3 +13,4 @@ See [examples](http://nanalan.github.io/sprinting/examples/).
 
 ## Documentation
 See the automagically generated [API Documentation](http://nanalan.github.io/sprinting/docs/).
+**Everything is under the** `Sprinting` **namespace by default!**

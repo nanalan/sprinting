@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>things.shapes.js - Documentation</title>
+    <title>constants.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">things.shapes.js</h1>
+    <h1 class="page-title">constants.js</h1>
     
 
     
@@ -39,41 +39,36 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>module.exports = function(sprinting) {
-  Shape.prototype = new sprinting.Thing(sprinting.INTERNAL_KEY)
-  Shape.prototype.constructor = Shape
-  Shape.prototype.uber = sprinting.Thing.prototype
+  console.log(sprinting)
 
   /**
-   * A Shape is a {@link Thing} with a stroke and fill.
+   * Internal key used to unlock &amp; run internal methods.
    *
-   * @class Shape
-   * @extends Thing
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
-   * @param {Color|String} [stroke=#000000] The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#000000"`.
-   * @param {Color|String} [fill=#ffffff]   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#FFFFFF"`.
+   * @name INTERNAL_KEY
+   * @memberOf Sprinting
+   * @protected
    */
-  function Shape(symbol, stroke = '#000000', fill = '#FFFFFF') {
-    sprinting.VALIDATE_KEY(symbol, 'new Shape(): Illegal construction of abstract class Shape.')
-
-    if(!(stroke instanceof sprinting.Color || typeof stroke === 'string'))
-      throw new TypeError('new Shape(): arg 2 must be a Sprinting.Color or string')
-    if(!(fill instanceof sprinting.Color || typeof fill === 'string'))
-      throw new TypeError('new Shape(): arg 3 must be a Sprinting.Color or string')
-    this.stroke = stroke, this.fill = fill
-  }
+  sprinting.DEFINE_INTERNAL('INTERNAL_KEY', Symbol('InternalAPI'))
 
   /**
-   * Draws this Shape to the screen.
+   * Internal method for validating a given `key`
    *
-   * @function Shape._draw
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key).
+   * @function VALIDATE_KEY
+   * @param {Symbol} key
+   * @returns {Boolean}
    * @private
    */
-  Shape._draw = function(symbol) {
-    sprinting.VALIDATE_KEY(symbol, 'Shape.draw is private and should not be called.')
-  }
+  sprinting.DEFINE_INTERNAL('VALIDATE_KEY', function(symbol, err) {
+    if(symbol !== sprinting.INTERNAL_KEY)
+      throw new Error(err)
+  })
 
-  sprinting.Shape = Shape
+  /**
+   * Current version.
+   * @name version
+   */
+  sprinting.DEFINE_INTERNAL('version', '0.0.1')
+
   return sprinting
 }
 </code></pre>

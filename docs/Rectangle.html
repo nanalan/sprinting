@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>World - Documentation</title>
+    <title>Rectangle - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">World</h1>
+    <h1 class="page-title">Rectangle</h1>
     
 
     
@@ -41,7 +41,7 @@
 <header>
     
         <h2>
-        World
+        Rectangle
         </h2>
         
     
@@ -54,15 +54,18 @@
 
     
 
-    <h4 class="name" id="World"><span class="type-signature"></span>new World<span class="signature">(element, width<span class="signature-attributes">opt</span>, height<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Rectangle"><span class="type-signature"></span>new Rectangle<span class="signature">(width<span class="signature-attributes">opt</span>, height<span class="signature-attributes">opt</span>, stroke<span class="signature-attributes">opt</span>, stroke<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>The World contains every Thing; it is the container of your program.</p>
-<pre class="prettyprint source lang-js"><code>let world = new Sprinting.World(document.getElementById('world'))</code></pre>
+    <p>A Rectangle is a <a href="Shape.html"><code>Shape</code></a> with a width and a height.</p>
+<pre class="prettyprint source"><code>let rect = new Sprinting.Rectangle(100, 100)
+rect.x = 24
+rect.y = 32
+world.add(rect))</code></pre>
 </div>
 
 
@@ -102,44 +105,6 @@
 
         <tr>
             
-                <td class="name"><code>element</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">HTMLElement</span>
-|
-
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>DOM element to draw to.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>width</code></td>
             
 
@@ -167,7 +132,7 @@
             
                 <td class="default">
                 
-                    800
+                    50
                 
                 </td>
             
@@ -206,12 +171,90 @@
             
                 <td class="default">
                 
-                    600
+                    50
                 
                 </td>
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stroke</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Color">Color</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    #000
+                
+                </td>
+            
+
+            <td class="description last"><p>The outline color of the Shape.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>stroke</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Color">Color</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    #fff
+                
+                </td>
+            
+
+            <td class="description last"><p>The inside color of the Shape.</p></td>
         </tr>
 
     
@@ -252,7 +295,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="world.js.html">world.js</a>, <a href="world.js.html#line2">line 2</a>
+        <a href="things.shapes.rectangles.js.html">things.shapes.rectangles.js</a>, <a href="things.shapes.rectangles.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -282,6 +325,17 @@
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Shape.html">Shape</a></li>
+    </ul>
+
+
+    
 
     
 
@@ -293,188 +347,6 @@
 
     
 
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(something, x, y)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>Adds a <a href="#things">Thing</a> to the <a href="#the-world">World</a>.</p>
-<pre class="prettyprint source lang-js"><code>world.add(new Sprinting.Square(100), 20, 30)</code></pre>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>something</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Sprinting.Thing</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The <a href="#things">thing</a> to add to <a href="#the-world">World</a>. <strong>Required</strong>.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>x-position of Thing. <strong>Default</strong>: <code>0</code>.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>y-position of Thing. <strong>Default</strong>: <code>0</code>.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="world.js.html">world.js</a>, <a href="world.js.html#line24">line 24</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
     
 
     

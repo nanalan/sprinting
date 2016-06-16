@@ -12,13 +12,13 @@
     "plugins/markdown"
   ],
   "templates": {
-    "cleverLinks": false,
-    "monospaceLinks": true
+    "cleverLinks": true,
+    "monospaceLinks": false
   },
   "opts": {
     "destination": "./src/",
     "encoding": "utf8",
-    "private": true,
+    "private": false,
     "recurse": true,
     "template": "./node_modules/minami"
   }

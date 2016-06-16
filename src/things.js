@@ -1,8 +1,10 @@
 module.exports = function(sprinting) {
   /**
-   * Something that is contained within the [World](#the-world).
+   * Something that is contained within the {@link World}.
    *
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
+   * @class Thing
+   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key).
+   * @protected
    */
   function Thing(symbol) {
     sprinting.VALIDATE_KEY(symbol, 'new Thing(): Illegal construction of abstract class Thing.')

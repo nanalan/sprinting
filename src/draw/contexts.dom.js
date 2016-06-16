@@ -10,6 +10,7 @@ module.exports = function(DrawingContext, sprinting) {
    * @class DRAW.DomContext
    * @see DrawingContext
    * @param {Sprinting.DRAW.World} world
+   * @private
    */
   function DOMContext(world) {
     this.dcInit(world)

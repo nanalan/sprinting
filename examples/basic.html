@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
   <script src='../dist/sprinting.js'></script>
 </head>
 
@@ -12,10 +11,10 @@
     const S = Sprinting
 
     let world = new S.World('#canvas')
-    world.add(
-      new S.Square,
-      20, 20
-    )
+    let mysquare = new S.Square(50)
+    mysquare.x = 20
+    mysquare.y = 20
+    world.add(mysquare)
   </script>
 </body>
 </html>

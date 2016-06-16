@@ -7,14 +7,19 @@ module.exports = function(DrawingContext, sprinting) {
    * A CanvasContext is an inheritor of DrawingContext used for drawing with the HTML5 Canvas. It is automatically instanced when a new World is created with the `usage` World.USAGE_CANVAS.
    * It also has the member `canvas`, which is the HTML5 Canvas element, and `ctx`, which is the canvas' context.
    *
-   * @class DRAW.CanvasContext
+   * @class CanvasContext
    * @see DrawingContext
-   * @param {Sprinting.DRAW.World} world
+   * @param {DRAW.World} world
+   * @memberof DRAW
+   * @private
    */
   function CanvasContext(world) {
     this.dcInit(world)
     this.canvas = document.createElement('canvas')
     this.ctx    = this.canvas.getContext('2d')
+
+    this.canvas.setAttribute('width', this.world.width)
+    this.canvas.setAttribute('height', this.world.height)
 
     this.world.element.appendChild(this.canvas)
   }

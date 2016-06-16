@@ -4,6 +4,7 @@ module.exports = function(sprinting) {
    *
    * @class DRAW.Shape
    * @param {Function} fn
+   * @private
    */
 
   function Shape(fn) {

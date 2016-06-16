@@ -4,18 +4,21 @@ module.exports = function(sprinting) {
   Rectangle.prototype.uber = sprinting.Shape.prototype
 
   /**
-   * A Rectangle is a [Shape](#shapes) with a width and a height.
+   * A Rectangle is a {@link Shape} with a width and a height.
    *
    * ```
    * let rect = new Sprinting.Rectangle(100, 100)
-   * world.add(rect, 25, 25))
+   * rect.x = 24
+   * rect.y = 32
+   * world.add(rect))
    * ```
    *
-   * @see Shape
-   * @param {Number} width  **Default**: `50`.
-   * @param {Number} height **Default**: `50`.
-   * @param {Color}  stroke  The outline color of the Shape. **Default**: `"#000000"`
-   * @param {Color}  fill    The inside  color of the Shape. **Default**: `"#FFFFFF"`
+   * @extends Shape
+   * @class Rectangle
+   * @param {Number} [width=50]
+   * @param {Number} [height=50]
+   * @param {Color}  [stroke=#000] The outline color of the Shape.
+   * @param {Color}  [stroke=#fff] The inside color of the Shape.
    */
   function Rectangle(width, height, stroke, fill) {
     if(!width && !height && !stroke && !fill) return
@@ -41,24 +44,24 @@ module.exports = function(sprinting) {
 
   sprinting.Rectangle = Rectangle
 
-
   Square.prototype = new sprinting.Rectangle
   Square.prototype.constructor = Square
   Square.prototype.uber = sprinting.Rectangle.prototype
 
   /**
-  * A Square is a Rectangle but with side length (rather than width and height).
-  *
-  * ```
-  * let mySquare = new Sprinting.Square(100)
-  * world.add(mySquare)
-  * ```
-  *
-  * @see Rectangle
-  * @param {Number} length **Default**: `50`
-  * @param {Color}  stroke **Default**: `#000000`
-  * @param {Color}  fill   **Default**: `#FFFFFF`
-  */
+   * A Square is a Rectangle but with side length (rather than width and height).
+   *
+   * ```
+   * let mySquare = new Sprinting.Square(100)
+   * world.add(mySquare)
+   * ```
+   *
+   * @extends Rectangle
+   * @class Square
+   * @param {Number} [length=50]
+   * @param {Color}  [stroke=#000000]
+   * @param {Color}  [fill=#FFFFFF]
+   */
   function Square(length = 50, stroke, fill) {
     this.uber.constructor(length, length, stroke, fill)
     Object.assign(this, this.uber)

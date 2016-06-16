@@ -1,20 +1,24 @@
 module.exports = function(sprinting) {
   /**
-   * The World contains all the Things.
+   * The World contains every Thing; it is the container of your program.
    *
    * ```js
    * let world = new Sprinting.World(document.getElementById('world'))
    * ```
    *
    * @class World
-   * @param {HTMLElement|String} element DOM element to draw to. **Required**.
+   * @param {HTMLElement|String} element - DOM element to draw to.
+   * @param {Number} [width=800]
+   * @param {Number} [height=600]
    */
-  function World(element) {
+  function World(element, width, height) {
     if(!(element instanceof HTMLElement || typeof element === 'string'))
       throw new TypeError('new World(): arg 1 must be an HTMLElement or string.')
 
     this.element = typeof element === 'string' ? document.querySelector(element) : element
     this.things  = []
+    this.width = width || 800
+    this.height = height || 600
   }
 
   /**
@@ -40,11 +44,13 @@ module.exports = function(sprinting) {
     this.things.push({inst: something, x, y})
   }
 
-  /*!
+  /**
    * Draws every [Thing](#things) in the [World](#the-world).
    *
-   * @function World._draw
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
+   * @function _draw
+   * @memberOf World
+   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key).
+   * @private
    */
   World.prototype._draw = function(symbol) {
     sprinting.VALIDATE_KEY(symbol, 'World._draw(): World._draw() is private and should not be called.')

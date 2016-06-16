@@ -4,16 +4,14 @@ module.exports = function(sprinting) {
    * The `string` property is always equal to the color created in string-form, while `values` is the value of the argument of the same name.
    * Please note that there are no specific RGBA or HSLA, but if using RGB or HSL you can specify a fourth argument to be the alpha.
    *
-   * @class [DRAW.]Color
-   * @param {Function} type Either Color.PLAIN, Color.HEX, Color.RGB or Color.HSL.
-   * @param {Any} ...values Values to specify the color in accordance to the type.
+   * @function Color
+   * @param {Function} type - Either Color.PLAIN, Color.HEX, Color.RGB or Color.HSL.
+   * @param {...*} values - Values to specify the color in accordance to the type: see below.
    */
-
   function Color(type, ...values) {
     if(values.length === 1 && values[0] instanceof Array)
       values = values[0]
-    this.values = values
-    this.string = type.apply(this, values)
+    return type.apply(this, values)
   }
 
   Color.PLAIN = function(plain) {

@@ -5,10 +5,12 @@
   sprinting = require('./util')(sprinting)
   sprinting = require('./constants')(sprinting)
 
-  /*!
+  /**
    * Internal object containing the drawing API used by Sprinting.
    *
    * @name DRAW
+   * @interface
+   * @private
    */
   sprinting.DEFINE_INTERNAL('DRAW', {})
 

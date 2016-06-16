@@ -3,14 +3,14 @@ module.exports = function(sprinting) {
   Shape.prototype.constructor = Shape
   Shape.prototype.uber = sprinting.Thing.prototype
 
-  /*!
-   * A Shape is a [Thing](#things) with a stroke and fill.
+  /**
+   * A Shape is a {@link Thing} with a stroke and fill.
    *
    * @class Shape
-   * @see Thing
+   * @extends Thing
    * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
-   * @param {Color | String} stroke The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#000000"`.
-   * @param {Color | String} fill   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#FFFFFF"`.
+   * @param {Color|String} [stroke=#000000] The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#000000"`.
+   * @param {Color|String} [fill=#ffffff]   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#FFFFFF"`.
    */
   function Shape(symbol, stroke = '#000000', fill = '#FFFFFF') {
     sprinting.VALIDATE_KEY(symbol, 'new Shape(): Illegal construction of abstract class Shape.')
@@ -26,14 +26,10 @@ module.exports = function(sprinting) {
    * Draws this Shape to the screen.
    *
    * @function Shape._draw
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
+   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key).
+   * @private
    */
   Shape._draw = function(symbol) {
-    if(!(x instanceof Number))
-      throw new TypeError('Shape.draw(): arg 2 must be a Number.')
-    if(!(y instanceof Number))
-      throw new TypeError('Shape.draw(): arg 3 must be a Number.')
-
     sprinting.VALIDATE_KEY(symbol, 'Shape.draw is private and should not be called.')
   }
 
