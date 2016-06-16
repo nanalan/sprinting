@@ -1,8 +1,8 @@
 # Documentation
 
-### Sprinting.**Color**  
+### Sprinting.**[DRAW.]Color**  
 
-A color (of both sprinting and sprinting.DRAW) for use by the drawing API or sprinting itself.
+A color (of both Sprinting and Sprinting.DRAW) for use by the drawing API or sprinting itself.
 The `string` property is always equal to the color created in string-form, while `values` is the value of the argument of the same name.
 Please note that there are no specific RGBA or HSLA, but if using RGB or HSL you can specify a fourth argument to be the alpha.
 
@@ -13,25 +13,6 @@ Please note that there are no specific RGBA or HSLA, but if using RGB or HSL you
 
 
 
-
-###  *internal*  Sprinting.**DEFINE_INTERNAL**(_name, value_) 
-
-Internal function used to specify another internal property.
-
-#### Arguments
-
- *String* `name` **Required**.  
- *Any* `value` **Default**: `undefined`.  
-
-###  *internal*  Sprinting.**DEFINE_CONSTANT**(_object, name, value_) 
-
-Internal function used to specify a constant property.
-
-#### Arguments
-
- *Object* `object` **Required**.  
- *String* `name` **Required**.  
- *Any* `value` **Default**: `undefined`.  
 
 ### Sprinting.**INTERNAL_KEY**  
 
@@ -93,7 +74,7 @@ Draws this Shape to the screen.
 
 
 
-###  Sprinting.**Rectangle**(_width, height, stroke, fill_) 
+###  Sprinting.**Rectangle**(_width, height, stroke, fill_)  _extends Shape_ 
 
 A Rectangle is a [Shape](#shapes) with a width and a height.
 
@@ -126,6 +107,25 @@ world.add(mySquare)
 
 
 
+
+###  *internal*  Sprinting.**DEFINE_INTERNAL**(_name, value_) 
+
+Internal function used to specify another internal property.
+
+#### Arguments
+
+ *String* `name` **Required**.  
+ *Any* `value` **Default**: `undefined`.  
+
+###  *internal*  Sprinting.**DEFINE_CONSTANT**(_object, name, value_) 
+
+Internal function used to specify a constant property.
+
+#### Arguments
+
+ *Object* `object` **Required**.  
+ *String* `name` **Required**.  
+ *Any* `value` **Default**: `undefined`.  
 
 
 
@@ -199,6 +199,37 @@ Method used to draw all it's shapes to the parent World.
 
 
 
+### Sprinting.**DRAW.DrawingContext**  
+
+An inheritor of DrawingContext provides drawing functions for a specific usage. They should not be constructed on their own but rather through `Sprinting.DRAW.World`.
+
+#### Arguments
+
+ *Symbol* `key` [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.  
+
+###  *internal*  Sprinting.**DRAW.DrawingContext.dcInit**(_world_) 
+
+The constructor used by inheritors of DrawingContext.
+
+#### Arguments
+
+ *Sprinting.DRAW.World* `world` The World that the DrawingContext belongs in.  
+
+###  Sprinting.**DRAW.DrawingContext.putShape**(_shape_) 
+
+Pushes a sprinting.DRAW.Shape onto itself, making it visible in the parent World on the next call to `draw`.
+
+#### Arguments
+
+ *Sprinting.DRAW.Shape* `shape`   
+
+###  Sprinting.**DRAW.DrawingContext.clear**(__) 
+
+Completely deletes all shapes.
+
+
+
+
 ### Sprinting.**DRAW.Shape**  
 
 A Shape has the property `drawFn` set in construction to `fn` with the single parameter `world`.
@@ -231,32 +262,4 @@ let ctx    = canvas.context
 
  *HTMLElement|String* `element` DOM element to draw to. **Required**.  
  *Number* `usage` Either DRAW.World.USAGE_CANVAS or DRAW.World.USAGE_DOM. **Required**.  
-
-### Sprinting.**DRAW.DrawingContext**  
-
-An inheritor of DrawingContext provides drawing functions for a specific usage. They should not be constructed on their own but rather through `Sprinting.DRAW.World`.
-
-#### Arguments
-
- *Symbol* `key` [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.  
-
-###  *internal*  Sprinting.**DRAW.DrawingContext.dcInit**(_world_) 
-
-The constructor used by inheritors of DrawingContext.
-
-#### Arguments
-
- *Sprinting.DRAW.World* `world` The World that the DrawingContext belongs in.  
-
-###  Sprinting.**DRAW.DrawingContext.putShape**(_shape_) 
-
-Pushes a sprinting.DRAW.Shape onto itself, making it visible in the parent World on the next call to `draw`.
-
-#### Arguments
-
- *Sprinting.DRAW.Shape* `shape`   
-
-###  Sprinting.**DRAW.DrawingContext.clear**(__) 
-
-Completely deletes all shapes.
 

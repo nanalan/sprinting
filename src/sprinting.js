@@ -2,8 +2,8 @@
   require('traceur/bin/traceur-runtime')
 
   let sprinting = {}
+  sprinting = require('./util')(sprinting)
   sprinting = require('./constants')(sprinting)
-
 
   /*!
    * Internal object containing the drawing API used by Sprinting.
@@ -13,6 +13,7 @@
   sprinting.DEFINE_INTERNAL('DRAW', {})
 
   sprinting = require('./draw/world')(sprinting)
+  sprinting = require('./draw/contexts')(sprinting)
   sprinting.DRAW.Shape = require('./draw/shapes')(sprinting.DRAW)
 
   sprinting = require('./world')(sprinting)

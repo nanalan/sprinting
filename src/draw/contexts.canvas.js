@@ -12,6 +12,7 @@ module.exports = function(DrawingContext, sprinting) {
    * @param {Sprinting.DRAW.World} world
    */
   function CanvasContext(world) {
+    this.uber = sprinting.MAKE_UBER(this, this.uber)
     this.dcInit(world)
   }
 

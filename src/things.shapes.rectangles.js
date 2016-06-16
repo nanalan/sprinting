@@ -19,7 +19,7 @@ module.exports = function(sprinting) {
    */
   function Rectangle(width = 50, height = 50, stroke, fill) {
     this.uber.constructor(sprinting.INTERNAL_KEY, stroke, fill)
-    Object.assign(this, this.uber) // Update our properties to be the same as our uber
+    Object.assign(this, this.uber)
 
     if(!width instanceof Number)
       throw new TypeError('new Rectangle(): arg 1 must be a Number.')
@@ -56,7 +56,7 @@ module.exports = function(sprinting) {
   */
   function Square(length = 50, stroke, fill) {
     this.uber.constructor(length, length, stroke, fill)
-    Object.assign(this, this.uber) // Update our properties to be the same as our uber
+    Object.assign(this, this.uber)
   }
 
   Square.prototype._draw = function(symbol, x, y) {
