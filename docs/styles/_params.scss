@@ -1,6 +1,0 @@
-.param-type {
-  $types: "string", "array", "object", "htmlelement", "number", "integer", "float", "function", "module", "promise", "boolean", "class", "route", "history", "null";
-  $colors: ("string": #FF0000, "array": #FF8000, "object": #FF8000, "route": #FF8000, "history": #FF8000, "htmlelement": #FFFF00, "number": #80FF00, "integer": #80FF00, "float": #80FF00, "function": #00FF80, "module": #00FF80, "promise": #00FF80, "class": #00FF80, "boolean": #0080FF, "null": #0080FF);
-
-  @include tag-colors($colors, $types);
-}
