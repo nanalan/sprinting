@@ -17,13 +17,18 @@ module.exports = function(sprinting) {
    * @param {Color}  stroke  The outline color of the Shape. **Default**: `"#000000"`
    * @param {Color}  fill    The inside  color of the Shape. **Default**: `"#FFFFFF"`
    */
-  function Rectangle(width = 50, height = 50, stroke, fill) {
+  function Rectangle(width, height, stroke, fill) {
+    if(!width && !height && !stroke && !fill) return
+
+    width = typeof width === 'undefined' ? 50 : width
+    height = typeof height === 'undefined' ? 50 : height
+
     this.uber.constructor(sprinting.INTERNAL_KEY, stroke, fill)
     Object.assign(this, this.uber)
 
-    if(!width instanceof Number)
+    if(!(width instanceof Number))
       throw new TypeError('new Rectangle(): arg 1 must be a Number.')
-    if(!height instanceof Number)
+    if(!(height instanceof Number))
       throw new TypeError('new Rectangle(): arg 2 must be a Number.')
     this.width = width, this.height = height
   }

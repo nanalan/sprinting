@@ -5,15 +5,18 @@ module.exports = function(DrawingContext, sprinting) {
 
   /**
    * A CanvasContext is an inheritor of DrawingContext used for drawing with the HTML5 Canvas. It is automatically instanced when a new World is created with the `usage` World.USAGE_CANVAS.
-   * It has no new public attributes that it doesn't share with DrawingContext.
+   * It also has the member `canvas`, which is the HTML5 Canvas element, and `ctx`, which is the canvas' context.
    *
    * @class DRAW.CanvasContext
    * @see DrawingContext
    * @param {Sprinting.DRAW.World} world
    */
   function CanvasContext(world) {
-    this.uber = sprinting.MAKE_UBER(this, this.uber)
     this.dcInit(world)
+    this.canvas = document.createElement('canvas')
+    this.ctx    = this.canvas.getContext('2d')
+
+    this.world.element.appendChild(this.canvas)
   }
 
   /**
@@ -22,7 +25,25 @@ module.exports = function(DrawingContext, sprinting) {
    * @function DRAW.CanvasContext.draw
    */
   CanvasContext.prototype.draw = function() {
-    this.shapes.forEach(shape => shape.draw())
+    this.shapes.forEach(shape => shape.draw(this))
+  }
+
+  CanvasContext.prototype.rectangle = function(x, y, w, h, options) {
+    options = sprinting.DRAW.DrawingContext.fillOptions(options)
+    console.log(options)
+    return new sprinting.DRAW.Shape(function(drawingCtx) {
+      let ctx = drawingCtx.ctx
+
+      ctx.strokeStyle = options.stroke
+      ctx.fillStyle   = options.fill
+      ctx.lineWidth   = options.strokeWidth
+      // ctx.rotate(options.rotationUnit === sprinting.DRAW.DrawingContext.ROT_DEG ? options.rotation / Math.PI * 180 : options.rotation)
+
+      if(options.doFill) ctx.fillRect(x, y, w, h)
+      ctx.strokeRect(x, y, w, h)
+
+      console.log('RECTANGLE DRAWN')
+    })
   }
 
   return CanvasContext

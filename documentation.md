@@ -170,7 +170,7 @@ Draws every [Thing](#things) in the [World](#the-world).
 ### Sprinting.**DRAW.CanvasContext**   _Extends DrawingContext_ 
 
 A CanvasContext is an inheritor of DrawingContext used for drawing with the HTML5 Canvas. It is automatically instanced when a new World is created with the `usage` World.USAGE_CANVAS.
-It has no new public attributes that it doesn't share with DrawingContext.
+It also has the member `canvas`, which is the HTML5 Canvas element, and `ctx`, which is the canvas' context.
 
 #### Arguments
 
@@ -227,24 +227,38 @@ Pushes a sprinting.DRAW.Shape onto itself, making it visible in the parent World
 
 Completely deletes all shapes.
 
+###  Sprinting.**fillOptions**(_options_) 
+
+Fills out an `options` object to include all values used internally.
+
+**Returns**  _Object_ The modified `options` object.
+
+#### Arguments
+
+ *Object* `options`   
+
+###  Sprinting.**if**(__) 
+
+90 * Math.PI / 180
+
 
 
 
 ### Sprinting.**DRAW.Shape**  
 
-A Shape has the property `drawFn` set in construction to `fn` with the single parameter `world`.
+A Shape has the property `drawFn` set in construction to `fn` with the single parameter `context` of type Sprinting.DRAW.DrawingContext.
 
 #### Arguments
 
  *Function* `fn`   
 
-###  Sprinting.**DRAW.Shape.draw**(_world_) 
+###  Sprinting.**DRAW.Shape.draw**(_context_) 
 
 Calls `this.drawFn`.
 
 #### Arguments
 
- *sprinting.DRAW.World* `world` The argument to call `this.drawFn` with.  
+ *Sprinting.DRAW.DrawingContext* `context` The argument to call `this.drawFn` with.  
 
 
 

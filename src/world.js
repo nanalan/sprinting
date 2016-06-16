@@ -30,11 +30,11 @@ module.exports = function(sprinting) {
    * @param {Number} y y-position of Thing. **Default**: `0`.
    */
   World.prototype.add = function(something, x = 0, y = 0) {
-    if(!something instanceof sprinting.Thing)
+    if(!(something instanceof sprinting.Thing))
       throw new TypeError('World.add(): arg 1 must be a Sprinting.Thing.')
-    if(!x instanceof Number)
+    if(!(x instanceof Number))
       throw new TypeError('World.add(): arg 2 must be a Number.')
-    if(!y instanceof Number)
+    if(!(y instanceof Number))
       throw new TypeError('World.add(): arg 3 must be a Number.')
 
     this.things.push({inst: something, x, y})
