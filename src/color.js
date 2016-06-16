@@ -1,17 +1,12 @@
 module.exports = function(sprinting) {
   /**
-   * ## Colors
-   */
-
-
-  /**
-   * A color (of both sprinting and sprinting.DRAW) for use by the drawing API or sprinting itself.
+   * A color (of both Sprinting and Sprinting.DRAW) for use by the drawing API or sprinting itself.
    * The `string` property is always equal to the color created in string-form, while `values` is the value of the argument of the same name.
    * Please note that there are no specific RGBA or HSLA, but if using RGB or HSL you can specify a fourth argument to be the alpha.
    *
-   * @class Color
+   * @class [DRAW.]Color
    * @param {Function} type Either Color.PLAIN, Color.HEX, Color.RGB or Color.HSL.
-   * @param ...values Values to specify the color in accordance to the type.
+   * @param {Any} ...values Values to specify the color in accordance to the type.
    */
 
   function Color(type, ...values) {

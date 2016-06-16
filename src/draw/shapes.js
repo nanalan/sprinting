@@ -1,12 +1,8 @@
 module.exports = function(draw) {
   /**
-   * ## Shapes
-   */
-
-
-  /**
    * A Shape has the property `drawFn` set in construction to `fn` with the single parameter `world`.
    *
+   * @class DRAW.Shape
    * @param {Function} fn
    */
 
@@ -17,6 +13,7 @@ module.exports = function(draw) {
   /**
    * Calls `this.drawFn`.
    *
+   * @function DRAW.Shape.draw
    * @param  {sprinting.DRAW.World} world The argument to call `this.drawFn` with.
    */
   Shape.prototype.draw = function(world) {

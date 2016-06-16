@@ -12,16 +12,8 @@
    */
   sprinting.DEFINE_INTERNAL('DRAW', {})
 
-  /**
-   * # Properties of sprinting.DRAW
-   */
-
   sprinting = require('./draw/world')(sprinting)
   sprinting.DRAW.Shape = require('./draw/shapes')(sprinting.DRAW)
-
-  /**
-   * # Properties of sprinting
-   */
 
   sprinting = require('./world')(sprinting)
   sprinting = require('./color')(sprinting)

@@ -23,7 +23,7 @@
     <? if (comment.paramTags.length > 0) { ?>
       #### Arguments
       <? comment.paramTags.forEach(function(paramTag) { ?>
-        <? if (paramTag.types.length > 0) { ?> *<?= paramTag.joinedTypes ?>*<? } ?> `<?= paramTag.name ?>` <?= paramTag.description ?><? }) ?>
+        <? if (paramTag.types.length > 0) { ?> *<?= paramTag.joinedTypes ?>*<? } ?> `<?= paramTag.name ?>` <?= paramTag.description ?>  <? }) ?>
     <? } ?>
   <? }) ?>
 <? }) ?>

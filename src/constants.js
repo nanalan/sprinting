@@ -1,14 +1,10 @@
 module.exports = function(sprinting) {
-  /**
-   * ## Constants
-  */
-
   /*!
-   * [defineProperty description]
+   * Internal function used to specify another internal property.
    *
    * @function DEFINE_INTERNAL
    * @param {String} name **Required**.
-   * @param value **Default**: `undefined`.
+   * @param {Any} value **Default**: `undefined`.
    */
 
   // If only you could define a function by calling itself...
@@ -32,7 +28,7 @@ module.exports = function(sprinting) {
    * @function DEFINE_CONSTANT
    * @param {Object} object **Required**.
    * @param {String} name **Required**.
-   * @param value **Default**: `undefined`.
+   * @param {Any} value **Default**: `undefined`.
    */
 
    sprinting.DEFINE_INTERNAL('DEFINE_CONSTANT', function(object, name, value = undefined) {
@@ -55,7 +51,7 @@ module.exports = function(sprinting) {
    * Internal method for validating a given `key`
    *
    * @function VALIDATE_KEY
-   * @param key
+   * @param {Symbol} key
    * @returns {Boolean}
   */
   sprinting.DEFINE_INTERNAL('VALIDATE_KEY', function(symbol, err) {

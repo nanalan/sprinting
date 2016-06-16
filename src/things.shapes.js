@@ -1,8 +1,4 @@
 module.exports = function(sprinting) {
-  /**
-   * ## Shapes
-   */
-
   Shape.prototype = new sprinting.Thing(sprinting.INTERNAL_KEY)
   Shape.prototype.constructor = Shape
   Shape.prototype.uber = sprinting.Thing.prototype
@@ -10,11 +6,11 @@ module.exports = function(sprinting) {
   /*!
    * A Shape is a [Thing](#things) with a stroke and fill.
    *
-   * @function Shape
+   * @class Shape
    * @see Thing
    * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
-   * @param {Color | String} stroke The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#000000"`**.
-   * @param {Color | String} fill   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Defaults to `"#FFFFFF"`**.
+   * @param {Color | String} stroke The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#000000"`.
+   * @param {Color | String} fill   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#FFFFFF"`.
    */
   function Shape(symbol, stroke = '#000000', fill = '#FFFFFF') {
     sprinting.VALIDATE_KEY(symbol, 'new Shape(): Illegal construction of abstract class Shape.')

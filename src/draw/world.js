@@ -1,4 +1,7 @@
 module.exports = function(sprinting) {
+  sprinting.DEFINE_CONSTANT(World, 'USAGE_CANVAS', 0)
+  sprinting.DEFINE_CONSTANT(World, 'USAGE_DOM',    1)
+
   /**
    * A World by itself is not very useful, but -- similar to HTML5 Canvas -- it has a `context` property which provides drawing functions and inherits from DrawingContext.
    *
@@ -11,9 +14,6 @@ module.exports = function(sprinting) {
    * @param {HTMLElement|String} element DOM element to draw to. **Required**.
    * @param {Number} usage Either DRAW.World.USAGE_CANVAS or DRAW.World.USAGE_DOM. **Required**.
    */
-
-  sprinting.DEFINE_CONSTANT(World, 'USAGE_CANVAS', 0)
-  sprinting.DEFINE_CONSTANT(World, 'USAGE_DOM',    1)
 
   // A World creates an instance of either CanvasContext or DomContext, both of which inherit from DrawingContext and sets it's property `context` to this instance.
 
@@ -45,6 +45,7 @@ module.exports = function(sprinting) {
   /*!
    * An inheritor of DrawingContext provides drawing functions for a specific usage. They should not be constructed on their own but rather through `Sprinting.DRAW.World`.
    *
+   * @class DRAW.DrawingContext
    * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
    */
   function DrawingContext(symbol) {
@@ -54,7 +55,8 @@ module.exports = function(sprinting) {
   /*!
    * The constructor used by inheritors of DrawingContext.
    *
-   * @param  {Sprinting.DRAW.World} world The World that the DrawingContext belongs in.
+   * @function DRAW.DrawingContext.dcInit
+   * @param {Sprinting.DRAW.World} world The World that the DrawingContext belongs in.
    */
   DrawingContext.prototype.dcInit = function(world) {
     if(!(world instanceof World))
@@ -64,12 +66,25 @@ module.exports = function(sprinting) {
     this.shapes = []
   }
 
+  /**
+   * Pushes a sprinting.DRAW.Shape onto itself, making it visible in the parent World on the next call to `draw`.
+   *
+   * @function DRAW.DrawingContext.putShape
+   * @param  {Sprinting.DRAW.Shape} shape
+   */
   DrawingContext.prototype.putShape = function(shape) {
     if(!shape instanceof Shape)
       throw new TypeError('DrawingContext.putShape(): arg 1 must be a sprinting.DRAW.Shape.')
 
     this.shapes.push(shape)
   }
+
+  /**
+   * Completely deletes all shapes.
+   *
+   * @function DRAW.DrawingContext.clear
+   */
+
   DrawingContext.prototype.clear = function() {
     this.shapes = []
   }

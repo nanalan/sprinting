@@ -1,8 +1,4 @@
 module.exports = function(sprinting) {
-  /**
-   * ## Rectangles and Squares
-   */
-
   Rectangle.prototype = new sprinting.Shape(sprinting.INTERNAL_KEY)
   Rectangle.prototype.constructor = Rectangle
   Rectangle.prototype.uber = sprinting.Shape.prototype
@@ -15,6 +11,7 @@ module.exports = function(sprinting) {
    * world.add(rect, 25, 25))
    * ```
    *
+   * @see Shape
    * @param {Number} width  **Default**: `50`.
    * @param {Number} height **Default**: `50`.
    * @param {Color}  stroke  The outline color of the Shape. **Default**: `"#000000"`

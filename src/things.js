@@ -1,12 +1,7 @@
 module.exports = function(sprinting) {
   /**
-   * ## Things
-   */
-
-  /**
    * Something that is contained within the [World](#the-world).
    *
-   * @function Thing
    * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
    */
   function Thing(symbol) {
