@@ -29,9 +29,9 @@ module.exports = function(sprinting) {
    * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
    */
   Shape._draw = function(symbol) {
-    if(!x instanceof Number)
+    if(!(x instanceof Number))
       throw new TypeError('Shape.draw(): arg 2 must be a Number.')
-    if(!y instanceof Number)
+    if(!(y instanceof Number))
       throw new TypeError('Shape.draw(): arg 3 must be a Number.')
 
     sprinting.VALIDATE_KEY(symbol, 'Shape.draw is private and should not be called.')

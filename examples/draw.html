@@ -11,10 +11,13 @@
   <script>
     const S = Sprinting
 
-    let canvas = new S.DRAW.World(document.body, S.DRAW.World.USAGE_CANVAS)
+    let canvas = new S.DRAW.World('#canvas', S.DRAW.World.USAGE_CANVAS)
     let ctx    = canvas.context
 
-    console.log(canvas, ctx)
+    ctx.putShape(ctx.rectangle(
+      0, 0, 100, 100
+    ))
+    ctx.draw()
   </script>
 </body>
 </html>

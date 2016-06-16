@@ -14,7 +14,7 @@
 
   sprinting = require('./draw/world')(sprinting)
   sprinting = require('./draw/contexts')(sprinting)
-  sprinting.DRAW.Shape = require('./draw/shapes')(sprinting.DRAW)
+  sprinting = require('./draw/shapes')(sprinting)
 
   sprinting = require('./world')(sprinting)
   sprinting = require('./color')(sprinting)

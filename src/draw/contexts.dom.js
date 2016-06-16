@@ -12,8 +12,8 @@ module.exports = function(DrawingContext, sprinting) {
    * @param {Sprinting.DRAW.World} world
    */
   function DOMContext(world) {
-    this.uber = sprinting.MAKE_UBER(this, this.uber)
     this.dcInit(world)
+    Object.assign(this, this.uber)
 
     this._prevShapes = this.shapes
   }
@@ -28,7 +28,10 @@ module.exports = function(DrawingContext, sprinting) {
       this._prevShapes = this.shapes
 
       this.world.element.children.forEach(child => this.world.element.removeChild(child))
-      this.shapes.forEach(shape => this.world.element.appendChild(shape.element))
+      this.shapes.forEach(shape => {
+        shape.draw(this)
+        this.world.element.appendChild(shape.element)
+      })
     }
   }
 

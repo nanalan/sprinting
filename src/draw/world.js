@@ -18,9 +18,11 @@ module.exports = function(sprinting) {
   // A World creates an instance of either CanvasContext or DomContext, both of which inherit from DrawingContext and sets it's property `context` to this instance.
 
   function World(element, usage) {
+    console.log(usage)
+
     if(!(element instanceof HTMLElement || typeof element === 'string'))
       throw new TypeError('new DRAW.World(): arg 1 must be an HTMLElement or string.')
-    if(!usage instanceof Number)
+    if(!(typeof usage === 'number'))
       throw new TypeError('new DRAW.World(): arg 2 must be a Number.')
     if(!(usage === World.USAGE_CANVAS || usage === World.USAGE_DOM))
       throw new Error('new DRAW.World(): arg 2 must be DRAW.World.USAGE_CANVAS or DRAW.World.USAGE_DOM.')
