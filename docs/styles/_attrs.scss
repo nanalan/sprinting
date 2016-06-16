@@ -1,0 +1,6 @@
+.attr {
+  $types: "nullable", "repeatable", "optional";
+  $colors: ("nullable": #FF0000, "repeatable": #FF8000, "optional": #FFFF00);
+
+  @include tag-colors($colors, $types);
+}

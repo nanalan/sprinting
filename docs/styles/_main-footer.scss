@@ -1,0 +1,7 @@
+.main-footer {
+  height: 50px;
+  flex: 0 0 100%;
+  background: red;
+  background: mix(black, $theme-bg, 10%);
+  color: $theme-color;
+}

@@ -1,0 +1,13 @@
+.main-content {
+  flex: 1 1 1%;
+  background: $theme-fancy;
+  color: $theme-fancy-rev;
+  height: calc(100% - 50px);
+  padding: .5rem 1rem;
+  overflow: auto;
+
+  > section {
+    max-width: 800px;
+    margin: 2rem auto;
+  }
+}
