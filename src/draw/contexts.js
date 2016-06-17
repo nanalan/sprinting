@@ -2,20 +2,25 @@ module.exports = function(sprinting) {
 
   // DrawingContext contains the functions shared between both CanvasContext and DomContext.
 
-  /*!
+  /**
    * An inheritor of DrawingContext provides drawing functions for a specific usage. They should not be constructed on their own but rather through `Sprinting.DRAW.World`.
    *
-   * @class DRAW.DrawingContext
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
+   * @class DrawingContext
+   * @memberOf Sprinting.DRAW
+   * @private
+   * @param {Symbol} key Sprinting.INTERNAL_KEY.
    */
   function DrawingContext(symbol) {
     sprinting.VALIDATE_KEY(symbol, 'new SubWorld(): Illegal construction of abstract class SubWorld.')
   }
 
-  /*!
+  /**
    * The constructor used by inheritors of DrawingContext.
    *
-   * @function DRAW.DrawingContext.dcInit
+   * @function dcInit
+   * @memberOf Sprinting.DRAW.DrawingContext
+   * @instance
+   * @private
    * @param {Sprinting.DRAW.World} world The World that the DrawingContext belongs in.
    */
   DrawingContext.prototype.dcInit = function(world) {

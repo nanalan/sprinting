@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -51,6 +52,7 @@
    * @function VALIDATE_KEY
    * @param {Symbol} key
    * @returns {Boolean}
+   * @memberOf Sprinting
    * @private
    */
   sprinting.DEFINE_INTERNAL(&#x27;VALIDATE_KEY&#x27;, function(symbol, err) {
@@ -61,6 +63,7 @@
   /**
    * Current version.
    * @name version
+   * @memberOf Sprinting
    */
   sprinting.DEFINE_INTERNAL(&#x27;version&#x27;, &#x27;0.0.1&#x27;)
 

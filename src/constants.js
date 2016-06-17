@@ -14,6 +14,7 @@ module.exports = function(sprinting) {
    * @function VALIDATE_KEY
    * @param {Symbol} key
    * @returns {Boolean}
+   * @memberOf Sprinting
    * @private
    */
   sprinting.DEFINE_INTERNAL('VALIDATE_KEY', function(symbol, err) {
@@ -24,6 +25,7 @@ module.exports = function(sprinting) {
   /**
    * Current version.
    * @name version
+   * @memberOf Sprinting
    */
   sprinting.DEFINE_INTERNAL('version', '0.0.1')
 

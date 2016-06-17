@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -37,11 +38,15 @@
           <article>
             <pre class="prettyprint linenums"><code>module.exports &#x3D; function(sprinting) {
   /**
-   * Something that is contained within the {@link World}.
+   * Something that is contained within the {@link Sprinting.World|World}. **This shouldn&#x27;t be constructed directly**; rather, use a {@link Sprinting.Shape|Shape}, such as a {@link Sprinting.Square|Square}.
    *
    * @class Thing
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key).
+   * @param {Symbol} key {@link Sprinting.INTERNAL_KEY}.
+   * @memberOf Sprinting
+   * @see Sprinting.Shape
    * @protected
+   * @example
+   * let myThing &#x3D; new Sprinting.Thing(Sprinting.INTERNAL_KEY)
    */
   function Thing(symbol) {
     sprinting.VALIDATE_KEY(symbol, &#x27;new Thing(): Illegal construction of abstract class Thing.&#x27;)

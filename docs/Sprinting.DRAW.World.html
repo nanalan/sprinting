@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="JSDoc 3.4.0">
   <meta charset="utf-8">
-  <title>Class: Thing &bullet; Sprinting Docs</title>
+  <title>Class: World &bullet; Sprinting Docs</title>
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -30,19 +31,28 @@
       <div id="jsdoc-content-container">
         <div id="jsdoc-main" role="main">
           <header class="page-header">
-            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-protected">protected</span></div>
-            <h1><small></small><span class="symbol-name">Thing</span></h1>
-            <p class="source-link">Source: <a href="things.js.html#source-line-2">things.<wbr>js:2</a></p>
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
+            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr><a href="Sprinting.DRAW.html">DRAW</a>.<wbr></small><span class="symbol-name">World</span></h1>
+            <p class="source-link">Source: <a href="draw_world.js.html#source-line-5">draw/<wbr>world.<wbr>js:5</a></p>
             <dl class="dl-compact">
             </dl>
           </header>
           <section id="summary">
           </section>
           <section>
-            <h2 id="Thing">new&nbsp;<span class="symbol-name">Thing</span><span class="signature"><span class="signature-params">(key)</span></span></h2>
-            <p>Something that is contained within the <a href="World.html"><code>World</code></a>.</p>
+            <h2 id="World">new&nbsp;<span class="symbol-name">World</span><span class="signature"><span class="signature-params">(element, usage)</span></span></h2>
+            <p>A World by itself is not very useful, but -- similar to HTML5 Canvas -- it has a <code>context</code> property which provides drawing functions and inherits from DrawingContext.</p>
             <section>
-              <h3>Parameter</h3>
+              <h3>
+            Example
+        </h3>
+              <div>
+                <pre><code class='js'>let canvas &#x3D; new Sprinting.DRAW.World(document.body, Sprinting.DRAW.World.USAGE_CANVAS)
+let ctx    &#x3D; canvas.context</code></pre>
+              </div>
+            </section>
+            <section>
+              <h3>Parameters</h3>
               <table class="jsdoc-details-table">
                 <thead>
                   <tr>
@@ -55,16 +65,30 @@
                 <tbody>
                   <tr>
                     <td>
-                      <p>key</p>
+                      <p>element</p>
                     </td>
                     <td>
-                      <p>Symbol</p>
+                      <p>(HTMLElement or String)</p>
                     </td>
                     <td>
                       <p>&nbsp;</p>
                     </td>
                     <td>
-                      <p><a href="#sprintinginternal_key">Sprinting.INTERNAL_KEY</a>.</p>
+                      <p>DOM element to draw to.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>usage</p>
+                    </td>
+                    <td>
+                      <p>Number</p>
+                    </td>
+                    <td>
+                      <p>&nbsp;</p>
+                    </td>
+                    <td>
+                      <p>Either DRAW.World.USAGE_CANVAS or DRAW.World.USAGE_DOM.</p>
                     </td>
                   </tr>
                 </tbody>

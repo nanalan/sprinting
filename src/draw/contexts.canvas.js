@@ -10,7 +10,7 @@ module.exports = function(DrawingContext, sprinting) {
    * @class CanvasContext
    * @see DrawingContext
    * @param {DRAW.World} world
-   * @memberof DRAW
+   * @memberof Sprinting.DRAW
    * @private
    */
   function CanvasContext(world) {
@@ -52,9 +52,11 @@ module.exports = function(DrawingContext, sprinting) {
   }
 
   /**
-   * Method used to draw all it's shapes to the parent World.
+   * Method used to draw all of the CanvasContext's Things to the parent World.
    *
-   * @function DRAW.CanvasContext.draw
+   * @function draw
+   * @memberof Sprinting.DRAW.CanvasContext
+   * @instance
    */
   CanvasContext.prototype.draw = function() {
     this.shapes.forEach(shape => shape.draw(this))

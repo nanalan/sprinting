@@ -5,6 +5,7 @@ module.exports = function(sprinting) {
    * @example
    * let world = new Sprinting.World(document.getElementById('world'))
    * @class World
+   * @memberOf Sprinting
    * @param {HTMLElement|String} element - DOM element to draw to.
    * @param {Number} [width=800]
    * @param {Number} [height=600]
@@ -20,14 +21,15 @@ module.exports = function(sprinting) {
   }
 
   /**
-   * Adds a [Thing](#things) to the [World](#the-world).
+   * Adds a Thing to the World.
    *
    * @example
    * world.add(new Sprinting.Square(100), 20, 30)
-   * @function World.add
-   * @param {Sprinting.Thing} something The [thing](#things) to add to [World](#the-world). **Required**.
+   * @function add
+   * @param {Sprinting.Thing} something The Thing to add to [World](#the-world).
    * @param {Number} x x-position of Thing. **Default**: `0`.
    * @param {Number} y y-position of Thing. **Default**: `0`.
+   * @memberOf Sprinting.World
    */
   World.prototype.add = function(something, x = 0, y = 0) {
     if(!(something instanceof sprinting.Thing))
@@ -44,7 +46,7 @@ module.exports = function(sprinting) {
    * Draws every [Thing](#things) in the [World](#the-world).
    *
    * @function _draw
-   * @memberOf World
+   * @memberOf Sprinting.World
    * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key).
    * @private
    */

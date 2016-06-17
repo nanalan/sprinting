@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -39,8 +40,9 @@
   /**
    * A Shape has the property &#x60;drawFn&#x60; set in construction to &#x60;fn&#x60; with the single parameter &#x60;context&#x60; of type Sprinting.DRAW.DrawingContext.
    *
-   * @class DRAW.Shape
+   * @class Shape
    * @param {Function} fn
+   * @memberOf Sprinting.DRAW
    * @private
    */
 
@@ -51,7 +53,8 @@
   /**
    * Calls &#x60;this.drawFn&#x60;.
    *
-   * @function DRAW.Shape.draw
+   * @function draw
+   * @memberOf Sprinting.DRAW.Shape
    * @param  {Sprinting.DRAW.DrawingContext} context The argument to call &#x60;this.drawFn&#x60; with.
    */
   Shape.prototype.draw &#x3D; function(context) {

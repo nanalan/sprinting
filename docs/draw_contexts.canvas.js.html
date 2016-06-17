@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -47,7 +48,7 @@
    * @class CanvasContext
    * @see DrawingContext
    * @param {DRAW.World} world
-   * @memberof DRAW
+   * @memberof Sprinting.DRAW
    * @private
    */
   function CanvasContext(world) {
@@ -89,9 +90,11 @@
   }
 
   /**
-   * Method used to draw all it&#x27;s shapes to the parent World.
+   * Method used to draw all of the CanvasContext&#x27;s Things to the parent World.
    *
-   * @function DRAW.CanvasContext.draw
+   * @function draw
+   * @memberof Sprinting.DRAW.CanvasContext
+   * @instance
    */
   CanvasContext.prototype.draw &#x3D; function() {
     this.shapes.forEach(shape &#x3D;&gt; shape.draw(this))

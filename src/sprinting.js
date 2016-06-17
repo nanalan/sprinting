@@ -14,8 +14,9 @@
   /**
    * Internal object containing the drawing API used by Sprinting.
    *
-   * @name Sprinting.DRAW
-   * @interface
+   * @name DRAW
+   * @memberOf Sprinting
+   * @namespace
    * @private
    */
   sprinting.DEFINE_INTERNAL('DRAW', {})

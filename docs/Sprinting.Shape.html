@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="JSDoc 3.4.0">
   <meta charset="utf-8">
-  <title>Class: Rectangle &bullet; Sprinting Docs</title>
+  <title>Class: Shape &bullet; Sprinting Docs</title>
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -30,28 +31,17 @@
       <div id="jsdoc-content-container">
         <div id="jsdoc-main" role="main">
           <header class="page-header">
-            <div class="symbol-detail-labels"><span class="label label-kind">class</span></div>
-            <h1><small></small><span class="symbol-name">Rectangle</span></h1>
-            <p class="source-link">Source: <a href="things.shapes.rectangles.js.html#source-line-6">things.<wbr>shapes.<wbr>rectangles.<wbr>js:6</a></p>
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
+            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">Shape</span></h1>
+            <p class="source-link">Source: <a href="things.shapes.js.html#source-line-6">things.<wbr>shapes.<wbr>js:6</a></p>
             <dl class="dl-compact">
             </dl>
           </header>
           <section id="summary">
           </section>
           <section>
-            <h2 id="Rectangle">new&nbsp;<span class="symbol-name">Rectangle</span><span class="signature"><span class="signature-params">([width][, height][, stroke][, stroke])</span></span></h2>
-            <p>A Rectangle is a <a href="Shape.html"><code>Shape</code></a> with a width and a height.</p>
-            <section>
-              <h3>
-            Example
-        </h3>
-              <div>
-                <pre><code class='js'>let rect &#x3D; new Sprinting.Rectangle(100, 100)
-rect.x &#x3D; 24
-rect.y &#x3D; 32
-world.add(rect))</code></pre>
-              </div>
-            </section>
+            <h2 id="Shape">new&nbsp;<span class="symbol-name">Shape</span><span class="signature"><span class="signature-params">(key[, stroke][, fill])</span></span></h2>
+            <p>A Shape is a <code>Thing</code> with a stroke and fill.</p>
             <section>
               <h3>Parameters</h3>
               <table class="jsdoc-details-table">
@@ -66,30 +56,16 @@ world.add(rect))</code></pre>
                 <tbody>
                   <tr>
                     <td>
-                      <p>width</p>
+                      <p>key</p>
                     </td>
                     <td>
-                      <p>Number</p>
+                      <p>Symbol</p>
                     </td>
                     <td>
-                      <p>Yes</p>
+                      <p>&nbsp;</p>
                     </td>
                     <td>
-                      <p>Defaults to <code>50</code>.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>height</p>
-                    </td>
-                    <td>
-                      <p>Number</p>
-                    </td>
-                    <td>
-                      <p>Yes</p>
-                    </td>
-                    <td>
-                      <p>Defaults to <code>50</code>.</p>
+                      <p><a href="#sprintinginternal_key">Sprinting.INTERNAL_KEY</a>. <strong>Required</strong>.</p>
                     </td>
                   </tr>
                   <tr>
@@ -97,29 +73,29 @@ world.add(rect))</code></pre>
                       <p>stroke</p>
                     </td>
                     <td>
-                      <p><a href="global.html#Color">Color</a></p>
+                      <p>(<a href="Sprinting.html#.Color">Sprinting.Color</a> or String)</p>
                     </td>
                     <td>
                       <p>Yes</p>
                     </td>
                     <td>
-                      <p>The outline color of the Shape.</p>
-                      <p>Defaults to <code>#000</code>.</p>
+                      <p>The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string.</p>
+                      <p>Defaults to <code>#000000</code>.</p>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <p>stroke</p>
+                      <p>fill</p>
                     </td>
                     <td>
-                      <p><a href="global.html#Color">Color</a></p>
+                      <p>(<a href="Sprinting.html#.Color">Sprinting.Color</a> or String)</p>
                     </td>
                     <td>
                       <p>Yes</p>
                     </td>
                     <td>
-                      <p>The inside color of the Shape.</p>
-                      <p>Defaults to <code>#fff</code>.</p>
+                      <p>The fill (inside) color of the Shape. Instance of sprinting.Color or hex string.</p>
+                      <p>Defaults to <code>#ffffff</code>.</p>
                     </td>
                   </tr>
                 </tbody>
@@ -127,7 +103,7 @@ world.add(rect))</code></pre>
             </section>
             <dl class="dl-compact">
               <dt>Extends</dt>
-              <dd><a href="Shape.html">Shape</a></dd>
+              <dd><a href="Sprinting.Thing.html">Sprinting.Thing</a></dd>
             </dl>
           </section>
           <section>

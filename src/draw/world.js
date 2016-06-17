@@ -8,10 +8,11 @@ module.exports = function(sprinting) {
    * @example
    * let canvas = new Sprinting.DRAW.World(document.body, Sprinting.DRAW.World.USAGE_CANVAS)
    * let ctx    = canvas.context
-   * @class DRAW.World
+   * @class World
    * @private
-   * @param {HTMLElement|String} element DOM element to draw to. **Required**.
-   * @param {Number} usage Either DRAW.World.USAGE_CANVAS or DRAW.World.USAGE_DOM. **Required**.
+   * @param {HTMLElement|String} element DOM element to draw to.
+   * @param {Number} usage Either DRAW.World.USAGE_CANVAS or DRAW.World.USAGE_DOM.
+   * @memberOf Sprinting.DRAW
    */
 
   // A World creates an instance of either CanvasContext or DomContext, both of which inherit from DrawingContext and sets it's property `context` to this instance.

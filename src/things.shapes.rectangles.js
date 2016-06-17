@@ -11,8 +11,9 @@ module.exports = function(sprinting) {
    * rect.x = 24
    * rect.y = 32
    * world.add(rect))
-   * @extends Shape
+   * @extends Sprinting.Shape
    * @class Rectangle
+   * @memberOf Sprinting
    * @param {Number} [width=50]
    * @param {Number} [height=50]
    * @param {Color}  [stroke=#000] The outline color of the Shape.
@@ -52,8 +53,9 @@ module.exports = function(sprinting) {
    * @example
    * let mySquare = new Sprinting.Square(100)
    * world.add(mySquare)
-   * @extends Rectangle
+   * @extends Sprinting.Rectangle
    * @class Square
+   * @memberOf Sprinting
    * @param {Number} [length=50]
    * @param {Color}  [stroke=#000000]
    * @param {Color}  [fill=#FFFFFF]

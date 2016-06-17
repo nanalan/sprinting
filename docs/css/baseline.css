@@ -4909,3 +4909,73 @@ td > p:last-child {
   border-radius: 0;
   padding-right: 16px;
 }
+
+a {
+  color: #2196F3;
+}
+
+a:visited {
+  color: #3F51B5;
+}
+
+.jqtree_common {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 16px;
+}
+
+.jqtree-tree > .jqtree-folder > div > .jqtree-toggler {
+  color: transparent;
+  pointer-events: none;
+}
+
+.jqtree-tree > .jqtree-folder > div > span > a {
+  color: #191919;
+  /*font-weight: normal;*/
+}
+
+.jqtree-toggler {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.jqtree-toggler {
+  margin-left: -22px !important;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+}
+
+.jqtree-title-folder {
+  color: #444;
+  font-weight: bold;
+  z-index: 2;
+  position: relative;
+}
+
+.jqtree-title-folder a {
+  position: relative;
+  z-index: 2;
+}
+
+.jqtree-toggler:hover {
+  background-color: #eee;
+}
+
+ul.jqtree_common:not(.jqtree-tree) {
+  padding-left: 1em;
+  border-left: 1px solid #eee;
+}
+
+li.jqtree_common .jqtree-element > span {
+  margin-left: 0;
+}
+
+#jsdoc-toc-nav {
+  padding-left: 3.4%;
+}

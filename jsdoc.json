@@ -12,8 +12,8 @@
     "plugins/markdown"
   ],
   "templates": {
-    "cleverLinks": true,
-    "monospaceLinks": false,
+    "cleverLinks": false,
+    "monospaceLinks": true,
     "baseline": {
         // Set to `true` to reindent the HTML output files. Set to `false` to generate output files more
         // quickly, but with extra whitespace.

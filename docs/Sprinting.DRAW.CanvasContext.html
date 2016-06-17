@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="JSDoc 3.4.0">
   <meta charset="utf-8">
-  <title>Class: Square &bullet; Sprinting Docs</title>
+  <title>Class: CanvasContext &bullet; Sprinting Docs</title>
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -30,28 +31,36 @@
       <div id="jsdoc-content-container">
         <div id="jsdoc-main" role="main">
           <header class="page-header">
-            <div class="symbol-detail-labels"><span class="label label-kind">class</span></div>
-            <h1><small></small><span class="symbol-name">Square</span></h1>
-            <p class="source-link">Source: <a href="things.shapes.rectangles.js.html#source-line-49">things.<wbr>shapes.<wbr>rectangles.<wbr>js:49</a></p>
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
+            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr><a href="Sprinting.DRAW.html">DRAW</a>.<wbr></small><span class="symbol-name">CanvasContext</span></h1>
+            <p class="source-link">Source: <a href="draw_contexts.canvas.js.html#source-line-6">draw/<wbr>contexts.<wbr>canvas.<wbr>js:6</a></p>
             <dl class="dl-compact">
             </dl>
           </header>
           <section id="summary">
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Method</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.DRAW.CanvasContext.html#draw">draw()</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                </div>
+                <div class="summary-column">
+                </div>
+              </div>
+            </div>
           </section>
           <section>
-            <h2 id="Square">new&nbsp;<span class="symbol-name">Square</span><span class="signature"><span class="signature-params">([length][, stroke][, fill])</span></span></h2>
-            <p>A Square is a Rectangle but with side length (rather than width and height).</p>
+            <h2 id="CanvasContext">new&nbsp;<span class="symbol-name">CanvasContext</span><span class="signature"><span class="signature-params">(world)</span></span></h2>
+            <p>A CanvasContext is an inheritor of DrawingContext used for drawing with the HTML5 Canvas. It is automatically instanced when a new World is created with the <code>usage</code> World.USAGE_CANVAS. It also has the member <code>canvas</code>,
+              which is the HTML5 Canvas element, and <code>ctx</code>, which is the canvas' context.</p>
             <section>
-              <h3>
-            Example
-        </h3>
-              <div>
-                <pre><code class='js'>let mySquare &#x3D; new Sprinting.Square(100)
-world.add(mySquare)</code></pre>
-              </div>
-            </section>
-            <section>
-              <h3>Parameters</h3>
+              <h3>Parameter</h3>
               <table class="jsdoc-details-table">
                 <thead>
                   <tr>
@@ -64,55 +73,33 @@ world.add(mySquare)</code></pre>
                 <tbody>
                   <tr>
                     <td>
-                      <p>length</p>
+                      <p>world</p>
                     </td>
                     <td>
-                      <p>Number</p>
+                      <p>DRAW.World</p>
                     </td>
                     <td>
-                      <p>Yes</p>
+                      <p>&nbsp;</p>
                     </td>
                     <td>
-                      <p>Defaults to <code>50</code>.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>stroke</p>
-                    </td>
-                    <td>
-                      <p><a href="global.html#Color">Color</a></p>
-                    </td>
-                    <td>
-                      <p>Yes</p>
-                    </td>
-                    <td>
-                      <p>Defaults to <code>#000000</code>.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>fill</p>
-                    </td>
-                    <td>
-                      <p><a href="global.html#Color">Color</a></p>
-                    </td>
-                    <td>
-                      <p>Yes</p>
-                    </td>
-                    <td>
-                      <p>Defaults to <code>#FFFFFF</code>.</p>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </section>
             <dl class="dl-compact">
-              <dt>Extends</dt>
-              <dd><a href="Rectangle.html">Rectangle</a></dd>
+              <dt>See also</dt>
+              <dd>DrawingContext</dd>
             </dl>
           </section>
           <section>
+            <h2>Method</h2>
+            <section>
+              <h3 id="draw"><span class="symbol-name">draw</span><span class="signature"><span class="signature-params">()</span></span></h3>
+              <p>Method used to draw all of the CanvasContext's Things to the parent World.</p>
+              <dl class="dl-compact">
+              </dl>
+            </section>
           </section>
         </div>
       </div>

@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="JSDoc 3.4.0">
   <meta charset="utf-8">
-  <title>Class: World &bullet; Sprinting Docs</title>
+  <title>Class: Square &bullet; Sprinting Docs</title>
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -30,24 +31,24 @@
       <div id="jsdoc-content-container">
         <div id="jsdoc-main" role="main">
           <header class="page-header">
-            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
-            <h1><small>DRAW.<wbr></small><span class="symbol-name">World</span></h1>
-            <p class="source-link">Source: <a href="draw_world.js.html#source-line-5">draw/<wbr>world.<wbr>js:5</a></p>
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
+            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">Square</span></h1>
+            <p class="source-link">Source: <a href="things.shapes.rectangles.js.html#source-line-50">things.<wbr>shapes.<wbr>rectangles.<wbr>js:50</a></p>
             <dl class="dl-compact">
             </dl>
           </header>
           <section id="summary">
           </section>
           <section>
-            <h2 id="World">new&nbsp;<span class="symbol-name">World</span><span class="signature"><span class="signature-params">(element, usage)</span></span></h2>
-            <p>A World by itself is not very useful, but -- similar to HTML5 Canvas -- it has a <code>context</code> property which provides drawing functions and inherits from DrawingContext.</p>
+            <h2 id="Square">new&nbsp;<span class="symbol-name">Square</span><span class="signature"><span class="signature-params">([length][, stroke][, fill])</span></span></h2>
+            <p>A Square is a Rectangle but with side length (rather than width and height).</p>
             <section>
               <h3>
             Example
         </h3>
               <div>
-                <pre><code class='js'>let canvas &#x3D; new Sprinting.DRAW.World(document.body, Sprinting.DRAW.World.USAGE_CANVAS)
-let ctx    &#x3D; canvas.context</code></pre>
+                <pre><code class='js'>let mySquare &#x3D; new Sprinting.Square(100)
+world.add(mySquare)</code></pre>
               </div>
             </section>
             <section>
@@ -64,36 +65,52 @@ let ctx    &#x3D; canvas.context</code></pre>
                 <tbody>
                   <tr>
                     <td>
-                      <p>element</p>
-                    </td>
-                    <td>
-                      <p>(HTMLElement or String)</p>
-                    </td>
-                    <td>
-                      <p>&nbsp;</p>
-                    </td>
-                    <td>
-                      <p>DOM element to draw to. <strong>Required</strong>.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>usage</p>
+                      <p>length</p>
                     </td>
                     <td>
                       <p>Number</p>
                     </td>
                     <td>
-                      <p>&nbsp;</p>
+                      <p>Yes</p>
                     </td>
                     <td>
-                      <p>Either DRAW.World.USAGE_CANVAS or DRAW.World.USAGE_DOM. <strong>Required</strong>.</p>
+                      <p>Defaults to <code>50</code>.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>stroke</p>
+                    </td>
+                    <td>
+                      <p>Color</p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>Defaults to <code>#000000</code>.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>fill</p>
+                    </td>
+                    <td>
+                      <p>Color</p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>Defaults to <code>#FFFFFF</code>.</p>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </section>
             <dl class="dl-compact">
+              <dt>Extends</dt>
+              <dd><a href="Sprinting.Rectangle.html">Sprinting.Rectangle</a></dd>
             </dl>
           </section>
           <section>

@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -39,20 +40,25 @@
 
   // DrawingContext contains the functions shared between both CanvasContext and DomContext.
 
-  /*!
+  /**
    * An inheritor of DrawingContext provides drawing functions for a specific usage. They should not be constructed on their own but rather through &#x60;Sprinting.DRAW.World&#x60;.
    *
-   * @class DRAW.DrawingContext
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
+   * @class DrawingContext
+   * @memberOf Sprinting.DRAW
+   * @private
+   * @param {Symbol} key Sprinting.INTERNAL_KEY.
    */
   function DrawingContext(symbol) {
     sprinting.VALIDATE_KEY(symbol, &#x27;new SubWorld(): Illegal construction of abstract class SubWorld.&#x27;)
   }
 
-  /*!
+  /**
    * The constructor used by inheritors of DrawingContext.
    *
-   * @function DRAW.DrawingContext.dcInit
+   * @function dcInit
+   * @memberOf Sprinting.DRAW.DrawingContext
+   * @instance
+   * @private
    * @param {Sprinting.DRAW.World} world The World that the DrawingContext belongs in.
    */
   DrawingContext.prototype.dcInit &#x3D; function(world) {

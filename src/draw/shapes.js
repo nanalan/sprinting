@@ -2,8 +2,9 @@ module.exports = function(sprinting) {
   /**
    * A Shape has the property `drawFn` set in construction to `fn` with the single parameter `context` of type Sprinting.DRAW.DrawingContext.
    *
-   * @class DRAW.Shape
+   * @class Shape
    * @param {Function} fn
+   * @memberOf Sprinting.DRAW
    * @private
    */
 
@@ -14,7 +15,8 @@ module.exports = function(sprinting) {
   /**
    * Calls `this.drawFn`.
    *
-   * @function DRAW.Shape.draw
+   * @function draw
+   * @memberOf Sprinting.DRAW.Shape
    * @param  {Sprinting.DRAW.DrawingContext} context The argument to call `this.drawFn` with.
    */
   Shape.prototype.draw = function(context) {

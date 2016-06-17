@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -48,8 +49,9 @@
    * rect.x &#x3D; 24
    * rect.y &#x3D; 32
    * world.add(rect))
-   * @extends Shape
+   * @extends Sprinting.Shape
    * @class Rectangle
+   * @memberOf Sprinting
    * @param {Number} [width&#x3D;50]
    * @param {Number} [height&#x3D;50]
    * @param {Color}  [stroke&#x3D;#000] The outline color of the Shape.
@@ -89,8 +91,9 @@
    * @example
    * let mySquare &#x3D; new Sprinting.Square(100)
    * world.add(mySquare)
-   * @extends Rectangle
+   * @extends Sprinting.Rectangle
    * @class Square
+   * @memberOf Sprinting
    * @param {Number} [length&#x3D;50]
    * @param {Color}  [stroke&#x3D;#000000]
    * @param {Color}  [fill&#x3D;#FFFFFF]

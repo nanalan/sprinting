@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -44,8 +45,9 @@
    * A DomContext is an inheritor of DrawingContext used for drawing with the DOM. It is automatically instanced when a new World is created with the &#x60;usage&#x60; World.USAGE_DOM.
    * It has no new public attributes that it doesn&#x27;t share with DrawingContext.
    *
-   * @class DRAW.DomContext
+   * @class DomContext
    * @see DrawingContext
+   * @memberOf Sprinting.DRAW
    * @param {Sprinting.DRAW.World} world
    * @private
    */
@@ -59,7 +61,9 @@
   /**
    * Method used to draw all it&#x27;s shapes to the parent World.
    *
-   * @function DRAW.DomContext.draw
+   * @function draw
+   * @memberOf Sprinting.DRAW.DomContext
+   * @instance
    */
   DOMContext.prototype.draw &#x3D; function() {
     if(this._prevShapes !&#x3D;&#x3D; this.shapes) {

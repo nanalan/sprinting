@@ -5,6 +5,7 @@ module.exports = function(sprinting) {
    * Please note that there are no specific RGBA or HSLA, but if using RGB or HSL you can specify a fourth argument to be the alpha.
    *
    * @function Color
+   * @memberOf Sprinting
    * @param {Function} type - Either Color.PLAIN, Color.HEX, Color.RGB or Color.HSL.
    * @param {...*} values - Values to specify the color in accordance to the type: see below.
    */

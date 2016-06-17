@@ -43,4 +43,5 @@ gulp.task('docs-clean', () => gulp.src(['docs/*'], { read: false }).pipe(clean()
 
 gulp.task('watch', () => {
   gulp.watch('src/**/*.js', ['default'])
+  gulp.watch('node_modules/jsdoc-baseline/**/*.*', ['docs'])
 })

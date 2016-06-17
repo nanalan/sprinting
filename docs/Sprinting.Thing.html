@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="JSDoc 3.4.0">
   <meta charset="utf-8">
-  <title>Class: DomContext &bullet; Sprinting Docs</title>
+  <title>Class: Thing &bullet; Sprinting Docs</title>
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -30,34 +31,25 @@
       <div id="jsdoc-content-container">
         <div id="jsdoc-main" role="main">
           <header class="page-header">
-            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
-            <h1><small>DRAW.<wbr></small><span class="symbol-name">DomContext</span></h1>
-            <p class="source-link">Source: <a href="draw_contexts.dom.js.html#source-line-6">draw/<wbr>contexts.<wbr>dom.<wbr>js:6</a></p>
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-protected">protected</span>&nbsp;<span class="label label-static">static</span></div>
+            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">Thing</span></h1>
+            <p class="source-link">Source: <a href="things.js.html#source-line-2">things.<wbr>js:2</a></p>
             <dl class="dl-compact">
             </dl>
           </header>
           <section id="summary">
-            <div class="summary-callout">
-              <h2 class="summary-callout-heading">Method</h2>
-              <div class="summary-content">
-                <div class="summary-column">
-                  <dl class="dl-summary-callout">
-                    <dt><a href="DRAW.DomContext.html#.draw">draw()</a></dt>
-                    <dd>
-                    </dd>
-                  </dl>
-                </div>
-                <div class="summary-column">
-                </div>
-                <div class="summary-column">
-                </div>
-              </div>
-            </div>
           </section>
           <section>
-            <h2 id="DomContext">new&nbsp;<span class="symbol-name">DomContext</span><span class="signature"><span class="signature-params">(world)</span></span></h2>
-            <p>A DomContext is an inheritor of DrawingContext used for drawing with the DOM. It is automatically instanced when a new World is created with the <code>usage</code> World.USAGE_DOM. It has no new public attributes that it doesn't share with
-              DrawingContext.</p>
+            <h2 id="Thing">new&nbsp;<span class="symbol-name">Thing</span><span class="signature"><span class="signature-params">(key)</span></span></h2>
+            <p>Something that is contained within the <a href="Sprinting.World.html"><code>World</code></a>. <strong>This shouldn't be constructed directly</strong>; rather, use a <a href="Sprinting.Shape.html"><code>Shape</code></a>, such as a <a href="Sprinting.Square.html"><code>Square</code></a>.</p>
+            <section>
+              <h3>
+            Example
+        </h3>
+              <div>
+                <pre><code class='js'>let myThing &#x3D; new Sprinting.Thing(Sprinting.INTERNAL_KEY)</code></pre>
+              </div>
+            </section>
             <section>
               <h3>Parameter</h3>
               <table class="jsdoc-details-table">
@@ -72,15 +64,16 @@
                 <tbody>
                   <tr>
                     <td>
-                      <p>world</p>
+                      <p>key</p>
                     </td>
                     <td>
-                      <p>Sprinting.DRAW.World</p>
+                      <p>Symbol</p>
                     </td>
                     <td>
                       <p>&nbsp;</p>
                     </td>
                     <td>
+                      <p><a href="Sprinting.html#.INTERNAL_KEY"><code>Sprinting.INTERNAL_KEY</code></a>.</p>
                     </td>
                   </tr>
                 </tbody>
@@ -88,18 +81,10 @@
             </section>
             <dl class="dl-compact">
               <dt>See also</dt>
-              <dd>DrawingContext</dd>
+              <dd><a href="Sprinting.Shape.html">Sprinting.Shape</a></dd>
             </dl>
           </section>
           <section>
-            <h2>Method</h2>
-            <section>
-              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
-              <h3 id=".draw"><span class="symbol-name">draw</span><span class="signature"><span class="signature-params">()</span></span></h3>
-              <p>Method used to draw all it's shapes to the parent World.</p>
-              <dl class="dl-compact">
-              </dl>
-            </section>
           </section>
         </div>
       </div>

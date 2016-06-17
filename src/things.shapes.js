@@ -7,10 +7,11 @@ module.exports = function(sprinting) {
    * A Shape is a {@link Thing} with a stroke and fill.
    *
    * @class Shape
-   * @extends Thing
+   * @extends Sprinting.Thing
+   * @memberOf Sprinting
    * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
-   * @param {Color|String} [stroke=#000000] The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#000000"`.
-   * @param {Color|String} [fill=#ffffff]   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. **Default**: `"#FFFFFF"`.
+   * @param {Sprinting.Color|String} [stroke=#000000] The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string.
+   * @param {Sprinting.Color|String} [fill=#ffffff]   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string.
    */
   function Shape(symbol, stroke = '#000000', fill = '#FFFFFF') {
     sprinting.VALIDATE_KEY(symbol, 'new Shape(): Illegal construction of abstract class Shape.')
@@ -25,7 +26,8 @@ module.exports = function(sprinting) {
   /**
    * Draws this Shape to the screen.
    *
-   * @function Shape._draw
+   * @function _draw
+   * @memberOf Shape
    * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key).
    * @private
    */

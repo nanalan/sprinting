@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="JSDoc 3.4.0">
   <meta charset="utf-8">
-  <title>Class: Shape &bullet; Sprinting Docs</title>
+  <title>Class: DrawingContext &bullet; Sprinting Docs</title>
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -31,8 +32,8 @@
         <div id="jsdoc-main" role="main">
           <header class="page-header">
             <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
-            <h1><small>DRAW.<wbr></small><span class="symbol-name">Shape</span></h1>
-            <p class="source-link">Source: <a href="draw_shapes.js.html#source-line-2">draw/<wbr>shapes.<wbr>js:2</a></p>
+            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr><a href="Sprinting.DRAW.html">DRAW</a>.<wbr></small><span class="symbol-name">DrawingContext</span></h1>
+            <p class="source-link">Source: <a href="draw_contexts.js.html#source-line-5">draw/<wbr>contexts.<wbr>js:5</a></p>
             <dl class="dl-compact">
             </dl>
           </header>
@@ -42,7 +43,7 @@
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="DRAW.Shape.html#.draw">draw(context)</a></dt>
+                    <dt><a href="Sprinting.DRAW.DrawingContext.html#dcInit">dcInit(world)</a></dt>
                     <dd>
                     </dd>
                   </dl>
@@ -55,8 +56,8 @@
             </div>
           </section>
           <section>
-            <h2 id="Shape">new&nbsp;<span class="symbol-name">Shape</span><span class="signature"><span class="signature-params">(fn)</span></span></h2>
-            <p>A Shape has the property <code>drawFn</code> set in construction to <code>fn</code> with the single parameter <code>context</code> of type Sprinting.DRAW.DrawingContext.</p>
+            <h2 id="DrawingContext">new&nbsp;<span class="symbol-name">DrawingContext</span><span class="signature"><span class="signature-params">(key)</span></span></h2>
+            <p>An inheritor of DrawingContext provides drawing functions for a specific usage. They should not be constructed on their own but rather through <code>Sprinting.DRAW.World</code>.</p>
             <section>
               <h3>Parameter</h3>
               <table class="jsdoc-details-table">
@@ -71,15 +72,16 @@
                 <tbody>
                   <tr>
                     <td>
-                      <p>fn</p>
+                      <p>key</p>
                     </td>
                     <td>
-                      <p>function()</p>
+                      <p>Symbol</p>
                     </td>
                     <td>
                       <p>&nbsp;</p>
                     </td>
                     <td>
+                      <p>Sprinting.INTERNAL_KEY.</p>
                     </td>
                   </tr>
                 </tbody>
@@ -91,9 +93,9 @@
           <section>
             <h2>Method</h2>
             <section>
-              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
-              <h3 id=".draw"><span class="symbol-name">draw</span><span class="signature"><span class="signature-params">(context)</span></span></h3>
-              <p>Calls <code>this.drawFn</code>.</p>
+              <div class="symbol-detail-labels"><span class="label label-private">private</span></div>
+              <h3 id="dcInit"><span class="symbol-name">dcInit</span><span class="signature"><span class="signature-params">(world)</span></span></h3>
+              <p>The constructor used by inheritors of DrawingContext.</p>
               <section>
                 <h4>Parameter</h4>
                 <table class="jsdoc-details-table">
@@ -108,16 +110,16 @@
                   <tbody>
                     <tr>
                       <td>
-                        <p>context</p>
+                        <p>world</p>
                       </td>
                       <td>
-                        <p>Sprinting.DRAW.DrawingContext</p>
+                        <p><a href="Sprinting.DRAW.World.html">Sprinting.DRAW.World</a></p>
                       </td>
                       <td>
                         <p>&nbsp;</p>
                       </td>
                       <td>
-                        <p>The argument to call <code>this.drawFn</code> with.</p>
+                        <p>The World that the DrawingContext belongs in.</p>
                       </td>
                     </tr>
                   </tbody>

@@ -14,6 +14,7 @@
   <script>
     hljs.initHighlightingOnLoad();
     hljs.initLineNumbersOnLoad();
+    localStorage.tree = localStorage.tree || '{"open_nodes":["Sprinting"]}';
   </script>
   <link href="css/baseline.css" rel="stylesheet">
 </head>
@@ -41,7 +42,39 @@
           </header>
           <section id="summary">
             <div class="summary-callout">
-              <h2 class="summary-callout-heading">Child interface</h2>
+              <h2 class="summary-callout-heading">Child classes</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Rectangle.html">Rectangle([width][, height][, stroke][, stroke])</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.Shape.html">Shape(key[, stroke][, fill])</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Square.html">Square([length][, stroke][, fill])</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.Thing.html">Thing(key)</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.World.html">World(element[, width][, height])</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Namespace</h2>
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
@@ -57,7 +90,7 @@
               </div>
             </div>
             <div class="summary-callout">
-              <h2 class="summary-callout-heading">Property</h2>
+              <h2 class="summary-callout-heading">Properties</h2>
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
@@ -67,6 +100,32 @@
                   </dl>
                 </div>
                 <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.html#.version">version</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                </div>
+              </div>
+            </div>
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Methods</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.html#.Color">Color(type, .<wbr>.<wbr>.<wbr>values)</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.html#.VALIDATE_KEY">VALIDATE_KEY(key)</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
                 </div>
                 <div class="summary-column">
                 </div>
@@ -74,16 +133,119 @@
             </div>
           </section>
           <section>
-            <h2>Interface</h2>
+            <h2>Classes</h2>
+            <section id='members-links'>
+              <h3><a href="Sprinting.Rectangle.html">Rectangle</a></h3>
+              <h3><a href="Sprinting.Shape.html">Shape</a></h3>
+              <h3><a href="Sprinting.Square.html">Square</a></h3>
+              <h3><a href="Sprinting.Thing.html">Thing</a></h3>
+              <h3><a href="Sprinting.World.html">World</a></h3>
+            </section>
+            <h2>Namespace</h2>
             <section id='members-links'>
               <h3><a href="Sprinting.DRAW.html">DRAW</a></h3>
             </section>
-            <h2>Property</h2>
+            <h2>Properties</h2>
             <section>
               <div class="symbol-detail-labels"><span class="label label-protected">protected</span>&nbsp;<span class="label label-static">static</span></div>
               <h3 id=".INTERNAL_KEY"><span class="symbol-name">INTERNAL_KEY</span></h3>
               <p>Internal key used to unlock &amp; run internal methods.</p>
               <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".version"><span class="symbol-name">version</span></h3>
+              <p>Current version.</p>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+            <h2>Methods</h2>
+            <section>
+              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
+              <h3 id=".Color"><span class="symbol-name">Color</span><span class="signature"><span class="signature-params">(type, ...values)</span></span></h3>
+              <p>A color (of both Sprinting and Sprinting.DRAW) for use by the drawing API or sprinting itself. The <code>string</code> property is always equal to the color created in string-form, while <code>values</code> is the value of the argument of
+                the same name. Please note that there are no specific RGBA or HSLA, but if using RGB or HSL you can specify a fourth argument to be the alpha.</p>
+              <section>
+                <h4>Parameters</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>type</p>
+                      </td>
+                      <td>
+                        <p>function()</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Either Color.PLAIN, Color.HEX, Color.RGB or Color.HSL.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>values</p>
+                      </td>
+                      <td>
+                        <p>any type</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Values to specify the color in accordance to the type: see below.</p>
+                        <p>Value can be repeated.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <div class="symbol-detail-labels"><span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
+              <h3 id=".VALIDATE_KEY"><span class="symbol-name">VALIDATE_KEY</span><span class="signature"><span class="signature-params">(key)</span>&nbsp;&rarr; <span class="signature-returns"> Boolean</span></span></h3>
+              <p>Internal method for validating a given <code>key</code></p>
+              <section>
+                <h4>Parameter</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>key</p>
+                      </td>
+                      <td>
+                        <p>Symbol</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+                <dt>Returns</dt>
+                <dd>
+                  <p><code>Boolean</code>&nbsp;</p>
+                </dd>
               </dl>
             </section>
           </section>

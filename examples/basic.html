@@ -5,16 +5,8 @@
 </head>
 
 <body>
-  <div id='canvas'></div>
+  <sprinting-world id='world'></sprinting-world>
 
-  <script>
-    const S = Sprinting
-
-    let world = new S.World('#canvas')
-    let mysquare = new S.Square(50)
-    mysquare.x = 20
-    mysquare.y = 20
-    world.add(mysquare)
-  </script>
+  <script src='basic.js'></script>
 </body>
 </html>
