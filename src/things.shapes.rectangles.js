@@ -6,13 +6,11 @@ module.exports = function(sprinting) {
   /**
    * A Rectangle is a {@link Shape} with a width and a height.
    *
-   * ```
+   * @example
    * let rect = new Sprinting.Rectangle(100, 100)
    * rect.x = 24
    * rect.y = 32
    * world.add(rect))
-   * ```
-   *
    * @extends Shape
    * @class Rectangle
    * @param {Number} [width=50]
@@ -51,11 +49,9 @@ module.exports = function(sprinting) {
   /**
    * A Square is a Rectangle but with side length (rather than width and height).
    *
-   * ```
+   * @example
    * let mySquare = new Sprinting.Square(100)
    * world.add(mySquare)
-   * ```
-   *
    * @extends Rectangle
    * @class Square
    * @param {Number} [length=50]
