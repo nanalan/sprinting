@@ -9,13 +9,26 @@ html, body {
   width: 100%;
 }
 
+.hljs-line-numbers {
+  text-align: right;
+  color: #999;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border-radius: 0;
+  padding-right: 16px;
+}
+
 body {
   color: #4d4e53;
   background-color: white;
   margin: 0 auto;
   padding: 0 20px;
 
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', Roboto, 'Fira Sans', Helvetica, sans-serif;
   font-size: 16px;
   line-height: 160%;
 }
@@ -86,7 +99,6 @@ h6 {
 
 tt, code, kbd, samp {
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
-  background: #f4f4f4;
   padding: 1px 5px;
   border-radius: 5px;
 }
@@ -296,28 +308,12 @@ footer {
 }
 
 .prettyprint {
-  font-size: 13px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.05);
+  font-size: 14px;
   overflow: auto;
 }
 
 .prettyprint.source {
   width: inherit
-}
-
-.prettyprint code {
-  font-size: 100%;
-  line-height: 18px;
-  display: block;
-  margin: 0 30px;
-  background-color: #fff;
-  color: #4D4E53;
-}
-
-.prettyprint > code {
-  padding: 15px
 }
 
 .prettyprint .linenums code {
