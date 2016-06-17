@@ -66,7 +66,7 @@ module.exports = function(sprinting) {
         options.doFill = false
     }
     if(typeof options.rotationUnit === 'undefined') options.rotationUnit = DrawingContext.ROT_DEG
-    if(typeof options.rotation === 'undefined') options.rotation = options.rotationUnit === DrawingContext.ROT_DEG ? 90 : 1.5707963267948966 /* 90 * Math.PI / 180 */
+    if(typeof options.rotation === 'undefined') options.rotation = 0
     if(typeof options.strokeWidth === 'undefined') options.strokeWidth = 1
 
     return options

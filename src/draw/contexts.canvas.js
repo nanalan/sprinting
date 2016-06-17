@@ -24,6 +24,33 @@ module.exports = function(DrawingContext, sprinting) {
     this.world.element.appendChild(this.canvas)
   }
 
+  CanvasContext.TWO_PI = 2 * Math.PI
+
+  CanvasContext.reactToOptions = function(options, ctx) {
+    ctx.translate(options.x, options.y)
+
+    ctx.strokeStyle = options.stroke
+    ctx.fillStyle   = options.fill
+    ctx.lineWidth   = options.strokeWidth
+    ctx.rotate(options.rotationUnit === sprinting.DRAW.DrawingContext.ROT_DEG ? options.rotation * Math.PI / 180 : options.rotation)
+
+    return ctx
+  }
+
+  CanvasContext.generalShapeFunction = function(code) {
+    return function(x, y, w, h, options) {
+      options = sprinting.DRAW.DrawingContext.fillOptions(Object.assign(options || {}, {
+        x, y, w, h
+      }))
+
+      return new sprinting.DRAW.Shape(function(drawingCtx) {
+        let ctx = CanvasContext.reactToOptions(options, drawingCtx.ctx)
+
+        code(ctx, x, y, w, h, options)
+      })
+    }
+  }
+
   /**
    * Method used to draw all it's shapes to the parent World.
    *
@@ -33,23 +60,10 @@ module.exports = function(DrawingContext, sprinting) {
     this.shapes.forEach(shape => shape.draw(this))
   }
 
-  CanvasContext.prototype.rectangle = function(x, y, w, h, options) {
-    options = sprinting.DRAW.DrawingContext.fillOptions(options)
-
-    return new sprinting.DRAW.Shape(function(drawingCtx) {
-      let ctx = drawingCtx.ctx
-
-      ctx.translate(x, y)
-
-      ctx.strokeStyle = options.stroke
-      ctx.fillStyle   = options.fill
-      ctx.lineWidth   = options.strokeWidth
-      ctx.rotate(options.rotationUnit === sprinting.DRAW.DrawingContext.ROT_DEG ? options.rotation * Math.PI / 180 : options.rotation)
-
-      if(options.doFill) ctx.fillRect(0, 0, w, h)
-      ctx.strokeRect(0, 0, w, h)
-    })
-  }
+  CanvasContext.prototype.rectangle = CanvasContext.generalShapeFunction(function(ctx, x, y, w, h, options) {
+    if(options.doFill) ctx.fillRect(0, 0, w, h)
+    ctx.strokeRect(0, 0, w, h)
+  })
 
   return CanvasContext
 }
