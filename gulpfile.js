@@ -8,7 +8,9 @@ const insert = require('gulp-insert')
 const shell = require('gulp-shell')
 const browserify = require('gulp-browserify')
 
-gulp.task('default', ['docs', 'clean'], () => {
+gulp.task('default', ['docs', 'clean', 'build'])
+
+gulp.task('build', () => {
   gulp.src('src/sprinting.js')
     .pipe(sourcemaps.init())
     .pipe(traceur({
