@@ -19,8 +19,6 @@ module.exports = function(sprinting) {
   // A World creates an instance of either CanvasContext or DomContext, both of which inherit from DrawingContext and sets it's property `context` to this instance.
 
   function World(element, usage) {
-    console.log(usage)
-
     if(!(element instanceof HTMLElement || typeof element === 'string'))
       throw new TypeError('new DRAW.World(): arg 1 must be an HTMLElement or string.')
     if(!(typeof usage === 'number'))
@@ -40,6 +38,19 @@ module.exports = function(sprinting) {
       break
     }
   }
+
+  World.prototype.setWidth = function(w) {
+    this.element.style.width = w
+    if(this.context.canvas && this.context.canvas instanceof HTMLElement)
+      this.context.canvas.setAttribute('width', w)
+  }
+  World.prototype.setHeight = function(h) {
+    this.element.style.height = h
+    if(this.context.canvas && this.context.canvas instanceof HTMLElement)
+      this.context.canvas.setAttribute('height', h)
+  }
+  World.prototype.getWidth = function()  { return this.element.style.width  }
+  World.prototype.getHeight = function() { return this.element.style.height }
 
   sprinting.DRAW.World = World
 

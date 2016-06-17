@@ -57,8 +57,8 @@ module.exports = function(sprinting) {
    */
   DrawingContext.fillOptions = function(options = {}) {
     if(typeof options.stroke === 'undefined') options.stroke = '#000000'
-    let fill = typeof options.fill === 'undefined' || options.fill === 'none' || options.fill === 'transparent'
-    if(fill) options.fill = '#FFFFFF'
+    let fill = !(typeof options.fill === 'undefined' || options.fill === 'none' || options.fill === 'transparent')
+    if(!fill) options.fill = '#FFFFFF'
     if(typeof options.doFill === 'undefined') {
       if(fill)
         options.doFill = true

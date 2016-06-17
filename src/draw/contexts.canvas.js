@@ -18,8 +18,8 @@ module.exports = function(DrawingContext, sprinting) {
     this.canvas = document.createElement('canvas')
     this.ctx    = this.canvas.getContext('2d')
 
-    this.canvas.setAttribute('width', this.world.width)
-    this.canvas.setAttribute('height', this.world.height)
+    this.canvas.setAttribute('width',  this.world.element.style.width  || 100)
+    this.canvas.setAttribute('height', this.world.element.style.height || 100)
 
     this.world.element.appendChild(this.canvas)
   }
@@ -35,19 +35,19 @@ module.exports = function(DrawingContext, sprinting) {
 
   CanvasContext.prototype.rectangle = function(x, y, w, h, options) {
     options = sprinting.DRAW.DrawingContext.fillOptions(options)
-    console.log(options)
+
     return new sprinting.DRAW.Shape(function(drawingCtx) {
       let ctx = drawingCtx.ctx
+
+      ctx.translate(x, y)
 
       ctx.strokeStyle = options.stroke
       ctx.fillStyle   = options.fill
       ctx.lineWidth   = options.strokeWidth
-      // ctx.rotate(options.rotationUnit === sprinting.DRAW.DrawingContext.ROT_DEG ? options.rotation / Math.PI * 180 : options.rotation)
+      ctx.rotate(options.rotationUnit === sprinting.DRAW.DrawingContext.ROT_DEG ? options.rotation * Math.PI / 180 : options.rotation)
 
-      if(options.doFill) ctx.fillRect(x, y, w, h)
-      ctx.strokeRect(x, y, w, h)
-
-      console.log('RECTANGLE DRAWN')
+      if(options.doFill) ctx.fillRect(0, 0, w, h)
+      ctx.strokeRect(0, 0, w, h)
     })
   }
 

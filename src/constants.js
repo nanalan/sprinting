@@ -1,6 +1,4 @@
 module.exports = function(sprinting) {
-  console.log(sprinting)
-
   /**
    * Internal key used to unlock & run internal methods.
    *
