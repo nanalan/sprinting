@@ -1,6 +1,12 @@
 !function() {
   require('traceur/bin/traceur-runtime')
 
+  /**
+   * The global namespace used by Sprinting. Contains everything.
+   *
+   * @name Sprinting
+   * @namespace
+   */
   let sprinting = {}
   sprinting = require('./util')(sprinting)
   sprinting = require('./constants')(sprinting)
@@ -8,7 +14,7 @@
   /**
    * Internal object containing the drawing API used by Sprinting.
    *
-   * @name DRAW
+   * @name Sprinting.DRAW
    * @interface
    * @private
    */

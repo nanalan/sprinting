@@ -1,127 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <title>things.shapes.rectangles.js &bullet; Sprinting Docs</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-    <script src="scripts/linenumber.js"></script>
-    <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <meta name="generator" content="JSDoc 3.4.0">
+  <meta charset="utf-8">
+  <title>Source: things.shapes.rectangles.js &bullet; Sprinting Docs</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+  </script>
+  <link href="css/baseline.css" rel="stylesheet">
 </head>
+
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Shape.html">Shape</a></li><li><a href="Square.html">Square</a></li><li><a href="Thing.html">Thing</a></li><li><a href="World.html">World</a><ul class='methods'><li data-type='method'><a href="World.html#.add">add</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Color">Color</a></li><li><a href="global.html#version">version</a></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">things.shapes.rectangles.js</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="source linenums"><code class="js">module.exports = function(sprinting) {
-  Rectangle.prototype = new sprinting.Shape(sprinting.INTERNAL_KEY)
-  Rectangle.prototype.constructor = Rectangle
-  Rectangle.prototype.uber = sprinting.Shape.prototype
+  <div style='margin-top:-72px;margin-left:3.5em;'>
+    <h1 style='border-bottom:0;font-size:360%;'><a href='index.html' style='text-decoration:none;color:#252525;'>
+        <b>Sprinting</b> Docs
+    </a></h1>
+    <a href='https://github.com/nanalan/sprinting'>GitHub</a>
+  </div>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: things.shapes.rectangles.js</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>module.exports &#x3D; function(sprinting) {
+  Rectangle.prototype &#x3D; new sprinting.Shape(sprinting.INTERNAL_KEY)
+  Rectangle.prototype.constructor &#x3D; Rectangle
+  Rectangle.prototype.uber &#x3D; sprinting.Shape.prototype
 
   /**
    * A Rectangle is a {@link Shape} with a width and a height.
    *
    * @example
-   * let rect = new Sprinting.Rectangle(100, 100)
-   * rect.x = 24
-   * rect.y = 32
+   * let rect &#x3D; new Sprinting.Rectangle(100, 100)
+   * rect.x &#x3D; 24
+   * rect.y &#x3D; 32
    * world.add(rect))
    * @extends Shape
    * @class Rectangle
-   * @param {Number} [width=50]
-   * @param {Number} [height=50]
-   * @param {Color}  [stroke=#000] The outline color of the Shape.
-   * @param {Color}  [stroke=#fff] The inside color of the Shape.
+   * @param {Number} [width&#x3D;50]
+   * @param {Number} [height&#x3D;50]
+   * @param {Color}  [stroke&#x3D;#000] The outline color of the Shape.
+   * @param {Color}  [stroke&#x3D;#fff] The inside color of the Shape.
    */
   function Rectangle(width, height, stroke, fill) {
-    if(!width &amp;&amp; !height &amp;&amp; !stroke &amp;&amp; !fill) return
+    if(!width &amp;amp;&amp;amp; !height &amp;amp;&amp;amp; !stroke &amp;amp;&amp;amp; !fill) return
 
-    width = typeof width === 'undefined' ? 50 : width
-    height = typeof height === 'undefined' ? 50 : height
+    width &#x3D; typeof width &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; ? 50 : width
+    height &#x3D; typeof height &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; ? 50 : height
 
     this.uber.constructor(sprinting.INTERNAL_KEY, stroke, fill)
     Object.assign(this, this.uber)
 
     if(!(width instanceof Number))
-      throw new TypeError('new Rectangle(): arg 1 must be a Number.')
+      throw new TypeError(&#x27;new Rectangle(): arg 1 must be a Number.&#x27;)
     if(!(height instanceof Number))
-      throw new TypeError('new Rectangle(): arg 2 must be a Number.')
-    this.width = width, this.height = height
+      throw new TypeError(&#x27;new Rectangle(): arg 2 must be a Number.&#x27;)
+    this.width &#x3D; width, this.height &#x3D; height
   }
 
-  Rectangle.prototype._draw = function(key) {
+  Rectangle.prototype._draw &#x3D; function(key) {
     uber._draw(key)
 
     // @TODO
   }
 
-  sprinting.Rectangle = Rectangle
+  sprinting.Rectangle &#x3D; Rectangle
 
-  Square.prototype = new sprinting.Rectangle
-  Square.prototype.constructor = Square
-  Square.prototype.uber = sprinting.Rectangle.prototype
+  Square.prototype &#x3D; new sprinting.Rectangle
+  Square.prototype.constructor &#x3D; Square
+  Square.prototype.uber &#x3D; sprinting.Rectangle.prototype
 
   /**
    * A Square is a Rectangle but with side length (rather than width and height).
    *
    * @example
-   * let mySquare = new Sprinting.Square(100)
+   * let mySquare &#x3D; new Sprinting.Square(100)
    * world.add(mySquare)
    * @extends Rectangle
    * @class Square
-   * @param {Number} [length=50]
-   * @param {Color}  [stroke=#000000]
-   * @param {Color}  [fill=#FFFFFF]
+   * @param {Number} [length&#x3D;50]
+   * @param {Color}  [stroke&#x3D;#000000]
+   * @param {Color}  [fill&#x3D;#FFFFFF]
    */
-  function Square(length = 50, stroke, fill) {
+  function Square(length &#x3D; 50, stroke, fill) {
     this.uber.constructor(length, length, stroke, fill)
     Object.assign(this, this.uber)
   }
 
-  Square.prototype._draw = function(symbol, x, y) {
+  Square.prototype._draw &#x3D; function(symbol, x, y) {
     this.uber._draw(symbol, x, y)
   }
 
-  sprinting.Square = Square
+  sprinting.Square &#x3D; Square
 
   return sprinting
 }
 </code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<br class="clear">
-
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
 </body>
+
 </html>

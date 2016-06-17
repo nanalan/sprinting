@@ -1,52 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <title>draw/contexts.canvas.js &bullet; Sprinting Docs</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-    <script src="scripts/linenumber.js"></script>
-    <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <meta name="generator" content="JSDoc 3.4.0">
+  <meta charset="utf-8">
+  <title>Source: draw/contexts.canvas.js &bullet; Sprinting Docs</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+  </script>
+  <link href="css/baseline.css" rel="stylesheet">
 </head>
+
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Shape.html">Shape</a></li><li><a href="Square.html">Square</a></li><li><a href="Thing.html">Thing</a></li><li><a href="World.html">World</a><ul class='methods'><li data-type='method'><a href="World.html#.add">add</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Color">Color</a></li><li><a href="global.html#version">version</a></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">draw/contexts.canvas.js</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="source linenums"><code class="js">module.exports = function(DrawingContext, sprinting) {
-  CanvasContext.prototype = new DrawingContext(sprinting.INTERNAL_KEY)
-  CanvasContext.prototype.constructor = CanvasContext
-  CanvasContext.prototype.uber = DrawingContext.prototype
+  <div style='margin-top:-72px;margin-left:3.5em;'>
+    <h1 style='border-bottom:0;font-size:360%;'><a href='index.html' style='text-decoration:none;color:#252525;'>
+        <b>Sprinting</b> Docs
+    </a></h1>
+    <a href='https://github.com/nanalan/sprinting'>GitHub</a>
+  </div>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: draw/contexts.canvas.js</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>module.exports &#x3D; function(DrawingContext, sprinting) {
+  CanvasContext.prototype &#x3D; new DrawingContext(sprinting.INTERNAL_KEY)
+  CanvasContext.prototype.constructor &#x3D; CanvasContext
+  CanvasContext.prototype.uber &#x3D; DrawingContext.prototype
 
   /**
-   * A CanvasContext is an inheritor of DrawingContext used for drawing with the HTML5 Canvas. It is automatically instanced when a new World is created with the `usage` World.USAGE_CANVAS.
-   * It also has the member `canvas`, which is the HTML5 Canvas element, and `ctx`, which is the canvas' context.
+   * A CanvasContext is an inheritor of DrawingContext used for drawing with the HTML5 Canvas. It is automatically instanced when a new World is created with the &#x60;usage&#x60; World.USAGE_CANVAS.
+   * It also has the member &#x60;canvas&#x60;, which is the HTML5 Canvas element, and &#x60;ctx&#x60;, which is the canvas&#x27; context.
    *
    * @class CanvasContext
    * @see DrawingContext
@@ -56,35 +52,35 @@
    */
   function CanvasContext(world) {
     this.dcInit(world)
-    this.canvas = document.createElement('canvas')
-    this.ctx    = this.canvas.getContext('2d')
+    this.canvas &#x3D; document.createElement(&#x27;canvas&#x27;)
+    this.ctx    &#x3D; this.canvas.getContext(&#x27;2d&#x27;)
 
-    this.canvas.setAttribute('width',  this.world.element.style.width  || 100)
-    this.canvas.setAttribute('height', this.world.element.style.height || 100)
+    this.canvas.setAttribute(&#x27;width&#x27;,  this.world.element.style.width  || 100)
+    this.canvas.setAttribute(&#x27;height&#x27;, this.world.element.style.height || 100)
 
     this.world.element.appendChild(this.canvas)
   }
 
-  CanvasContext.TWO_PI = 2 * Math.PI
+  CanvasContext.TWO_PI &#x3D; 2 * Math.PI
 
-  CanvasContext.reactToOptions = function(options, ctx) {
-    ctx.strokeStyle = options.stroke
-    ctx.fillStyle   = options.fill
-    ctx.lineWidth   = options.strokeWidth
-    ctx.rotation    = options.rotationUnit === sprinting.DRAW.DrawingContext.ROT_DEG ? options.rotation * Math.PI / 180 : options.rotation
+  CanvasContext.reactToOptions &#x3D; function(options, ctx) {
+    ctx.strokeStyle &#x3D; options.stroke
+    ctx.fillStyle   &#x3D; options.fill
+    ctx.lineWidth   &#x3D; options.strokeWidth
+    ctx.rotation    &#x3D; options.rotationUnit &#x3D;&#x3D;&#x3D; sprinting.DRAW.DrawingContext.ROT_DEG ? options.rotation * Math.PI / 180 : options.rotation
     console.log(ctx.rotation, options.rotation)
 
     return ctx
   }
 
-  CanvasContext.generalShapeFunction = function(paramDefaults, code) {
+  CanvasContext.generalShapeFunction &#x3D; function(paramDefaults, code) {
     return function(...args) {
-      let nonRequiredArgs = paramDefaults.map((param, index) => typeof args[index] === 'undefined' ? param : args[index])
+      let nonRequiredArgs &#x3D; paramDefaults.map((param, index) &#x3D;&gt; typeof args[index] &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; ? param : args[index])
       console.log(args, paramDefaults.length + 1)
-      let options = sprinting.DRAW.DrawingContext.fillOptions(args[paramDefaults.length] || {})// There's one non-paramDefault args, but as arrays are 0-indexed we don't have to add anything.
+      let options &#x3D; sprinting.DRAW.DrawingContext.fillOptions(args[paramDefaults.length] || {})// There&#x27;s one non-paramDefault args, but as arrays are 0-indexed we don&#x27;t have to add anything.
 
       return new sprinting.DRAW.Shape(function(drawingCtx) {
-        let ctx = CanvasContext.reactToOptions(options, drawingCtx.ctx)
+        let ctx &#x3D; CanvasContext.reactToOptions(options, drawingCtx.ctx)
         ctx.save()
         code(ctx, ...nonRequiredArgs, options)
         ctx.restore()
@@ -93,22 +89,22 @@
   }
 
   /**
-   * Method used to draw all it's shapes to the parent World.
+   * Method used to draw all it&#x27;s shapes to the parent World.
    *
    * @function DRAW.CanvasContext.draw
    */
-  CanvasContext.prototype.draw = function() {
-    this.shapes.forEach(shape => shape.draw(this))
+  CanvasContext.prototype.draw &#x3D; function() {
+    this.shapes.forEach(shape &#x3D;&gt; shape.draw(this))
   }
 
-  CanvasContext.prototype.rectangle = CanvasContext.generalShapeFunction([0, 0, 50, 50], function(ctx, x, y, w, h, options) {
+  CanvasContext.prototype.rectangle &#x3D; CanvasContext.generalShapeFunction([0, 0, 50, 50], function(ctx, x, y, w, h, options) {
     ctx.translate(x, y)
     ctx.rotate(ctx.rotation)
     if(options.doFill) ctx.fillRect(0, 0, w, h)
     ctx.strokeRect(0, 0, w, h)
   })
 
-  CanvasContext.prototype.ellipse = CanvasContext.generalShapeFunction([0, 0, 50, 50], function(ctx, x, y, w, h, options) {
+  CanvasContext.prototype.ellipse &#x3D; CanvasContext.generalShapeFunction([0, 0, 50, 50], function(ctx, x, y, w, h, options) {
     ctx.translate(x, y)
     ctx.rotate(ctx.rotation)
     ctx.beginPath()
@@ -118,12 +114,12 @@
     ctx.closePath()
   })
 
-  CanvasContext.prototype.polygon = CanvasContext.generalShapeFunction([[], []], function(ctx, xPoints, yPoints, options) {
+  CanvasContext.prototype.polygon &#x3D; CanvasContext.generalShapeFunction([[], []], function(ctx, xPoints, yPoints, options) {
     ctx.translate(xPoints[0] || 0, yPoints[0] || 0)
     ctx.rotate(ctx.rotation)
     ctx.beginPath()
-    xPoints.forEach(x, i => {
-      let y = yPoints[i]
+    xPoints.forEach(x, i &#x3D;&gt; {
+      let y &#x3D; yPoints[i]
       ctx.lineTo(xPoints[0] - x, yPoints[0] - y)
     })
     if(options.doFill) ctx.fill()
@@ -131,7 +127,7 @@
     ctx.closePath()
   })
 
-  CanvasContext.prototype.line = CanvasContext.generalShapeFunction([0, 0, 50, 50], function(ctx, x1, y1, x2, y2, options) {
+  CanvasContext.prototype.line &#x3D; CanvasContext.generalShapeFunction([0, 0, 50, 50], function(ctx, x1, y1, x2, y2, options) {
       ctx.translate(x1, y1)
       ctx.rotate(ctx.rotation)
       ctx.beginPath()
@@ -144,15 +140,18 @@
   return CanvasContext
 }
 </code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<br class="clear">
-
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
 </body>
+
 </html>

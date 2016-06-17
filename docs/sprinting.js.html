@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="generator" content="JSDoc 3.4.0">
+  <meta charset="utf-8">
+  <title>Source: sprinting.js &bullet; Sprinting Docs</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+  </script>
+  <link href="css/baseline.css" rel="stylesheet">
+</head>
+
+<body>
+  <div style='margin-top:-72px;margin-left:3.5em;'>
+    <h1 style='border-bottom:0;font-size:360%;'><a href='index.html' style='text-decoration:none;color:#252525;'>
+        <b>Sprinting</b> Docs
+    </a></h1>
+    <a href='https://github.com/nanalan/sprinting'>GitHub</a>
+  </div>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: sprinting.js</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>!function() {
+  require(&#x27;traceur/bin/traceur-runtime&#x27;)
+
+  /**
+   * The global namespace used by Sprinting. Contains everything.
+   *
+   * @name Sprinting
+   * @namespace
+   */
+  let sprinting &#x3D; {}
+  sprinting &#x3D; require(&#x27;./util&#x27;)(sprinting)
+  sprinting &#x3D; require(&#x27;./constants&#x27;)(sprinting)
+
+  /**
+   * Internal object containing the drawing API used by Sprinting.
+   *
+   * @name Sprinting.DRAW
+   * @interface
+   * @private
+   */
+  sprinting.DEFINE_INTERNAL(&#x27;DRAW&#x27;, {})
+
+  sprinting &#x3D; require(&#x27;./draw/world&#x27;)(sprinting)
+  sprinting &#x3D; require(&#x27;./draw/contexts&#x27;)(sprinting)
+  sprinting &#x3D; require(&#x27;./draw/shapes&#x27;)(sprinting)
+
+  sprinting &#x3D; require(&#x27;./world&#x27;)(sprinting)
+  sprinting &#x3D; require(&#x27;./color&#x27;)(sprinting)
+  sprinting &#x3D; require(&#x27;./things&#x27;)(sprinting)
+  sprinting &#x3D; require(&#x27;./things.shapes&#x27;)(sprinting)
+  sprinting &#x3D; require(&#x27;./things.shapes.rectangles&#x27;)(sprinting)
+
+  Object.defineProperty(window, &#x27;Sprinting&#x27;, {
+    configurable: false,
+    enumerable: true,
+    value: sprinting,
+    writable: false
+  })
+}()
+</code></pre>
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
+</body>
+
+</html>

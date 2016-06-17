@@ -1,47 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <title>draw/shapes.js &bullet; Sprinting Docs</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-    <script src="scripts/linenumber.js"></script>
-    <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <meta name="generator" content="JSDoc 3.4.0">
+  <meta charset="utf-8">
+  <title>Source: draw/shapes.js &bullet; Sprinting Docs</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+  </script>
+  <link href="css/baseline.css" rel="stylesheet">
 </head>
+
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Shape.html">Shape</a></li><li><a href="Square.html">Square</a></li><li><a href="Thing.html">Thing</a></li><li><a href="World.html">World</a><ul class='methods'><li data-type='method'><a href="World.html#.add">add</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Color">Color</a></li><li><a href="global.html#version">version</a></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">draw/shapes.js</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="source linenums"><code class="js">module.exports = function(sprinting) {
+  <div style='margin-top:-72px;margin-left:3.5em;'>
+    <h1 style='border-bottom:0;font-size:360%;'><a href='index.html' style='text-decoration:none;color:#252525;'>
+        <b>Sprinting</b> Docs
+    </a></h1>
+    <a href='https://github.com/nanalan/sprinting'>GitHub</a>
+  </div>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: draw/shapes.js</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>module.exports &#x3D; function(sprinting) {
   /**
-   * A Shape has the property `drawFn` set in construction to `fn` with the single parameter `context` of type Sprinting.DRAW.DrawingContext.
+   * A Shape has the property &#x60;drawFn&#x60; set in construction to &#x60;fn&#x60; with the single parameter &#x60;context&#x60; of type Sprinting.DRAW.DrawingContext.
    *
    * @class DRAW.Shape
    * @param {Function} fn
@@ -49,35 +45,38 @@
    */
 
   function Shape(fn) {
-    this.drawFn = fn
+    this.drawFn &#x3D; fn
   }
 
   /**
-   * Calls `this.drawFn`.
+   * Calls &#x60;this.drawFn&#x60;.
    *
    * @function DRAW.Shape.draw
-   * @param  {Sprinting.DRAW.DrawingContext} context The argument to call `this.drawFn` with.
+   * @param  {Sprinting.DRAW.DrawingContext} context The argument to call &#x60;this.drawFn&#x60; with.
    */
-  Shape.prototype.draw = function(context) {
+  Shape.prototype.draw &#x3D; function(context) {
     if(!(context instanceof sprinting.DRAW.DrawingContext))
-      throw new TypeError('Shape.draw(): arg 1 must be a Sprinting.DRAW.DrawingContext.')
+      throw new TypeError(&#x27;Shape.draw(): arg 1 must be a Sprinting.DRAW.DrawingContext.&#x27;)
     this.drawFn(context)
   }
 
-  sprinting.DRAW.Shape = Shape
+  sprinting.DRAW.Shape &#x3D; Shape
 
   return sprinting
 }
 </code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<br class="clear">
-
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
 </body>
+
 </html>

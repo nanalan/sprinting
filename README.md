@@ -1,5 +1,5 @@
-# Sprinting.js
-> JavaScript library for drawing things with canvas. _Bonus: use the DOM to debug and edit!_  
+# Sprinting
+> An amazing JavaScript library for drawing things with canvas. _Bonus: use the DOM to debug and edit!_  
 > __v0.0.1 super alpha__
 
 ## Installation

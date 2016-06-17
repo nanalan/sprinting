@@ -1,327 +1,176 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Shape &bullet; Sprinting Docs</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-    <script src="scripts/linenumber.js"></script>
-    <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <meta name="generator" content="JSDoc 3.4.0">
+  <meta charset="utf-8">
+  <title>Class: Shape &bullet; Sprinting Docs</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+  </script>
+  <link href="css/baseline.css" rel="stylesheet">
 </head>
+
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Shape.html">Shape</a></li><li><a href="Square.html">Square</a></li><li><a href="Thing.html">Thing</a></li><li><a href="World.html">World</a><ul class='methods'><li data-type='method'><a href="World.html#.add">add</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Color">Color</a></li><li><a href="global.html#version">version</a></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">Shape</h1>
-    
-
-    
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>
-        Shape
-        </h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-
-    <h4 class="name" id="Shape"><span class="type-signature"></span>new Shape<span class="signature">(key, stroke<span class="signature-attributes">opt</span>, fill<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>A Shape is a <a href="Thing.html"><code>Thing</code></a> with a stroke and fill.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>key</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Symbol</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p><a href="#sprintinginternal_key">Sprinting.INTERNAL_KEY</a>. <strong>Required</strong>.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>stroke</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Color">Color</a></span>
-|
-
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    #000000
-                
-                </td>
-            
-
-            <td class="description last"><p>The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. <strong>Default</strong>: <code>&quot;#000000&quot;</code>.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fill</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Color">Color</a></span>
-|
-
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    #ffffff
-                
-                </td>
-            
-
-            <td class="description last"><p>The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. <strong>Default</strong>: <code>&quot;#FFFFFF&quot;</code>.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="things.shapes.js.html">things.shapes.js</a>, <a href="things.shapes.js.html#line6">line 6</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+  <div style='margin-top:-72px;margin-left:3.5em;'>
+    <h1 style='border-bottom:0;font-size:360%;'><a href='index.html' style='text-decoration:none;color:#252525;'>
+        <b>Sprinting</b> Docs
+    </a></h1>
+    <a href='https://github.com/nanalan/sprinting'>GitHub</a>
+  </div>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span></div>
+            <h1><small></small><span class="symbol-name">Shape</span></h1>
+            <p class="source-link">Source: <a href="things.shapes.js.html#source-line-6">things.<wbr>shapes.<wbr>js:6</a></p>
+            <dl class="dl-compact">
+            </dl>
+          </header>
+          <section id="summary">
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Method</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Shape.html#._draw">_draw(key)</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                </div>
+                <div class="summary-column">
+                </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2 id="Shape">new&nbsp;<span class="symbol-name">Shape</span><span class="signature"><span class="signature-params">(key[, stroke][, fill])</span></span></h2>
+            <p>A Shape is a <a href="Thing.html"><code>Thing</code></a> with a stroke and fill.</p>
+            <section>
+              <h3>Parameters</h3>
+              <table class="jsdoc-details-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Optional</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p>key</p>
+                    </td>
+                    <td>
+                      <p>Symbol</p>
+                    </td>
+                    <td>
+                      <p>&nbsp;</p>
+                    </td>
+                    <td>
+                      <p><a href="#sprintinginternal_key">Sprinting.INTERNAL_KEY</a>. <strong>Required</strong>.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>stroke</p>
+                    </td>
+                    <td>
+                      <p>(<a href="global.html#Color">Color</a> or String)</p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string. <strong>Default</strong>: <code>&quot;#000000&quot;</code>.</p>
+                      <p>Defaults to <code>#000000</code>.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>fill</p>
+                    </td>
+                    <td>
+                      <p>(<a href="global.html#Color">Color</a> or String)</p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>The fill (inside) color of the Shape. Instance of sprinting.Color or hex string. <strong>Default</strong>: <code>&quot;#FFFFFF&quot;</code>.</p>
+                      <p>Defaults to <code>#ffffff</code>.</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+            <dl class="dl-compact">
+              <dt>Extends</dt>
+              <dd><a href="Thing.html">Thing</a></dd>
+            </dl>
+          </section>
+          <section>
+            <h2>Method</h2>
+            <section>
+              <div class="symbol-detail-labels"><span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
+              <h3 id="._draw"><span class="symbol-name">_draw</span><span class="signature"><span class="signature-params">(key)</span></span></h3>
+              <p>Draws this Shape to the screen.</p>
+              <section>
+                <h4>Parameter</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>key</p>
+                      </td>
+                      <td>
+                        <p>Symbol</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p><a href="#sprintinginternal_key">Sprinting.INTERNAL_KEY</a>.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+            </section>
+          </section>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
     </div>
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="Thing.html">Thing</a></li>
-    </ul>
-
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
-
-
-
-
-</div>
-
-<br class="clear">
-
+  </div>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
 </body>
+
 </html>

@@ -1,56 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <title>draw/contexts.js &bullet; Sprinting Docs</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-    <script src="scripts/linenumber.js"></script>
-    <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <meta name="generator" content="JSDoc 3.4.0">
+  <meta charset="utf-8">
+  <title>Source: draw/contexts.js &bullet; Sprinting Docs</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+  </script>
+  <link href="css/baseline.css" rel="stylesheet">
 </head>
+
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Shape.html">Shape</a></li><li><a href="Square.html">Square</a></li><li><a href="Thing.html">Thing</a></li><li><a href="World.html">World</a><ul class='methods'><li data-type='method'><a href="World.html#.add">add</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Color">Color</a></li><li><a href="global.html#version">version</a></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">draw/contexts.js</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="source linenums"><code class="js">module.exports = function(sprinting) {
+  <div style='margin-top:-72px;margin-left:3.5em;'>
+    <h1 style='border-bottom:0;font-size:360%;'><a href='index.html' style='text-decoration:none;color:#252525;'>
+        <b>Sprinting</b> Docs
+    </a></h1>
+    <a href='https://github.com/nanalan/sprinting'>GitHub</a>
+  </div>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: draw/contexts.js</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>module.exports &#x3D; function(sprinting) {
 
   // DrawingContext contains the functions shared between both CanvasContext and DomContext.
 
   /*!
-   * An inheritor of DrawingContext provides drawing functions for a specific usage. They should not be constructed on their own but rather through `Sprinting.DRAW.World`.
+   * An inheritor of DrawingContext provides drawing functions for a specific usage. They should not be constructed on their own but rather through &#x60;Sprinting.DRAW.World&#x60;.
    *
    * @class DRAW.DrawingContext
    * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
    */
   function DrawingContext(symbol) {
-    sprinting.VALIDATE_KEY(symbol, 'new SubWorld(): Illegal construction of abstract class SubWorld.')
+    sprinting.VALIDATE_KEY(symbol, &#x27;new SubWorld(): Illegal construction of abstract class SubWorld.&#x27;)
   }
 
   /*!
@@ -59,23 +55,23 @@
    * @function DRAW.DrawingContext.dcInit
    * @param {Sprinting.DRAW.World} world The World that the DrawingContext belongs in.
    */
-  DrawingContext.prototype.dcInit = function(world) {
+  DrawingContext.prototype.dcInit &#x3D; function(world) {
     if(!(world instanceof sprinting.DRAW.World))
-      throw new TypeError('new DRAW.DrawingContext(): arg 2 must be a sprinting.DRAW.World.')
+      throw new TypeError(&#x27;new DRAW.DrawingContext(): arg 2 must be a sprinting.DRAW.World.&#x27;)
 
-    this.world  = world
-    this.shapes = []
+    this.world  &#x3D; world
+    this.shapes &#x3D; []
   }
 
   /**
-   * Pushes a sprinting.DRAW.Shape onto itself, making it visible in the parent World on the next call to `draw`.
+   * Pushes a sprinting.DRAW.Shape onto itself, making it visible in the parent World on the next call to &#x60;draw&#x60;.
    *
    * @function DRAW.DrawingContext.putShape
    * @param  {Sprinting.DRAW.Shape} shape
    */
-  DrawingContext.prototype.putShape = function(shape) {
+  DrawingContext.prototype.putShape &#x3D; function(shape) {
     if(!(shape instanceof sprinting.DRAW.Shape))
-      throw new TypeError('DrawingContext.putShape(): arg 1 must be a sprinting.DRAW.Shape.')
+      throw new TypeError(&#x27;DrawingContext.putShape(): arg 1 must be a sprinting.DRAW.Shape.&#x27;)
 
     this.shapes.push(shape)
   }
@@ -86,51 +82,54 @@
    * @function DRAW.DrawingContext.clear
    */
 
-  DrawingContext.prototype.clear = function() {
-    this.shapes = []
+  DrawingContext.prototype.clear &#x3D; function() {
+    this.shapes &#x3D; []
   }
 
   /**
-   * Fills out an `options` object to include all values used internally.
+   * Fills out an &#x60;options&#x60; object to include all values used internally.
    *
    * @param  {Object} options
-   * @return {Object}         The modified `options` object.
+   * @return {Object}         The modified &#x60;options&#x60; object.
    */
-  DrawingContext.fillOptions = function(options = {}) {
-    if(typeof options.stroke === 'undefined') options.stroke = '#000000'
-    let fill = !(typeof options.fill === 'undefined' || options.fill === 'none' || options.fill === 'transparent')
-    if(!fill) options.fill = '#FFFFFF'
-    if(typeof options.doFill === 'undefined') {
+  DrawingContext.fillOptions &#x3D; function(options &#x3D; {}) {
+    if(typeof options.stroke &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) options.stroke &#x3D; &#x27;#000000&#x27;
+    let fill &#x3D; !(typeof options.fill &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; || options.fill &#x3D;&#x3D;&#x3D; &#x27;none&#x27; || options.fill &#x3D;&#x3D;&#x3D; &#x27;transparent&#x27;)
+    if(!fill) options.fill &#x3D; &#x27;#FFFFFF&#x27;
+    if(typeof options.doFill &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) {
       if(fill)
-        options.doFill = true
+        options.doFill &#x3D; true
       else
-        options.doFill = false
+        options.doFill &#x3D; false
     }
-    if(typeof options.rotationUnit === 'undefined') options.rotationUnit = DrawingContext.ROT_DEG
-    if(typeof options.rotation === 'undefined') options.rotation = 0
-    if(typeof options.strokeWidth === 'undefined') options.strokeWidth = 1
+    if(typeof options.rotationUnit &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) options.rotationUnit &#x3D; DrawingContext.ROT_DEG
+    if(typeof options.rotation &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) options.rotation &#x3D; 0
+    if(typeof options.strokeWidth &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27;) options.strokeWidth &#x3D; 1
 
     return options
   }
-  DrawingContext.ROT_DEG = 0
-  DrawingContext.ROT_RAD = 1
+  DrawingContext.ROT_DEG &#x3D; 0
+  DrawingContext.ROT_RAD &#x3D; 1
 
-  sprinting.DRAW.DrawingContext = DrawingContext
-  sprinting.DRAW.CanvasContext  = require('./contexts.canvas')(DrawingContext, sprinting)
-  sprinting.DRAW.DOMContext     = require('./contexts.dom')(DrawingContext, sprinting)
+  sprinting.DRAW.DrawingContext &#x3D; DrawingContext
+  sprinting.DRAW.CanvasContext  &#x3D; require(&#x27;./contexts.canvas&#x27;)(DrawingContext, sprinting)
+  sprinting.DRAW.DOMContext     &#x3D; require(&#x27;./contexts.dom&#x27;)(DrawingContext, sprinting)
 
   return sprinting
 }
 </code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<br class="clear">
-
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
 </body>
+
 </html>

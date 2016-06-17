@@ -1,48 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <title>color.js &bullet; Sprinting Docs</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
-    <script src="scripts/linenumber.js"></script>
-    <script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  <meta name="generator" content="JSDoc 3.4.0">
+  <meta charset="utf-8">
+  <title>Source: color.js &bullet; Sprinting Docs</title>
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
+  <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/styles/github-gist.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/highlight.min.js"></script>
+  <script src="scripts/prettify.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+  </script>
+  <link href="css/baseline.css" rel="stylesheet">
 </head>
+
 <body>
-
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
-
-<label for="nav-trigger" class="overlay"></label>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Rectangle.html">Rectangle</a></li><li><a href="Shape.html">Shape</a></li><li><a href="Square.html">Square</a></li><li><a href="Thing.html">Thing</a></li><li><a href="World.html">World</a><ul class='methods'><li data-type='method'><a href="World.html#.add">add</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Color">Color</a></li><li><a href="global.html#version">version</a></li></ul>
-</nav>
-
-<div id="main">
-    
-    <h1 class="page-title">color.js</h1>
-    
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="source linenums"><code class="js">module.exports = function(sprinting) {
+  <div style='margin-top:-72px;margin-left:3.5em;'>
+    <h1 style='border-bottom:0;font-size:360%;'><a href='index.html' style='text-decoration:none;color:#252525;'>
+        <b>Sprinting</b> Docs
+    </a></h1>
+    <a href='https://github.com/nanalan/sprinting'>GitHub</a>
+  </div>
+  <div id="jsdoc-body-container">
+    <div id="jsdoc-content">
+      <div id="jsdoc-content-container">
+        <div id="jsdoc-banner" role="banner">
+        </div>
+        <div id="jsdoc-main" role="main">
+          <header class="page-header">
+            <h1>Source: color.js</h1>
+          </header>
+          <article>
+            <pre class="prettyprint linenums"><code>module.exports &#x3D; function(sprinting) {
   /**
    * A color (of both Sprinting and Sprinting.DRAW) for use by the drawing API or sprinting itself.
-   * The `string` property is always equal to the color created in string-form, while `values` is the value of the argument of the same name.
+   * The &#x60;string&#x60; property is always equal to the color created in string-form, while &#x60;values&#x60; is the value of the argument of the same name.
    * Please note that there are no specific RGBA or HSLA, but if using RGB or HSL you can specify a fourth argument to be the alpha.
    *
    * @function Color
@@ -50,43 +46,46 @@
    * @param {...*} values - Values to specify the color in accordance to the type: see below.
    */
   function Color(type, ...values) {
-    if(values.length === 1 &amp;&amp; values[0] instanceof Array)
-      values = values[0]
+    if(values.length &#x3D;&#x3D;&#x3D; 1 &amp;amp;&amp;amp; values[0] instanceof Array)
+      values &#x3D; values[0]
     return type.apply(this, values)
   }
 
-  Color.PLAIN = function(plain) {
+  Color.PLAIN &#x3D; function(plain) {
     return plain
   }
-  Color.HEX = function(hex) {
-    return hex[0] ===  '#' ? hex : `#${hex}`
+  Color.HEX &#x3D; function(hex) {
+    return hex[0] &#x3D;&#x3D;&#x3D;  &#x27;#&#x27; ? hex : &#x60;#${hex}&#x60;
   }
-  Color.RGB = function(r, g, b, a) {
-    return `rgb(${r},${g},${b}` + (typeof a === 'undefined' ? ')' : `,${a})`)
+  Color.RGB &#x3D; function(r, g, b, a) {
+    return &#x60;rgb(${r},${g},${b}&#x60; + (typeof a &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; ? &#x27;)&#x27; : &#x60;,${a})&#x60;)
   }
-  Color.HSL = function(h, s, l, a) {
-    return `hsl(${h},${s},${l}` + (typeof a === 'undefined' ? ')' : `,${a})`)
+  Color.HSL &#x3D; function(h, s, l, a) {
+    return &#x60;hsl(${h},${s},${l}&#x60; + (typeof a &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; ? &#x27;)&#x27; : &#x60;,${a})&#x60;)
   }
 
-  sprinting.DEFINE_CONSTANT(Color, 'PLAIN', Color.PLAIN)
-  sprinting.DEFINE_CONSTANT(Color, 'HEX', Color.HEX)
-  sprinting.DEFINE_CONSTANT(Color, 'RGB', Color.RGB)
-  sprinting.DEFINE_CONSTANT(Color, 'HSL', Color.HSL)
+  sprinting.DEFINE_CONSTANT(Color, &#x27;PLAIN&#x27;, Color.PLAIN)
+  sprinting.DEFINE_CONSTANT(Color, &#x27;HEX&#x27;, Color.HEX)
+  sprinting.DEFINE_CONSTANT(Color, &#x27;RGB&#x27;, Color.RGB)
+  sprinting.DEFINE_CONSTANT(Color, &#x27;HSL&#x27;, Color.HSL)
 
-  sprinting.DRAW.Color = sprinting.Color = Color
+  sprinting.DRAW.Color &#x3D; sprinting.Color &#x3D; Color
 
   return sprinting
 }
 </code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<br class="clear">
-
+          </article>
+        </div>
+      </div>
+      <nav id="jsdoc-toc-nav" role="navigation"></nav>
+    </div>
+  </div>
+  <script src="scripts/jquery.min.js"></script>
+  <script src="scripts/jquery.cookie.js"></script>
+  <script src="scripts/tree.jquery.js"></script>
+  <script src="scripts/jsdoc-toc.js"></script>
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/scrollanchor.js"></script>
 </body>
+
 </html>
