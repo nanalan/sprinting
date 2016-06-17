@@ -2,10 +2,8 @@ module.exports = function(sprinting) {
   /**
    * The World contains every Thing; it is the container of your program.
    *
-   * ```js
+   * @example
    * let world = new Sprinting.World(document.getElementById('world'))
-   * ```
-   *
    * @class World
    * @param {HTMLElement|String} element - DOM element to draw to.
    * @param {Number} [width=800]
@@ -24,10 +22,8 @@ module.exports = function(sprinting) {
   /**
    * Adds a [Thing](#things) to the [World](#the-world).
    *
-   * ```js
+   * @example
    * world.add(new Sprinting.Square(100), 20, 30)
-   * ```
-   *
    * @function World.add
    * @param {Sprinting.Thing} something The [thing](#things) to add to [World](#the-world). **Required**.
    * @param {Number} x x-position of Thing. **Default**: `0`.

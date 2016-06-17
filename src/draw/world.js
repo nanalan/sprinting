@@ -5,11 +5,9 @@ module.exports = function(sprinting) {
   /**
    * A World by itself is not very useful, but -- similar to HTML5 Canvas -- it has a `context` property which provides drawing functions and inherits from DrawingContext.
    *
-   * ```
+   * @example
    * let canvas = new Sprinting.DRAW.World(document.body, Sprinting.DRAW.World.USAGE_CANVAS)
    * let ctx    = canvas.context
-   * ```
-   *
    * @class DRAW.World
    * @private
    * @param {HTMLElement|String} element DOM element to draw to. **Required**.
