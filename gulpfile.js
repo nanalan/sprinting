@@ -7,10 +7,11 @@ const rename = require('gulp-rename')
 const insert = require('gulp-insert')
 const shell = require('gulp-shell')
 const browserify = require('gulp-browserify')
+const path = require('path')
 
-gulp.task('default', ['docs', 'clean', 'build'])
+gulp.task('default', ['docs', 'build'])
 
-gulp.task('build', () => {
+gulp.task('build', ['build-clean'], () => {
   gulp.src('src/sprinting.js')
     .pipe(sourcemaps.init())
     .pipe(traceur({
@@ -33,9 +34,12 @@ gulp.task('build', () => {
     //.pipe(gulp.dest('dist'))
 })
 
-gulp.task('docs', shell.task('./node_modules/.bin/jsdoc src -r -c jsdoc.json -d docs'))
+gulp.task('docs', ['docs-clean'], shell.task(
+  `${path.normalize('./node_modules/.bin/jsdoc')} src -r -c jsdoc.json -d docs`
+  ))
 
-gulp.task('clean', () => gulp.src(['dist/*', 'docs/*'], { read: false }).pipe(clean()) )
+gulp.task('build-clean', () => gulp.src(['dist/*'], { read: false }).pipe(clean()) )
+gulp.task('docs-clean', () => gulp.src(['docs/*'], { read: false }).pipe(clean()) )
 
 gulp.task('watch', () => {
   gulp.watch('src/**/*.js', ['default'])
