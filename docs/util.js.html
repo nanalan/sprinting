@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="JSDoc 3.4.0">
   <meta charset="utf-8">
-  <title>Source: things.shapes.js &bullet; Sprinting Docs</title>
+  <title>Source: util.js &bullet; Sprinting Docs</title>
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
@@ -33,50 +33,79 @@
         </div>
         <div id="jsdoc-main" role="main">
           <header class="page-header">
-            <h1>Source: things.shapes.js</h1>
+            <h1>Source: util.js</h1>
           </header>
           <article>
             <pre class="prettyprint linenums"><code>module.exports &#x3D; function(sprinting) {
-  Shape.prototype &#x3D; new sprinting.Thing(sprinting.INTERNAL_KEY)
-  Shape.prototype.constructor &#x3D; Shape
-  Shape.prototype.uber &#x3D; sprinting.Thing.prototype
 
-  /**
-   * A Shape is a {@link Thing} with a stroke and fill.
+  /*!
+   * Internal function used to specify another internal property.
    *
-   * @class Shape
-   * @extends Sprinting.Thing
-   * @memberOf Sprinting
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key). **Required**.
-   * @param {Sprinting.Color|String} [stroke&#x3D;#000000] The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string.
-   * @param {Sprinting.Color|String} [fill&#x3D;#ffffff]   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string.
+   * @function DEFINE_INTERNAL
+   * @param {String} name **Required**.
+   * @param {Any} value **Default**: &#x60;undefined&#x60;.
    */
-  function Shape(symbol, x, y, stroke &#x3D; &#x27;#000000&#x27;, fill &#x3D; &#x27;#FFFFFF&#x27;) {
-    sprinting.VALIDATE_KEY(symbol, &#x27;new Shape(): Illegal construction of abstract class Shape.&#x27;)
 
-    this.uber.constructor(symbol, x, y)
-    this.x &#x3D; this.uber.x, this.y &#x3D; this.uber.y
+  Object.defineProperty(sprinting, &#x27;DEFINE_INTERNAL&#x27;, {
+    configurable: false, enumerable: false,
+    value: function(name, value &#x3D; undefined) {
+      Object.defineProperty(sprinting, name, {
+        configurable: false,
+        enumerable: false,
+        value,
+        writable: false
+      })
+    },
+    writable: false
+  })
 
-    if(!(stroke instanceof sprinting.Color || typeof stroke &#x3D;&#x3D;&#x3D; &#x27;string&#x27;))
-      throw new TypeError(&#x27;new Shape(): arg 2 must be a Sprinting.Color or string&#x27;)
-    if(!(fill instanceof sprinting.Color || typeof fill &#x3D;&#x3D;&#x3D; &#x27;string&#x27;))
-      throw new TypeError(&#x27;new Shape(): arg 3 must be a Sprinting.Color or string&#x27;)
-    this.stroke &#x3D; stroke, this.fill &#x3D; fill
-  }
+  /*!
+   * Internal function used to specify a constant property.
+   *
+   * @function DEFINE_CONSTANT
+   * @param {Object} object **Required**.
+   * @param {String} name **Required**.
+   * @param {Any} value **Default**: &#x60;undefined&#x60;.
+   */
+
+  sprinting.DEFINE_INTERNAL(&#x27;DEFINE_CONSTANT&#x27;, function(object, name, value &#x3D; undefined) {
+    Object.defineProperty(object, name, {
+      configurable: false,
+      enumerable: true,
+      value,
+      writable: false
+    })
+  })
 
   /**
-   * Draws this Shape to the screen.
+   * Internal method for validating a given &#x60;key&#x60;
    *
-   * @function _draw
-   * @memberOf Shape
-   * @param {Symbol} key [Sprinting.INTERNAL_KEY](#sprintinginternal_key).
+   * @function VALIDATE_KEY
+   * @param {Symbol} key
+   * @returns {Boolean}
+   * @memberOf Sprinting
    * @private
    */
-  Shape._draw &#x3D; function(symbol) {
-    sprinting.VALIDATE_KEY(symbol, &#x27;Shape.draw is private and should not be called.&#x27;)
-  }
+  sprinting.DEFINE_INTERNAL(&#x27;VALIDATE_KEY&#x27;, function(symbol, err) {
+    if(symbol !&#x3D;&#x3D; sprinting.INTERNAL_KEY)
+      throw new Error(err)
+  })
 
-  sprinting.Shape &#x3D; Shape
+  sprinting.DEFINE_INTERNAL(&#x27;makeConstructableAndCallable&#x27;, function(fnClass, name) {
+    return function(...args) {
+      if(this instanceof fnClass &amp;amp;&amp;amp; !(this[&#x27;name&#x27;])) {
+        Object.defineProperty(this, name, {
+          configurable: false, enumerable: false,
+          value: true,
+          writable: false
+        })
+        this.constructor.apply(this, args)
+      } else {
+        return new fnClass(...args)
+      }
+    }
+  })
+
   return sprinting
 }
 </code></pre>

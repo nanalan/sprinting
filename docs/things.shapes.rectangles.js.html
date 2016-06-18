@@ -38,8 +38,19 @@
           <article>
             <pre class="prettyprint linenums"><code>module.exports &#x3D; function(sprinting) {
   Rectangle.prototype &#x3D; new sprinting.Shape(sprinting.INTERNAL_KEY)
-  Rectangle.prototype.constructor &#x3D; Rectangle
   Rectangle.prototype.uber &#x3D; sprinting.Shape.prototype
+
+  Rectangle.prototype.constructor &#x3D; function(x, y, width &#x3D; 50, height &#x3D; 50, stroke, fill) {
+    this.uber.constructor(sprinting.INTERNAL_KEY, x, y, stroke, fill)
+    this.stroke &#x3D; this.uber.stroke, this.fill &#x3D; this.uber.fill,
+    this.x &#x3D; this.uber.x, this.y &#x3D; this.uber.y
+
+    if(!(typeof width &#x3D;&#x3D;&#x3D; &#x27;number&#x27;))
+      throw new TypeError(&#x27;new Rectangle(): arg 1 must be a Number.&#x27;)
+    if(!(typeof width &#x3D;&#x3D;&#x3D; &#x27;number&#x27;))
+      throw new TypeError(&#x27;new Rectangle(): arg 2 must be a Number.&#x27;)
+    this.width &#x3D; width, this.height &#x3D; height
+  }
 
   /**
    * A Rectangle is a {@link Shape} with a width and a height.
@@ -47,8 +58,8 @@
    * @example
    * let rect &#x3D; new Sprinting.Rectangle(100, 100)
    * rect.x &#x3D; 24
-   * rect.y &#x3D; 32
-   * world.add(rect))
+   * rect.y &#x3D; 42
+   * world.add(rect)
    * @extends Sprinting.Shape
    * @class Rectangle
    * @memberOf Sprinting
@@ -57,20 +68,11 @@
    * @param {Color}  [stroke&#x3D;#000] The outline color of the Shape.
    * @param {Color}  [stroke&#x3D;#fff] The inside color of the Shape.
    */
-  function Rectangle(width, height, stroke, fill) {
-    if(!width &amp;amp;&amp;amp; !height &amp;amp;&amp;amp; !stroke &amp;amp;&amp;amp; !fill) return
+  function Rectangle() {
+    if(!Rectangle.constructableAndCallable)
+      Rectangle.constructableAndCallable &#x3D; sprinting.makeConstructableAndCallable(Rectangle, &#x27;__rectangle__&#x27;)
 
-    width &#x3D; typeof width &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; ? 50 : width
-    height &#x3D; typeof height &#x3D;&#x3D;&#x3D; &#x27;undefined&#x27; ? 50 : height
-
-    this.uber.constructor(sprinting.INTERNAL_KEY, stroke, fill)
-    Object.assign(this, this.uber)
-
-    if(!(width instanceof Number))
-      throw new TypeError(&#x27;new Rectangle(): arg 1 must be a Number.&#x27;)
-    if(!(height instanceof Number))
-      throw new TypeError(&#x27;new Rectangle(): arg 2 must be a Number.&#x27;)
-    this.width &#x3D; width, this.height &#x3D; height
+    return Rectangle.constructableAndCallable.apply(this, arguments)
   }
 
   Rectangle.prototype._draw &#x3D; function(key) {
@@ -82,8 +84,13 @@
   sprinting.Rectangle &#x3D; Rectangle
 
   Square.prototype &#x3D; new sprinting.Rectangle
-  Square.prototype.constructor &#x3D; Square
   Square.prototype.uber &#x3D; sprinting.Rectangle.prototype
+  Square.prototype.constructor &#x3D; function(x, y, length &#x3D; 50, stroke, fill) {
+    this.uber.constructor(x, y, length, length, stroke, fill)
+    this.width &#x3D; this.uber.width, this.height &#x3D; this.uber.height,
+    this.stroke &#x3D; this.uber.stroke, this.fill &#x3D; this.uber.fill,
+    this.x &#x3D; this.uber.x, this.y &#x3D; this.uber.y
+  }
 
   /**
    * A Square is a Rectangle but with side length (rather than width and height).
@@ -98,13 +105,14 @@
    * @param {Color}  [stroke&#x3D;#000000]
    * @param {Color}  [fill&#x3D;#FFFFFF]
    */
-  function Square(length &#x3D; 50, stroke, fill) {
-    this.uber.constructor(length, length, stroke, fill)
-    Object.assign(this, this.uber)
+  function Square() {
+    if(!Square.constructableAndCallable)
+      Square.constructableAndCallable &#x3D; sprinting.makeConstructableAndCallable(Square, &#x27;__square__&#x27;)
+    return Square.constructableAndCallable.apply(this, arguments)
   }
 
-  Square.prototype._draw &#x3D; function(symbol, x, y) {
-    this.uber._draw(symbol, x, y)
+  Square.prototype._draw &#x3D; function(symbol) {
+    this.uber._draw(symbol)
   }
 
   sprinting.Square &#x3D; Square

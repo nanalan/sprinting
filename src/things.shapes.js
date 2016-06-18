@@ -13,8 +13,11 @@ module.exports = function(sprinting) {
    * @param {Sprinting.Color|String} [stroke=#000000] The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string.
    * @param {Sprinting.Color|String} [fill=#ffffff]   The fill (inside) color of the Shape. Instance of sprinting.Color or hex string.
    */
-  function Shape(symbol, stroke = '#000000', fill = '#FFFFFF') {
+  function Shape(symbol, x, y, stroke = '#000000', fill = '#FFFFFF') {
     sprinting.VALIDATE_KEY(symbol, 'new Shape(): Illegal construction of abstract class Shape.')
+
+    this.uber.constructor(symbol, x, y)
+    this.x = this.uber.x, this.y = this.uber.y
 
     if(!(stroke instanceof sprinting.Color || typeof stroke === 'string'))
       throw new TypeError('new Shape(): arg 2 must be a Sprinting.Color or string')

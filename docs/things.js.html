@@ -39,6 +39,7 @@
             <pre class="prettyprint linenums"><code>module.exports &#x3D; function(sprinting) {
   /**
    * Something that is contained within the {@link Sprinting.World|World}. **This shouldn&#x27;t be constructed directly**; rather, use a {@link Sprinting.Shape|Shape}, such as a {@link Sprinting.Square|Square}.
+   * A Thing has an x and a y.
    *
    * @class Thing
    * @param {Symbol} key {@link Sprinting.INTERNAL_KEY}.
@@ -48,11 +49,18 @@
    * @example
    * let myThing &#x3D; new Sprinting.Thing(Sprinting.INTERNAL_KEY)
    */
-  function Thing(symbol) {
+  function Thing(symbol, x &#x3D; 0, y &#x3D; 0) {
     sprinting.VALIDATE_KEY(symbol, &#x27;new Thing(): Illegal construction of abstract class Thing.&#x27;)
-  }
 
+    if(!(typeof x &#x3D;&#x3D;&#x3D; &#x27;number&#x27;))
+      throw new TypeError(&#x27;new Thing(): arg 2 must be a Number.&#x27;)
+    if(!(typeof y &#x3D;&#x3D;&#x3D; &#x27;number&#x27;))
+      throw new TypeError(&#x27;new Thing(): arg 3 must be a Number.&#x27;)
+
+    this.x &#x3D; x, this.y &#x3D; y
+  }
   sprinting.Thing &#x3D; Thing
+
   return sprinting
 }
 </code></pre>

@@ -2,9 +2,10 @@ module.exports = function(sprinting) {
   Rectangle.prototype = new sprinting.Shape(sprinting.INTERNAL_KEY)
   Rectangle.prototype.uber = sprinting.Shape.prototype
 
-  Rectangle.prototype.constructor = function(width = 50, height = 50, stroke, fill) {
-    this.uber.constructor(sprinting.INTERNAL_KEY, stroke, fill)
-    this.stroke = this.uber.stroke, this.fill = this.uber.fill
+  Rectangle.prototype.constructor = function(x, y, width = 50, height = 50, stroke, fill) {
+    this.uber.constructor(sprinting.INTERNAL_KEY, x, y, stroke, fill)
+    this.stroke = this.uber.stroke, this.fill = this.uber.fill,
+    this.x = this.uber.x, this.y = this.uber.y
 
     if(!(typeof width === 'number'))
       throw new TypeError('new Rectangle(): arg 1 must be a Number.')
@@ -29,7 +30,7 @@ module.exports = function(sprinting) {
    * @param {Color}  [stroke=#000] The outline color of the Shape.
    * @param {Color}  [stroke=#fff] The inside color of the Shape.
    */
-  function Rectangle(width, height, stroke, fill) {
+  function Rectangle() {
     if(!Rectangle.constructableAndCallable)
       Rectangle.constructableAndCallable = sprinting.makeConstructableAndCallable(Rectangle, '__rectangle__')
 
@@ -46,9 +47,11 @@ module.exports = function(sprinting) {
 
   Square.prototype = new sprinting.Rectangle
   Square.prototype.uber = sprinting.Rectangle.prototype
-  Square.prototype.constructor = function(length = 50, stroke, fill) {
-    this.uber.constructor(length, length, stroke, fill)
-    this.width = this.uber.width, this.height = this.uber.height
+  Square.prototype.constructor = function(x, y, length = 50, stroke, fill) {
+    this.uber.constructor(x, y, length, length, stroke, fill)
+    this.width = this.uber.width, this.height = this.uber.height,
+    this.stroke = this.uber.stroke, this.fill = this.uber.fill,
+    this.x = this.uber.x, this.y = this.uber.y
   }
 
   /**
@@ -64,14 +67,14 @@ module.exports = function(sprinting) {
    * @param {Color}  [stroke=#000000]
    * @param {Color}  [fill=#FFFFFF]
    */
-  function Square(length, stroke, fill) {
+  function Square() {
     if(!Square.constructableAndCallable)
       Square.constructableAndCallable = sprinting.makeConstructableAndCallable(Square, '__square__')
     return Square.constructableAndCallable.apply(this, arguments)
   }
 
-  Square.prototype._draw = function(symbol, x, y) {
-    this.uber._draw(symbol, x, y)
+  Square.prototype._draw = function(symbol) {
+    this.uber._draw(symbol)
   }
 
   sprinting.Square = Square

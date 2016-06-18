@@ -47,20 +47,6 @@
   sprinting.DEFINE_INTERNAL(&#x27;INTERNAL_KEY&#x27;, Symbol(&#x27;InternalAPI&#x27;))
 
   /**
-   * Internal method for validating a given &#x60;key&#x60;
-   *
-   * @function VALIDATE_KEY
-   * @param {Symbol} key
-   * @returns {Boolean}
-   * @memberOf Sprinting
-   * @private
-   */
-  sprinting.DEFINE_INTERNAL(&#x27;VALIDATE_KEY&#x27;, function(symbol, err) {
-    if(symbol !&#x3D;&#x3D; sprinting.INTERNAL_KEY)
-      throw new Error(err)
-  })
-
-  /**
    * Current version.
    * @name version
    * @memberOf Sprinting

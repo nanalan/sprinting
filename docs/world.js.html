@@ -72,9 +72,9 @@
   World.prototype.add &#x3D; function(something, x &#x3D; 0, y &#x3D; 0) {
     if(!(something instanceof sprinting.Thing))
       throw new TypeError(&#x27;World.add(): arg 1 must be a Sprinting.Thing.&#x27;)
-    if(!(x instanceof Number))
+    if(!(typeof x &#x3D;&#x3D;&#x3D; &#x27;number&#x27;))
       throw new TypeError(&#x27;World.add(): arg 2 must be a Number.&#x27;)
-    if(!(y instanceof Number))
+    if(!(typeof y &#x3D;&#x3D;&#x3D; &#x27;number&#x27;))
       throw new TypeError(&#x27;World.add(): arg 3 must be a Number.&#x27;)
 
     this.things.push({inst: something, x, y})
