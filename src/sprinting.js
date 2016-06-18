@@ -261,7 +261,7 @@ window.Sprinting = (function(S) {
 
       world.ctx.strokeStyle = this.stroke
       world.ctx.fillStyle = this.fill
-      //world.ctx.fillRect(this.x, this.y, this.width, this.height)
+      world.ctx.fillRect(this.x, this.y, this.width, this.height)
       world.ctx.strokeRect(this.x, this.y, this.width, this.height)
     }
   }
