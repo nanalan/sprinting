@@ -4618,6 +4618,7 @@ window.Sprinting = (function(S) {
           throw TypeError('height must be positive');
         world.ctx.strokeStyle = this.stroke;
         world.ctx.fillStyle = this.fill;
+        world.ctx.fillRect(this.x, this.y, this.width, this.height);
         world.ctx.strokeRect(this.x, this.y, this.width, this.height);
       }}, {}, $__super);
   }(Shape);
