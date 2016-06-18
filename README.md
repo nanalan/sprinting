@@ -1,6 +1,6 @@
 # Sprinting
-> An amazing JavaScript library for drawing things with canvas. _Bonus: use the DOM to debug and edit!_  
-> __v0.0.1 super alpha__
+> An amazing JavaScript library for drawing things with canvas, with game-like features sprinkled in.
+> __v0.1.0 super alpha__
 
 ## Installation
 Include the script in your webpage:

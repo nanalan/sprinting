@@ -33,24 +33,58 @@
           <header class="page-header">
             <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
             <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">World</span></h1>
-            <p class="source-link">Source: <a href="world.js.html#source-line-2">world.<wbr>js:2</a></p>
             <dl class="dl-compact">
             </dl>
           </header>
           <section id="summary">
             <div class="summary-callout">
-              <h2 class="summary-callout-heading">Methods</h2>
+              <h2 class="summary-callout-heading">Properties</h2>
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#._draw">_draw(key)</a></dt>
+                    <dt><a href="Sprinting.World.html#canvas">canvas</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.World.html#ctx">ctx</a></dt>
                     <dd>
                     </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#.add">add(something, x, y)</a></dt>
+                    <dt><a href="Sprinting.World.html#el">el</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.World.html#h">h</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.World.html#things">things</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.World.html#w">w</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Methods</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.World.html#add">add(thing)</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.World.html#draw">draw()</a></dt>
                     <dd>
                     </dd>
                   </dl>
@@ -62,13 +96,15 @@
           </section>
           <section>
             <h2 id="World">new&nbsp;<span class="symbol-name">World</span><span class="signature"><span class="signature-params">(element[, width][, height])</span></span></h2>
-            <p>The World contains every Thing; it is the container of your program.</p>
+            <p>Contains <a href="Sprinting.Thing.html"><code>everything</code></a>.</p>
             <section>
               <h3>
             Example
         </h3>
               <div>
-                <pre><code class='js'>let world &#x3D; new Sprinting.World(document.getElementById(&#x27;world&#x27;))</code></pre>
+                <pre><code class='js'>let world &#x3D; new Sprinting.World(&#x27;#world&#x27;)
+world.add(new Sprinting.Square)
+world.draw()</code></pre>
               </div>
             </section>
             <section>
@@ -94,7 +130,7 @@
                       <p>&nbsp;</p>
                     </td>
                     <td>
-                      <p>DOM element to draw to.</p>
+                      <p>(CSS Selector of) element to draw to.</p>
                     </td>
                   </tr>
                   <tr>
@@ -108,6 +144,7 @@
                       <p>Yes</p>
                     </td>
                     <td>
+                      <p>Width, in pixels, of draw window.</p>
                       <p>Defaults to <code>800</code>.</p>
                     </td>
                   </tr>
@@ -122,6 +159,7 @@
                       <p>Yes</p>
                     </td>
                     <td>
+                      <p>Height, in pixels, of draw window.</p>
                       <p>Defaults to <code>600</code>.</p>
                     </td>
                   </tr>
@@ -132,11 +170,42 @@
             </dl>
           </section>
           <section>
+            <h2>Properties</h2>
+            <section>
+              <h3 id="canvas"><span class="symbol-name">canvas</span><small class="property-type">
+            &nbsp;HTMLElement</small></h3>
+              <p>Canvas that is being drawn to.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="ctx"><span class="symbol-name">ctx</span><small class="property-type">
+            &nbsp;CanvasRenderingContext2D</small></h3>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="el"><span class="symbol-name">el</span><small class="property-type">
+            &nbsp;HTMLElement</small></h3>
+              <p>Element container for this World.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="h"><span class="symbol-name">h</span><small class="property-type">
+            &nbsp;Number</small></h3>
+              <p>Height, in pixels, of draw window.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="things"><span class="symbol-name">things</span><small class="property-type">
+            &nbsp;Array</small></h3>
+              <p>Array of <a href="Sprinting.Thing.html"><code>Thing</code></a>s that are contained within this World.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="w"><span class="symbol-name">w</span><small class="property-type">
+            &nbsp;Number</small></h3>
+              <p>Width, in pixels, of draw window.</p>
+              <dl class="dl-compact">
+              </dl>
+            </section>
             <h2>Methods</h2>
             <section>
-              <div class="symbol-detail-labels"><span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
-              <h3 id="._draw"><span class="symbol-name">_draw</span><span class="signature"><span class="signature-params">(key)</span></span></h3>
-              <p>Draws every <a href="#things">Thing</a> in the <a href="#the-world">World</a>.</p>
+              <h3 id="add"><span class="symbol-name">add</span><span class="signature"><span class="signature-params">(thing)</span></span></h3>
+              <p>Add <a href="Sprinting.Thing.html"><code>something</code></a> to this World, which will be drawn when <a href="Sprinting.World.html#draw"><code>World#draw</code></a> is called.</p>
               <section>
                 <h4>Parameter</h4>
                 <table class="jsdoc-details-table">
@@ -151,49 +220,7 @@
                   <tbody>
                     <tr>
                       <td>
-                        <p>key</p>
-                      </td>
-                      <td>
-                        <p>Symbol</p>
-                      </td>
-                      <td>
-                        <p>&nbsp;</p>
-                      </td>
-                      <td>
-                        <p><a href="#sprintinginternal_key">Sprinting.INTERNAL_KEY</a>.</p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </section>
-              <dl class="dl-compact">
-              </dl>
-              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
-              <h3 id=".add"><span class="symbol-name">add</span><span class="signature"><span class="signature-params">(something, x, y)</span></span></h3>
-              <p>Adds a Thing to the World.</p>
-              <section>
-                <h4>
-            Example
-        </h4>
-                <div>
-                  <pre><code class='js'>world.add(new Sprinting.Square(100), 20, 30)</code></pre>
-                </div>
-              </section>
-              <section>
-                <h4>Parameters</h4>
-                <table class="jsdoc-details-table">
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Optional</th>
-                      <th>Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <p>something</p>
+                        <p>thing</p>
                       </td>
                       <td>
                         <p><a href="Sprinting.Thing.html">Sprinting.Thing</a></p>
@@ -202,41 +229,18 @@
                         <p>&nbsp;</p>
                       </td>
                       <td>
-                        <p>The Thing to add to <a href="#the-world">World</a>.</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p>x</p>
-                      </td>
-                      <td>
-                        <p>Number</p>
-                      </td>
-                      <td>
-                        <p>&nbsp;</p>
-                      </td>
-                      <td>
-                        <p>x-position of Thing. <strong>Default</strong>: <code>0</code>.</p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p>y</p>
-                      </td>
-                      <td>
-                        <p>Number</p>
-                      </td>
-                      <td>
-                        <p>&nbsp;</p>
-                      </td>
-                      <td>
-                        <p>y-position of Thing. <strong>Default</strong>: <code>0</code>.</p>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </section>
               <dl class="dl-compact">
+              </dl>
+              <h3 id="draw"><span class="symbol-name">draw</span><span class="signature"><span class="signature-params">()</span></span></h3>
+              <p>Draw <a href="Sprinting.Thing.html"><code>everything</code></a>.</p>
+              <dl class="dl-compact">
+                <dt>To do</dt>
+                <dd>A draw loop</dd>
               </dl>
             </section>
           </section>

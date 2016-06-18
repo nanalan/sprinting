@@ -14,24 +14,16 @@ gulp.task('default', ['docs', 'build'])
 gulp.task('build', ['build-clean'], () => {
   gulp.src('src/sprinting.js')
     .pipe(sourcemaps.init())
-    .pipe(traceur({
-      properTailCalls: true,
-      symbols: true,
-      arrayComprehension: true,
-      asyncFunctions: true,
-      asyncGenerators: true,
-      forOn: true,
-      generatorComprehension: true,
-      modules: 'commonjs'
-    }))
-    .pipe(browserify({
-      debug: true
-    }))
+    .pipe(traceur())
     .pipe(sourcemaps.write())
+    .pipe(browserify({
+      debug: true,
+      loadMaps: true
+    }))
     .pipe(gulp.dest('dist'))
-    //.pipe(uglify())
-    //.pipe(rename('sprinting.min.js'))
-    //.pipe(gulp.dest('dist'))
+    .pipe(uglify())
+    .pipe(rename('sprinting.min.js'))
+    .pipe(gulp.dest('dist'))
 })
 
 gulp.task('docs', ['docs-clean'], shell.task(

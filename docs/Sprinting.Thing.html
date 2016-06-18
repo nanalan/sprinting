@@ -31,26 +31,38 @@
       <div id="jsdoc-content-container">
         <div id="jsdoc-main" role="main">
           <header class="page-header">
-            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-protected">protected</span>&nbsp;<span class="label label-static">static</span></div>
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
             <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">Thing</span></h1>
-            <p class="source-link">Source: <a href="things.js.html#source-line-2">things.<wbr>js:2</a></p>
             <dl class="dl-compact">
             </dl>
           </header>
           <section id="summary">
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Properties</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Thing.html#x">x</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Thing.html#y">y</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                </div>
+              </div>
+            </div>
           </section>
           <section>
-            <h2 id="Thing">new&nbsp;<span class="symbol-name">Thing</span><span class="signature"><span class="signature-params">(key)</span></span></h2>
-            <p>Something that is contained within the <a href="Sprinting.World.html"><code>World</code></a>. <strong>This shouldn't be constructed directly</strong>; rather, use a <a href="Sprinting.Shape.html"><code>Shape</code></a>, such as a <a href="Sprinting.Square.html"><code>Square</code></a>.
-              A Thing has an x and a y.</p>
-            <section>
-              <h3>
-            Example
-        </h3>
-              <div>
-                <pre><code class='js'>let myThing &#x3D; new Sprinting.Thing(Sprinting.INTERNAL_KEY)</code></pre>
-              </div>
-            </section>
+            <h2 id="Thing">new&nbsp;<span class="symbol-name">Thing</span><span class="signature"><span class="signature-params">([quiet])</span></span></h2>
+            <p>Things are objects that live within <a href="Sprinting.World.html"><code>Worlds</code></a>.
+              <strong>Things should never be constructed directly</strong>, rather, use an extension such as a <code>Square</code>.</p>
             <section>
               <h3>Parameter</h3>
               <table class="jsdoc-details-table">
@@ -65,16 +77,17 @@
                 <tbody>
                   <tr>
                     <td>
-                      <p>key</p>
+                      <p>quiet</p>
                     </td>
                     <td>
-                      <p>Symbol</p>
+                      <p>Boolean</p>
                     </td>
                     <td>
-                      <p>&nbsp;</p>
+                      <p>Yes</p>
                     </td>
                     <td>
-                      <p><a href="Sprinting.html#.INTERNAL_KEY"><code>Sprinting.INTERNAL_KEY</code></a>.</p>
+                      <p>Whether or not to output the direct construction warning.</p>
+                      <p>Defaults to <code>false</code>.</p>
                     </td>
                   </tr>
                 </tbody>
@@ -82,10 +95,21 @@
             </section>
             <dl class="dl-compact">
               <dt>See also</dt>
-              <dd><a href="Sprinting.Shape.html">Sprinting.Shape</a></dd>
+              <dd><a href="Sprinting.Shape.html"><code>Shape</code></a></dd>
             </dl>
           </section>
           <section>
+            <h2>Properties</h2>
+            <section>
+              <h3 id="x"><span class="symbol-name">x</span><small class="property-type">
+            &nbsp;Number</small></h3>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="y"><span class="symbol-name">y</span><small class="property-type">
+            &nbsp;Number</small></h3>
+              <dl class="dl-compact">
+              </dl>
+            </section>
           </section>
         </div>
       </div>

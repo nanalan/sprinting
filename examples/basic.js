@@ -1,10 +1,9 @@
-const S = Sprinting
+Object.assign(window, Sprinting)
 
-window.world = new S.World('#world')
+let world = new World('#world')
 
-let mySquare = new S.Square(50)
-mySquare.x = 20
-mySquare.y = 20
-world.add(mySquare)
+let rect = new Rectangle
+rect.stroke = 'transparent'
+rect.fill = '#ff0000'
 
-world.add(new S.Rectangle(50, 50))
+rect.draw(world)

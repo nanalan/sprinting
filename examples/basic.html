@@ -2,10 +2,25 @@
 <html>
 <head>
   <script src='../dist/sprinting.js'></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+    }
+
+    #world {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+    }
+  </style>
 </head>
 
 <body>
-  <sprinting-world id='world'></sprinting-world>
+  <div id='world'></div>
 
   <script src='basic.js'></script>
 </body>

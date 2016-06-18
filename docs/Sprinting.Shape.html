@@ -31,17 +31,38 @@
       <div id="jsdoc-content-container">
         <div id="jsdoc-main" role="main">
           <header class="page-header">
-            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
+            <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-private">private</span>&nbsp;<span class="label label-static">static</span></div>
             <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">Shape</span></h1>
-            <p class="source-link">Source: <a href="things.shapes.js.html#source-line-6">things.<wbr>shapes.<wbr>js:6</a></p>
             <dl class="dl-compact">
             </dl>
           </header>
           <section id="summary">
+            <div class="summary-callout">
+              <h2 class="summary-callout-heading">Properties</h2>
+              <div class="summary-content">
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Shape.html#fill">fill</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Shape.html#stroke">stroke</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                </div>
+              </div>
+            </div>
           </section>
           <section>
-            <h2 id="Shape">new&nbsp;<span class="symbol-name">Shape</span><span class="signature"><span class="signature-params">(key[, stroke][, fill])</span></span></h2>
-            <p>A Shape is a <code>Thing</code> with a stroke and fill.</p>
+            <h2 id="Shape">new&nbsp;<span class="symbol-name">Shape</span><span class="signature"><span class="signature-params">([stroke][, fill][, quiet])</span></span></h2>
+            <p>Shapes are <a href="Sprinting.Thing.html"><code>Things</code></a> with both a stroke color and a fill color.
+              <strong>Shapes should never be constructed directly</strong>, rather, use an extension such as a <code>Square</code>.</p>
             <section>
               <h3>Parameters</h3>
               <table class="jsdoc-details-table">
@@ -56,31 +77,17 @@
                 <tbody>
                   <tr>
                     <td>
-                      <p>key</p>
-                    </td>
-                    <td>
-                      <p>Symbol</p>
-                    </td>
-                    <td>
-                      <p>&nbsp;</p>
-                    </td>
-                    <td>
-                      <p><a href="#sprintinginternal_key">Sprinting.INTERNAL_KEY</a>. <strong>Required</strong>.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
                       <p>stroke</p>
                     </td>
                     <td>
-                      <p>(<a href="Sprinting.html#.Color">Sprinting.Color</a> or String)</p>
+                      <p>String</p>
                     </td>
                     <td>
                       <p>Yes</p>
                     </td>
                     <td>
-                      <p>The stroke (outline) color of the Shape. Instance of sprinting.Color or hex string.</p>
-                      <p>Defaults to <code>#000000</code>.</p>
+                      <p>Stroke color.</p>
+                      <p>Defaults to <code>'#000'</code>.</p>
                     </td>
                   </tr>
                   <tr>
@@ -88,25 +95,51 @@
                       <p>fill</p>
                     </td>
                     <td>
-                      <p>(<a href="Sprinting.html#.Color">Sprinting.Color</a> or String)</p>
+                      <p>String</p>
                     </td>
                     <td>
                       <p>Yes</p>
                     </td>
                     <td>
-                      <p>The fill (inside) color of the Shape. Instance of sprinting.Color or hex string.</p>
-                      <p>Defaults to <code>#ffffff</code>.</p>
+                      <p>Fill color.</p>
+                      <p>Defaults to <code>'transparent'</code>.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>quiet</p>
+                    </td>
+                    <td>
+                      <p>Boolean</p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>Whether or not to output the direct construction warning.</p>
+                      <p>Defaults to <code>false</code>.</p>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </section>
             <dl class="dl-compact">
-              <dt>Extends</dt>
-              <dd><a href="Sprinting.Thing.html">Sprinting.Thing</a></dd>
+              <dt>See also</dt>
+              <dd><code>Square</code> <a href="Sprinting.Rectangle.html"><code>Rectangle</code></a></dd>
             </dl>
           </section>
           <section>
+            <h2>Properties</h2>
+            <section>
+              <h3 id="fill"><span class="symbol-name">fill</span><small class="property-type">
+            &nbsp;String</small></h3>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="stroke"><span class="symbol-name">stroke</span><small class="property-type">
+            &nbsp;String</small></h3>
+              <dl class="dl-compact">
+              </dl>
+            </section>
           </section>
         </div>
       </div>
