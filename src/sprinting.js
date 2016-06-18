@@ -8,7 +8,7 @@ window.Sprinting = (function(S) {
   /**
    * @namespace Sprinting
    */
-  
+
   class World {
     /**
      * Contains {@link Sprinting.Thing|everything}.
@@ -90,7 +90,7 @@ window.Sprinting = (function(S) {
        * @type CanvasRenderingContext2D
        */
       this.ctx = this.canvas.getContext('2d', { alpha: true })
-      
+
       /**
        * Array of {@link Sprinting.Thing|Thing}s that are contained within this World.
        * @name #things
@@ -98,6 +98,17 @@ window.Sprinting = (function(S) {
        * @type Array
        */
       this.things = []
+
+      /**
+       * Array of all sub-loops contained within this World being called each tick.
+       *
+       * @name #subLoops
+       * @memberof Sprinting.World
+       * @type Array
+       */
+       this.subLoops = []
+
+      this.initLoop()
     }
 
     /**
@@ -109,7 +120,7 @@ window.Sprinting = (function(S) {
      */
     add(thing) {
       this.things.push(thing)
-      
+
       return this
     }
 
@@ -125,13 +136,59 @@ window.Sprinting = (function(S) {
 
       return this
     }
+
+    /**
+     * Starts the main loop of in which all the sub-loops are called and draws all it's {@link Sprinrting.Thing|things}.
+     *
+     * @method #initLoop
+     * @memberOf Sprinting.World
+     * @private
+     * @ignore
+     */
+    initLoop() {
+      let tick = function() {
+        this.draw()
+        this.subLoops.forEach(loop => loop())
+
+        window.setTimeout(() => window.requestAnimationFrame(tick.bind(this)), this.msPerTick)
+      }
+
+      tick.call(this)
+    }
+
+    /**
+     * Sets the frame-rate of the main loop.
+     *
+     * @method #setFrameRate
+     * @memberOf Sprinting.World
+     * @chainable
+     */
+     setFrameRate(fps) {
+       this.msPerTick = 1000 / fps
+
+       return this
+     }
+
+     /**
+      * Pushes a loop called each tick.
+      *
+      * @method #pushLoop
+      * @memberOf Sprinting.World
+      * @chainable
+      */
+
+     addLoop(fn) {
+       this.subLoops.push(fn)
+
+       return this
+     }
   }
 
   class Thing {
     /**
      * Things are objects that live within {@link Sprinting.World|Worlds}.
      * **Things should never be constructed directly**, rather, use an extension such as a {@link Sprinting.Square|Square}.
-     * 
+     *
      * @class Thing
      * @memberOf Sprinting
      * @see {@link Sprinting.Shape|Shape}
@@ -169,7 +226,7 @@ window.Sprinting = (function(S) {
     /**
      * Shapes are {@link Sprinting.Thing|Things} with both a stroke color and a fill color.
      * **Shapes should never be constructed directly**, rather, use an extension such as a {@link Sprinting.Square|Square}.
-     * 
+     *
      * @class Shape
      * @memberOf Sprinting
      * @see {@link Sprinting.Square|Square} {@link Sprinting.Rectangle|Rectangle}
@@ -211,7 +268,7 @@ window.Sprinting = (function(S) {
   class Rectangle extends Shape {
     /**
      * Rectangles are {@link Sprinting.Shape|Shapes} that have a width and height.
-     * 
+     *
      * @class Sprinting.Rectangle
      * @extends Sprinting.Shape
      * @param {Number} [width=75]
@@ -245,7 +302,7 @@ window.Sprinting = (function(S) {
 
     /**
      * This method is called by the parent World's {@link Sprinting.World#draw|draw()} method.
-     * 
+     *
      * @function #draw
      * @memberof Sprinting.Rectangle
      * @private

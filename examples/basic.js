@@ -5,5 +5,8 @@ let world = new World('#world')
 let rect = new Rectangle
 rect.stroke = 'transparent'
 rect.fill = '#ff0000'
+world.add(rect)
 
-rect.draw(world)
+world.addLoop(function() {
+  console.log('TICK!!!')
+})

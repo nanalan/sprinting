@@ -48,23 +48,26 @@
                     <dt><a href="Sprinting.World.html#ctx">ctx</a></dt>
                     <dd>
                     </dd>
-                  </dl>
-                </div>
-                <div class="summary-column">
-                  <dl class="dl-summary-callout">
                     <dt><a href="Sprinting.World.html#el">el</a></dt>
                     <dd>
                     </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
                     <dt><a href="Sprinting.World.html#h">h</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.World.html#subLoops">subLoops</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.World.html#things">things</a></dt>
                     <dd>
                     </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#things">things</a></dt>
-                    <dd>
-                    </dd>
                     <dt><a href="Sprinting.World.html#w">w</a></dt>
                     <dd>
                     </dd>
@@ -80,11 +83,17 @@
                     <dt><a href="Sprinting.World.html#add">add(thing)</a></dt>
                     <dd>
                     </dd>
+                    <dt><a href="Sprinting.World.html#draw">draw()</a></dt>
+                    <dd>
+                    </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#draw">draw()</a></dt>
+                    <dt><a href="Sprinting.World.html#pushLoop">pushLoop()</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.World.html#setFrameRate">setFrameRate()</a></dt>
                     <dd>
                     </dd>
                   </dl>
@@ -191,6 +200,11 @@ world.draw()</code></pre>
               <p>Height, in pixels, of draw window.</p>
               <dl class="dl-compact">
               </dl>
+              <h3 id="subLoops"><span class="symbol-name">subLoops</span><small class="property-type">
+            &nbsp;Array</small></h3>
+              <p>Array of all sub-loops contained within this World being called each tick.</p>
+              <dl class="dl-compact">
+              </dl>
               <h3 id="things"><span class="symbol-name">things</span><small class="property-type">
             &nbsp;Array</small></h3>
               <p>Array of <a href="Sprinting.Thing.html"><code>Thing</code></a>s that are contained within this World.</p>
@@ -241,6 +255,14 @@ world.draw()</code></pre>
               <dl class="dl-compact">
                 <dt>To do</dt>
                 <dd>A draw loop</dd>
+              </dl>
+              <h3 id="pushLoop"><span class="symbol-name">pushLoop</span><span class="signature"><span class="signature-params">()</span></span></h3>
+              <p>Pushes a loop called each tick.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="setFrameRate"><span class="symbol-name">setFrameRate</span><span class="signature"><span class="signature-params">()</span></span></h3>
+              <p>Sets the frame-rate of the main loop.</p>
+              <dl class="dl-compact">
               </dl>
             </section>
           </section>
