@@ -65,7 +65,10 @@ window.Sprinting = (function(S) {
       this.el.style.width = this.w + 'px'
       this.el.style.height = this.h + 'px'
       this.el.style.cursor = 'default'
-      this.el.addEventListener('contextmenu', function(e) {
+      this.el.style.outline = 'initial'
+      this.el.setAttribute('tabindex', 0)
+      this.el.addEventListener('contextmenu', e => {
+        if(!this.focus) return
         e.preventDefault()
         e.stopPropagation()
         return false
@@ -109,6 +112,33 @@ window.Sprinting = (function(S) {
        this.subLoops = []
 
       this.initLoop()
+
+      /**
+       * `true` when the World is in focus. When `false`, the World will enter **debug mode**.
+       * @name #focus
+       * @memberof Sprinting.World
+       * @type {Boolean}
+       */
+      this.focus = false
+      this.el.addEventListener('blur', e => {
+        this.focus = false
+      })
+      this.el.addEventListener('focus', e => {
+        this.focus = true
+
+        // hide debug elements
+        this.things.forEach(thing => {
+          if(thing._el) {
+            this.el.removeChild(thing._el)
+            delete thing._el
+
+            thing._observer.disconnect()
+            delete thing._observer
+          }
+        })
+      })
+
+      this.new = true // will be deleted after one draw
     }
 
     /**
@@ -132,13 +162,55 @@ window.Sprinting = (function(S) {
      * @todo A draw loop
      */
     draw() {
-      this.things.forEach(thing => thing.draw(this))
+      if(this.focus || this.new) {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.things.forEach(thing => thing.draw(this))
+
+        if(this.new) delete this.new
+      } else {
+        //this.ctx.fillStyle = 'rgba(0,0,0,0.2)'
+        //this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+
+        this.things.forEach(thing => {
+          if(!thing._el) {
+            Object.defineProperty(thing, '_el', {
+              configurable: true,
+              writable: true,
+              value: document.createElement(thing.constructor.name)
+            })
+
+            Object.defineProperty(thing, '_observer', {
+              configurable: true,
+              writable: true,
+              value: new MutationObserver(mutation => {
+                let attr = mutation[0].attributeName
+                thing[attr] = thing._el.getAttribute(attr)
+
+                // force a render
+                this.new = true
+                this.draw()
+              })
+            })
+
+            let el = thing._el
+            let observer = thing._observer
+
+            thing._el.style.display = 'none'
+            for(let attr in thing) {
+              thing._el.setAttribute(attr, thing[attr])
+            }
+
+            world.el.appendChild(thing._el)
+            observer.observe(el, { attributes: true })
+          }
+        })
+      }
 
       return this
     }
 
     /**
-     * Starts the main loop of in which all the sub-loops are called and draws all it's {@link Sprinrting.Thing|things}.
+     * Starts the main loop of in which all the sub-loops are called and draws all it's {@link Sprinting.Thing|things}.
      *
      * @method #initLoop
      * @memberOf Sprinting.World
@@ -148,7 +220,7 @@ window.Sprinting = (function(S) {
     initLoop() {
       let tick = function() {
         this.draw()
-        this.subLoops.forEach(loop => loop())
+        if(this.focus) this.subLoops.forEach(loop => loop())
 
         window.setTimeout(() => window.requestAnimationFrame(tick.bind(this)), this.msPerTick)
       }
@@ -172,12 +244,12 @@ window.Sprinting = (function(S) {
      /**
       * Pushes a loop called each tick.
       *
-      * @method #pushLoop
+      * @method #drawLoop
       * @memberOf Sprinting.World
       * @chainable
       */
 
-     addLoop(fn) {
+     drawLoop(fn) {
        this.subLoops.push(fn)
 
        return this
@@ -215,6 +287,7 @@ window.Sprinting = (function(S) {
 
     /**
      * Things may not be drawn unless they are extended.
+     * @memberof Sprinting.Thing
      * @ignore
      */
     draw() {
@@ -301,11 +374,13 @@ window.Sprinting = (function(S) {
     }
 
     /**
-     * This method is called by the parent World's {@link Sprinting.World#draw|draw()} method.
-     *
+     * This method is called by the parent World's {@link Sprinting.World#draw|draw()} method (although you can call it on it's own as shown in the example).
+     * @example
+     * let world = new World('#world')
+     * let rect = new Rectangle
+     * rect.draw(world)
      * @function #draw
      * @memberof Sprinting.Rectangle
-     * @private
      */
     draw(world) {
       if(!world instanceof World) throw TypeError('world must be a World')

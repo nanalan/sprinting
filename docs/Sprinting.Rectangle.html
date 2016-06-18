@@ -198,9 +198,18 @@ world.add(new Rectangle).draw()</code></pre>
             </section>
             <h2>Method</h2>
             <section>
-              <div class="symbol-detail-labels"><span class="label label-private">private</span></div>
               <h3 id="draw"><span class="symbol-name">draw</span><span class="signature"><span class="signature-params">()</span></span></h3>
-              <p>This method is called by the parent World's <a href="Sprinting.World.html#draw"><code>draw()</code></a> method.</p>
+              <p>This method is called by the parent World's <a href="Sprinting.World.html#draw"><code>draw()</code></a> method (although you can call it on it's own as shown in the example).</p>
+              <section>
+                <h4>
+            Example
+        </h4>
+                <div>
+                  <pre><code class='js'>let world &#x3D; new World(&#x27;#world&#x27;)
+let rect &#x3D; new Rectangle
+rect.draw(world)</code></pre>
+                </div>
+              </section>
               <dl class="dl-compact">
               </dl>
             </section>
