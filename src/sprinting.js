@@ -1,5 +1,5 @@
 /*!
- * Sprinting JavaScript Library v0.1.0
+ * Sprinting JavaScript Library - Release 0.2.0 Alpha
  * https://nanalan.github.io/sprinting/docs/
  */
 window.Sprinting = (function(S) {
