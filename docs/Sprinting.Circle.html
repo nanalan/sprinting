@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="JSDoc 3.4.0">
   <meta charset="utf-8">
-  <title>Class: Rectangle &bullet; Sprinting Docs</title>
+  <title>Class: Circle &bullet; Sprinting Docs</title>
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
@@ -32,7 +32,7 @@
         <div id="jsdoc-main" role="main">
           <header class="page-header">
             <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
-            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">Rectangle</span></h1>
+            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">Circle</span></h1>
             <dl class="dl-compact">
             </dl>
           </header>
@@ -42,27 +42,27 @@
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.Rectangle.html#fill">fill</a></dt>
+                    <dt><a href="Sprinting.Circle.html#angle">angle</a></dt>
                     <dd>
                     </dd>
-                    <dt><a href="Sprinting.Rectangle.html#height">height</a></dt>
-                    <dd>
-                    </dd>
-                  </dl>
-                </div>
-                <div class="summary-column">
-                  <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.Rectangle.html#stroke">stroke</a></dt>
-                    <dd>
-                    </dd>
-                    <dt><a href="Sprinting.Rectangle.html#strokeWidth">strokeWidth</a></dt>
+                    <dt><a href="Sprinting.Circle.html#fill">fill</a></dt>
                     <dd>
                     </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.Rectangle.html#width">width</a></dt>
+                    <dt><a href="Sprinting.Circle.html#radius">radius</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.Circle.html#stroke">stroke</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Circle.html#strokeWidth">strokeWidth</a></dt>
                     <dd>
                     </dd>
                   </dl>
@@ -74,7 +74,7 @@
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.Rectangle.html#draw">draw()</a></dt>
+                    <dt><a href="Sprinting.Circle.html#draw">draw()</a></dt>
                     <dd>
                     </dd>
                   </dl>
@@ -87,16 +87,21 @@
             </div>
           </section>
           <section>
-            <h2 id="Rectangle">new&nbsp;<span class="symbol-name">Rectangle</span><span class="signature"><span class="signature-params">([width][, height][, stroke][, fill][, strokeWidth])</span></span></h2>
-            <p>Rectangles are <a href="Sprinting.Shape.html"><code>Shapes</code></a> that have a width and height.</p>
+            <h2 id="Circle">new&nbsp;<span class="symbol-name">Circle</span><span class="signature"><span class="signature-params">([radius][, angle][, stroke][, fill][, strokeWidth])</span></span></h2>
+            <p>Circles are <a href="Sprinting.Shape.html"><code>Shapes</code></a> that have a radius.</p>
             <section>
               <h3>
-            Example
+            Examples
         </h3>
               <div>
-                <pre><code class='js'>// draws a 100x75 black-bordered rectangle in the World
+                <pre><code class='js'>// draws a circle with 50px radius (width: 100px)
 let world &#x3D; new World(&#x27;#world&#x27;)
-world.add(new Rectangle).draw()</code></pre>
+world.add(new Circle).draw()</code></pre>
+              </div>
+              <div>
+                <pre><code class='js'>// draws a semicircle with 200px radius
+let world &#x3D; new World(&#x27;#world&#x27;)
+world.add(new Circle(200, 180)).draw()</code></pre>
               </div>
             </section>
             <section>
@@ -113,7 +118,7 @@ world.add(new Rectangle).draw()</code></pre>
                 <tbody>
                   <tr>
                     <td>
-                      <p>width</p>
+                      <p>radius</p>
                     </td>
                     <td>
                       <p>Number</p>
@@ -122,12 +127,12 @@ world.add(new Rectangle).draw()</code></pre>
                       <p>Yes</p>
                     </td>
                     <td>
-                      <p>Defaults to <code>75</code>.</p>
+                      <p>Defaults to <code>100</code>.</p>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <p>height</p>
+                      <p>angle</p>
                     </td>
                     <td>
                       <p>Number</p>
@@ -136,7 +141,8 @@ world.add(new Rectangle).draw()</code></pre>
                       <p>Yes</p>
                     </td>
                     <td>
-                      <p>Defaults to <code>75</code>.</p>
+                      <p>Angle, in degrees, of the circle to draw (set to <code>180</code> to make a semicircle, etc).</p>
+                      <p>Defaults to <code>360</code>.</p>
                     </td>
                   </tr>
                   <tr>
@@ -195,14 +201,29 @@ world.add(new Rectangle).draw()</code></pre>
           <section>
             <h2>Properties</h2>
             <section>
+              <h3 id="angle"><span class="symbol-name">angle</span><small class="property-type">
+            &nbsp;angle</small></h3>
+              <p>Angle, in degrees, of the circle to draw. <code>180</code> is a semicircle, for example.</p>
+              <section>
+                <h4>
+            Example
+        </h4>
+                <div>
+                  <pre><code class='js'>// draws a semicircle with 200px radius
+let world &#x3D; new World(&#x27;#world&#x27;)
+world.add(new Circle(200, 180)).draw()</code></pre>
+                </div>
+              </section>
+              <dl class="dl-compact">
+              </dl>
               <h3 id="fill"><span class="symbol-name">fill</span><small class="property-type">
             &nbsp;unknown</small></h3>
               <dl class="dl-compact">
                 <dt>Inherited from</dt>
                 <dd><a href="Sprinting.Shape.html#fill">Sprinting.Shape#fill</a></dd>
               </dl>
-              <h3 id="height"><span class="symbol-name">height</span><small class="property-type">
-            &nbsp;Number</small></h3>
+              <h3 id="radius"><span class="symbol-name">radius</span><small class="property-type">
+            &nbsp;radius</small></h3>
               <dl class="dl-compact">
               </dl>
               <h3 id="stroke"><span class="symbol-name">stroke</span><small class="property-type">
@@ -217,26 +238,14 @@ world.add(new Rectangle).draw()</code></pre>
                 <dt>Inherited from</dt>
                 <dd><a href="Sprinting.Shape.html#strokeWidth">Sprinting.Shape#strokeWidth</a></dd>
               </dl>
-              <h3 id="width"><span class="symbol-name">width</span><small class="property-type">
-            &nbsp;Number</small></h3>
-              <dl class="dl-compact">
-              </dl>
             </section>
             <h2>Method</h2>
             <section>
               <h3 id="draw"><span class="symbol-name">draw</span><span class="signature"><span class="signature-params">()</span></span></h3>
-              <p>This method is called by the parent World's <a href="Sprinting.World.html#draw"><code>draw()</code></a> method (although you can call it on it's own as shown in the example).</p>
-              <section>
-                <h4>
-            Example
-        </h4>
-                <div>
-                  <pre><code class='js'>let world &#x3D; new World(&#x27;#world&#x27;)
-let rect &#x3D; new Rectangle
-rect.draw(world)</code></pre>
-                </div>
-              </section>
+              <p>This method is called by the parent World's <a href="Sprinting.World.html#draw"><code>draw()</code></a> method.</p>
               <dl class="dl-compact">
+                <dt>See also</dt>
+                <dd><a href="Sprinting.Rectangle.html#draw">Sprinting.Rectangle#draw</a></dd>
               </dl>
             </section>
           </section>

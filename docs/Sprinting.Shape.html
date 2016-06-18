@@ -55,14 +55,19 @@
                   </dl>
                 </div>
                 <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Shape.html#strokeWidth">strokeWidth</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
                 </div>
               </div>
             </div>
           </section>
           <section>
-            <h2 id="Shape">new&nbsp;<span class="symbol-name">Shape</span><span class="signature"><span class="signature-params">([stroke][, fill][, quiet])</span></span></h2>
+            <h2 id="Shape">new&nbsp;<span class="symbol-name">Shape</span><span class="signature"><span class="signature-params">([stroke][, fill][, strokeWidth][, quiet])</span></span></h2>
             <p>Shapes are <a href="Sprinting.Thing.html"><code>Things</code></a> with both a stroke color and a fill color.
-              <strong>Shapes should never be constructed directly</strong>, rather, use an extension such as a <code>Square</code>.</p>
+              <strong>Shapes should never be constructed directly</strong>, rather, use an extension such as a <a href="Sprinting.Rectangle.html"><code>Rectangle</code></a>.</p>
             <section>
               <h3>Parameters</h3>
               <table class="jsdoc-details-table">
@@ -107,6 +112,21 @@
                   </tr>
                   <tr>
                     <td>
+                      <p>strokeWidth</p>
+                    </td>
+                    <td>
+                      <p>Number</p>
+                    </td>
+                    <td>
+                      <p>Yes</p>
+                    </td>
+                    <td>
+                      <p>Stroke width in pixels.</p>
+                      <p>Defaults to <code>1</code>.</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
                       <p>quiet</p>
                     </td>
                     <td>
@@ -125,7 +145,7 @@
             </section>
             <dl class="dl-compact">
               <dt>See also</dt>
-              <dd><code>Square</code> <a href="Sprinting.Rectangle.html"><code>Rectangle</code></a></dd>
+              <dd><a href="Sprinting.Circle.html"><code>Circle</code></a> <a href="Sprinting.Rectangle.html"><code>Rectangle</code></a></dd>
             </dl>
           </section>
           <section>
@@ -136,6 +156,10 @@
               <dl class="dl-compact">
               </dl>
               <h3 id="stroke"><span class="symbol-name">stroke</span><small class="property-type">
+            &nbsp;String</small></h3>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="strokeWidth"><span class="symbol-name">strokeWidth</span><small class="property-type">
             &nbsp;String</small></h3>
               <dl class="dl-compact">
               </dl>

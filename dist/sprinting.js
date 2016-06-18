@@ -4579,7 +4579,11 @@ window.Sprinting = (function(S) {
         if (this.focus || this.new) {
           this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
           this.things.forEach(function(thing) {
-            return thing.draw($__2);
+            world.ctx.save();
+            world.ctx.translate((thing.x - thing.width / 2) + thing.rx + thing.x, (thing.y - thing.height / 2) + thing.ry + thing.y);
+            world.ctx.rotate(thing.r * Math.PI / 180);
+            thing.draw($__2);
+            world.ctx.restore();
           });
           if (this.new)
             delete this.new;
@@ -4645,6 +4649,9 @@ window.Sprinting = (function(S) {
         console.warn('Things should never be constructed directly!');
       this.x = 0;
       this.y = 0;
+      this.r = 0;
+      this.rx = 0;
+      this.ry = 0;
     }
     return ($traceurRuntime.createClass)(Thing, {draw: function() {
         throw Error('Things cannot be drawn unless extended.');
@@ -4654,7 +4661,8 @@ window.Sprinting = (function(S) {
     function Shape() {
       var stroke = arguments[0] !== (void 0) ? arguments[0] : '#000';
       var fill = arguments[1] !== (void 0) ? arguments[1] : 'transparent';
-      var quiet = arguments[2] !== (void 0) ? arguments[2] : false;
+      var strokeWidth = arguments[2] !== (void 0) ? arguments[2] : 1;
+      var quiet = arguments[3] !== (void 0) ? arguments[3] : false;
       $traceurRuntime.superConstructor(Shape).call(this, true);
       if (!quiet)
         console.warn('Shapes should never be constructed directly!');
@@ -4664,6 +4672,9 @@ window.Sprinting = (function(S) {
       if (!fill instanceof String)
         throw TypeError('fill must be a String');
       this.fill = fill;
+      if (!strokeWidth instanceof Number)
+        throw TypeError('strokeWidth must be a Number');
+      this.strokeWidth = strokeWidth;
     }
     return ($traceurRuntime.createClass)(Shape, {draw: function() {
         throw Error('Shapes cannot be drawn unless extended.');
@@ -4675,7 +4686,8 @@ window.Sprinting = (function(S) {
       var height = arguments[1] !== (void 0) ? arguments[1] : 75;
       var stroke = arguments[2] !== (void 0) ? arguments[2] : '#000';
       var fill = arguments[3] !== (void 0) ? arguments[3] : 'transparent';
-      $traceurRuntime.superConstructor(Rectangle).call(this, stroke, fill, true);
+      var strokeWidth = arguments[4] !== (void 0) ? arguments[4] : 1;
+      $traceurRuntime.superConstructor(Rectangle).call(this, stroke, fill, strokeWidth, true);
       if (!width instanceof Number)
         throw TypeError('width must be a Number');
       this.width = width;
@@ -4686,24 +4698,46 @@ window.Sprinting = (function(S) {
     return ($traceurRuntime.createClass)(Rectangle, {draw: function(world) {
         if (!world instanceof World)
           throw TypeError('world must be a World');
-        if (!this.width instanceof Number)
-          throw TypeError('width must be a Number');
-        if (this.width < 0)
-          throw TypeError('width must be positive');
-        if (!this.height instanceof Number)
-          throw TypeError('height must be a Number');
-        if (this.height < 0)
-          throw TypeError('height must be positive');
         world.ctx.strokeStyle = this.stroke;
         world.ctx.fillStyle = this.fill;
-        world.ctx.fillRect(this.x, this.y, this.width, this.height);
-        world.ctx.strokeRect(this.x, this.y, this.width, this.height);
+        world.ctx.lineWidth = this.strokeWidth;
+        world.ctx.fillRect(0, 0, this.width, this.height);
+        world.ctx.strokeRect(0, 0, this.width, this.height);
+      }}, {}, $__super);
+  }(Shape);
+  var Circle = function($__super) {
+    function Circle() {
+      var radius = arguments[0] !== (void 0) ? arguments[0] : 50;
+      var angle = arguments[1] !== (void 0) ? arguments[1] : 360;
+      var stroke = arguments[2] !== (void 0) ? arguments[2] : '#000';
+      var fill = arguments[3] !== (void 0) ? arguments[3] : 'transparent';
+      var strokeWidth = arguments[4] !== (void 0) ? arguments[4] : 1;
+      $traceurRuntime.superConstructor(Circle).call(this, stroke, fill, strokeWidth, true);
+      if (!radius instanceof Number)
+        throw TypeError('radius must be a Number');
+      this.radius = radius;
+      if (!angle instanceof Number)
+        throw TypeError('angle must be a Number');
+      this.angle = angle;
+    }
+    return ($traceurRuntime.createClass)(Circle, {draw: function(world) {
+        if (!world instanceof World)
+          throw TypeError('world must be a World');
+        world.ctx.beginPath();
+        world.ctx.arc(0, 0, this.radius, 0, this.angle * Math.PI / 180, false);
+        world.ctx.closePath();
+        world.ctx.strokeStyle = this.stroke;
+        world.ctx.fillStyle = this.fill;
+        world.ctx.lineWidth = this.strokeWidth;
+        world.ctx.fill();
+        world.ctx.stroke();
       }}, {}, $__super);
   }(Shape);
   S.World = World;
   S.Thing = Thing;
   S.Shape = Shape;
   S.Rectangle = Rectangle;
+  S.Circle = Circle;
   return S;
 }({}));
 

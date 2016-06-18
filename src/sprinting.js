@@ -1,5 +1,5 @@
 /*!
- * Sprinting JavaScript Library - Release 0.2.0 Alpha
+ * Sprinting JavaScript Library - Release 0.2.1 Alpha
  * https://nanalan.github.io/sprinting/docs/
  */
 window.Sprinting = (function(S) {
@@ -164,7 +164,16 @@ window.Sprinting = (function(S) {
     draw() {
       if(this.focus || this.new) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-        this.things.forEach(thing => thing.draw(this))
+        this.things.forEach(thing => {
+          world.ctx.save()
+
+          // rotation
+          world.ctx.translate((thing.x - thing.width / 2) + thing.rx + thing.x, (thing.y - thing.height / 2) + thing.ry + thing.y)
+          world.ctx.rotate(thing.r * Math.PI/180)
+
+          thing.draw(this) // render @ (0, 0)
+          world.ctx.restore()
+        })
 
         if(this.new) delete this.new
       } else {
@@ -271,6 +280,7 @@ window.Sprinting = (function(S) {
       if(!quiet) console.warn('Things should never be constructed directly!')
 
       /**
+       * X position.
        * @name #x
        * @memberof Sprinting.Thing
        * @type {Number}
@@ -278,11 +288,36 @@ window.Sprinting = (function(S) {
       this.x = 0
 
       /**
+       * Y position.
        * @name #y
        * @memberof Sprinting.Thing
        * @type {Number}
        */
       this.y = 0
+
+      /**
+       * Rotation (in degrees).
+       * @name #r
+       * @memberof Sprinting.Thing
+       * @type {Number}
+       */
+      this.r = 0
+
+      /**
+       * Rotation offset x.
+       * @name #rx
+       * @memberof Sprinting.Thing
+       * @type {Number}
+       */
+      this.rx = 0
+
+      /**
+       * Rotation offset y.
+       * @name #ry
+       * @memberof Sprinting.Thing
+       * @type {Number}
+       */
+      this.ry = 0
     }
 
     /**
@@ -298,17 +333,18 @@ window.Sprinting = (function(S) {
   class Shape extends Thing {
     /**
      * Shapes are {@link Sprinting.Thing|Things} with both a stroke color and a fill color.
-     * **Shapes should never be constructed directly**, rather, use an extension such as a {@link Sprinting.Square|Square}.
+     * **Shapes should never be constructed directly**, rather, use an extension such as a {@link Sprinting.Rectangle|Rectangle}.
      *
      * @class Shape
      * @memberOf Sprinting
-     * @see {@link Sprinting.Square|Square} {@link Sprinting.Rectangle|Rectangle}
+     * @see {@link Sprinting.Circle|Circle} {@link Sprinting.Rectangle|Rectangle}
      * @param {String} [stroke='#000'] - Stroke color.
      * @param {String} [fill='transparent'] - Fill color.
+     * @param {Number} [strokeWidth=1] - Stroke width in pixels.
      * @param {Boolean} [quiet=false] - Whether or not to output the direct construction warning.
      * @private
      */
-    constructor(stroke='#000', fill='transparent', quiet=false) {
+    constructor(stroke='#000', fill='transparent', strokeWidth=1, quiet=false) {
       super(true)
       if(!quiet) console.warn('Shapes should never be constructed directly!')
 
@@ -327,6 +363,14 @@ window.Sprinting = (function(S) {
        */
       if(!fill instanceof String) throw TypeError('fill must be a String')
       this.fill = fill
+
+      /**
+       * @name #strokeWidth
+       * @memberof Sprinting.Shape
+       * @type {String}
+       */
+      if(!strokeWidth instanceof Number) throw TypeError('strokeWidth must be a Number')
+      this.strokeWidth = strokeWidth
     }
 
     /**
@@ -348,13 +392,14 @@ window.Sprinting = (function(S) {
      * @param {Number} [height=75]
      * @param {String} [stroke='#000'] - Stroke color.
      * @param {String} [fill='transparent'] - Fill color.
+     * @param {Number} [strokeWidth=1] - Stroke width in pixels.
      * @example
      * // draws a 100x75 black-bordered rectangle in the World
      * let world = new World('#world')
      * world.add(new Rectangle).draw()
      */
-    constructor(width=100, height=75, stroke='#000', fill='transparent') {
-      super(stroke, fill, true)
+    constructor(width=100, height=75, stroke='#000', fill='transparent', strokeWidth=1) {
+      super(stroke, fill, strokeWidth, true)
 
       /**
        * @name #width
@@ -385,16 +430,76 @@ window.Sprinting = (function(S) {
     draw(world) {
       if(!world instanceof World) throw TypeError('world must be a World')
 
-      if(!this.width instanceof Number) throw TypeError('width must be a Number')
-      if(this.width < 0) throw TypeError('width must be positive')
-
-      if(!this.height instanceof Number) throw TypeError('height must be a Number')
-      if(this.height < 0) throw TypeError('height must be positive')
-
       world.ctx.strokeStyle = this.stroke
       world.ctx.fillStyle = this.fill
-      world.ctx.fillRect(this.x, this.y, this.width, this.height)
-      world.ctx.strokeRect(this.x, this.y, this.width, this.height)
+      world.ctx.lineWidth = this.strokeWidth
+      world.ctx.fillRect(0, 0, this.width, this.height)
+      world.ctx.strokeRect(0, 0, this.width, this.height)
+    }
+  }
+
+  class Circle extends Shape {
+    /**
+     * Circles are {@link Sprinting.Shape|Shapes} that have a radius.
+     *
+     * @class Sprinting.Circle
+     * @extends Sprinting.Shape
+     * @param {Number} [radius=100]
+     * @param {Number} [angle=360] - Angle, in degrees, of the circle to draw (set to `180` to make a semicircle, etc).
+     * @param {String} [stroke='#000'] - Stroke color.
+     * @param {String} [fill='transparent'] - Fill color.
+     * @param {Number} [strokeWidth=1] - Stroke width in pixels.
+     * @example
+     * // draws a circle with 50px radius (width: 100px)
+     * let world = new World('#world')
+     * world.add(new Circle).draw()
+     * @example
+     * // draws a semicircle with 200px radius
+     * let world = new World('#world')
+     * world.add(new Circle(200, 180)).draw()
+     */
+    constructor(radius=50, angle=360, stroke='#000', fill='transparent', strokeWidth=1) {
+      super(stroke, fill, strokeWidth, true)
+
+      /**
+       * @name #radius
+       * @memberof Sprinting.Circle
+       * @type {radius}
+       */
+      if(!radius instanceof Number) throw TypeError('radius must be a Number')
+      this.radius = radius
+
+      /**
+       * Angle, in degrees, of the circle to draw. `180` is a semicircle, for example.
+       * @name #angle
+       * @memberof Sprinting.Circle
+       * @type {angle}
+       * @example
+       * // draws a semicircle with 200px radius
+       * let world = new World('#world')
+       * world.add(new Circle(200, 180)).draw()
+       */
+      if(!angle instanceof Number) throw TypeError('angle must be a Number')
+      this.angle = angle
+    }
+
+    /**
+     * This method is called by the parent World's {@link Sprinting.World#draw|draw()} method.
+     * @see Sprinting.Rectangle#draw
+     * @function #draw
+     * @memberof Sprinting.Circle
+     */
+    draw(world) {
+      if(!world instanceof World) throw TypeError('world must be a World')
+
+      world.ctx.beginPath()
+      world.ctx.arc(0, 0, this.radius, 0, this.angle * Math.PI/180, false)
+      world.ctx.closePath()
+      world.ctx.strokeStyle = this.stroke
+      world.ctx.fillStyle = this.fill
+      world.ctx.lineWidth = this.strokeWidth
+      world.ctx.fill()
+      world.ctx.stroke()
     }
   }
 
@@ -402,5 +507,6 @@ window.Sprinting = (function(S) {
   S.Thing = Thing
   S.Shape = Shape
   S.Rectangle = Rectangle
+  S.Circle = Circle
   return S
 }({}))

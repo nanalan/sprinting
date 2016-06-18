@@ -1,6 +1,6 @@
 # Sprinting
 > An amazing JavaScript library for drawing things with canvas, with game-like features sprinkled in. Made for both beginners and advanced users.
-> _Release 0.2.0 Alpha_
+> _Release 0.2.1 Alpha_
 
 Sprinting allows you to draw things using _canvas_ with **a higher-level OOP API** that has game-like features (such as draw loop support) built-in out-of-the-box.
 
