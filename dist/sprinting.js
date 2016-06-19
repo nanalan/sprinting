@@ -4850,7 +4850,8 @@ window.Sprinting = (function(S) {
   var pointer = {
     x: 0,
     y: 0,
-    down: function(which) {
+    down: function() {
+      var which = arguments[0] !== (void 0) ? arguments[0] : 'any';
       return false;
     }
   };

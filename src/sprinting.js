@@ -707,16 +707,16 @@ window.Sprinting = (function(S) {
     y: 0,
 
     /**
-     * Checks to see if ``
+     * Checks to see if `which` is currently down.
      * @type {Object}
-     * @param {String} [] `'left'`, `'right'`, `'middle'`. Pass `undefined` to recieve any button or tap type.
+     * @param {String} [which] `'left'`, `'right'`, `'middle'`. Pass `undefined` or `'any'` to recieve any button or tap type.
      * @returns {Boolean} [description]
      * @memberOf Sprinting.pointer
      * @example
      * if(world.pointer.down('any'))
      *   console.log(world.pointer.down )
      */
-    down: function(which) {
+    down: function(which='any') {
       return false
     }
   }
@@ -724,7 +724,7 @@ window.Sprinting = (function(S) {
   S.pointer = pointer
   S.touch = pointer
   S.mouse = pointer
-  
+
   S.World = World
   S.Thing = Thing
   S.Shape = Shape
