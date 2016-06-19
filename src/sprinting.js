@@ -119,7 +119,7 @@ window.Sprinting = (function(S) {
        * @memberof Sprinting.World
        * @type {Boolean}
        */
-      this.focus = false
+      this.focus = true
       this.el.addEventListener('blur', e => {
         this.focus = false
       })
@@ -167,11 +167,11 @@ window.Sprinting = (function(S) {
         this.things.forEach(thing => {
           world.ctx.save()
 
-          // rotatio
+          // rotation
           world.ctx.translate(thing.x - thing.width * thing.rx, thing.y - thing.height * thing.ry)
-          world.ctx.rotate(thing.r * Math.PI/180)
+          if(thing.r) world.ctx.rotate(thing.r * Math.PI/180)
 
-          thing.draw(this) // render @ (0, 0)
+          thing.draw(this)
           world.ctx.restore()
         })
 
@@ -444,8 +444,8 @@ window.Sprinting = (function(S) {
      *
      * @class Sprinting.Circle
      * @extends Sprinting.Shape
-     * @param {Number} [radius=100]
-     * @param {Number} [angle=360] - Angle, in degrees, of the circle to draw (set to `180` to make a semicircle, etc).
+     * @param {Number} [width=100]
+     * @param {Number} [height=100]
      * @param {String} [stroke='#000'] - Stroke color.
      * @param {String} [fill='transparent'] - Fill color.
      * @param {Number} [strokeWidth=1] - Stroke width in pixels.
@@ -462,12 +462,18 @@ window.Sprinting = (function(S) {
       super(stroke, fill, strokeWidth, true)
 
       /**
-       * @name #radius
+       * @name #width
        * @memberof Sprinting.Circle
-       * @type {radius}
+       * @type {Number}
        */
       if(!(typeof width === 'number')) throw TypeError('width must be a Number')
       this.width = width
+
+      /**
+       * @name #height
+       * @memberof Sprinting.Circle
+       * @type {Number}
+       */
       if(!(typeof height === 'number')) throw TypeError('height must be a Number')
       this.height = height
     }
@@ -489,6 +495,10 @@ window.Sprinting = (function(S) {
             centerX      = this.width / 2,
             centerY      = this.height / 2
 
+      world.ctx.strokeStyle = this.stroke
+      world.ctx.fillStyle = this.fill
+      world.ctx.lineWidth = this.strokeWidth
+
       world.ctx.beginPath()
       world.ctx.moveTo(0, centerY)
 
@@ -502,10 +512,103 @@ window.Sprinting = (function(S) {
     }
   }
 
+  class Img extends Thing {
+    /**
+     * Images are {@link Sprinting.Thing|Things} that are drawn with a URI. **Warning: due to browser security, you must use [some kind of webserver](http://www.tecmint.com/python-simplehttpserver-to-create-webserver-or-serve-files-instantly/) to load images correctly**.
+     *
+     * @class Img
+     * @memberOf Sprinting
+     * @param {String} src - Image to display.
+     * @example
+     * // display an image of Donald Trump (of course)
+     * let img = new Sprinting.Img('trump.jpg')
+     * world.add(img)
+     */
+    constructor(src) {
+      super(true)
+
+      /**
+       * @name #_src
+       * @memberof Sprinting.Img
+       * @type {Image}
+       * @private
+       */
+      Object.defineProperty(this, '_src', {
+        writable: true,
+        value: src
+      })
+
+      /**
+       * Load this image. Called automatically.
+       * @name #load
+       * @memberof Sprinting.Img
+       * @type {Function}
+       */
+      Object.defineProperty(this, 'load', {
+        value: function() {
+          /**
+           * @name #img
+           * @memberof Sprinting.Img
+           * @type {Image}
+           * @private
+           */
+          Object.defineProperty(this, 'img', {
+            writable: true,
+            value: new Image()
+          })
+
+          this.loaded = false
+          this.img.addEventListener('load', () => this.loaded = true)
+          this.img.src = src
+          
+          this._src = src
+          this.src = src
+        }
+      })
+
+      this.load()
+
+      /**
+       * @name #src
+       * @memberof Sprinting.Img
+       * @type {String}
+       */
+      if(!src instanceof String) throw TypeError('src must be a String')
+      this.src = src
+
+      /**
+       * `true` once {@link Sprinting.Img#src|src} has loaded.
+       * @name #loaded
+       * @memberof Sprinting.Img
+       * @type {Boolean}
+       */
+      this.loaded = false
+    }
+
+    /**
+     * This method is called by the parent World's {@link Sprinting.World#draw|draw()} method.
+     * @see Sprinting.Rectangle#draw
+     * @function #draw
+     * @memberof Sprinting.Img
+     */
+    draw(world) {
+      if(!world instanceof World) throw TypeError('world must be a World')
+
+      if(this._src !== this.src) this.loaded = false
+
+      if(this.loaded) {
+        world.ctx.drawImage(this.img, this.x, this.y) // this might be broken? it should be rendering at 0,0
+      } else {
+        this.load()
+      }
+    }
+  }
+
   S.World = World
   S.Thing = Thing
   S.Shape = Shape
   S.Rectangle = Rectangle
   S.Circle = Circle
+  S.Img = Img
   return S
 }({}))

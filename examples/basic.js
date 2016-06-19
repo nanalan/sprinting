@@ -7,15 +7,19 @@ rect.stroke = 'transparent'
 rect.fill = '#ffaa00'
 rect.y = 50
 
-world.add(rect)
-
 let circ = new Circle(100, 100)
 circ.stroke = 'transparent'
 circ.fill = '#00aaff'
 circ.x = 100
 circ.y = 100
 
+let trump = new Img('trump.jpg')
+trump.x = 500
+trump.y = 500
+
+world.add(rect)
 world.add(circ)
+world.add(trump)
 
 let i = 0
 world.drawLoop(function() {

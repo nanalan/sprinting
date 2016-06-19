@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="JSDoc 3.4.0">
   <meta charset="utf-8">
-  <title>Class: Circle &bullet; Sprinting Docs</title>
+  <title>Class: Img &bullet; Sprinting Docs</title>
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Karla:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Noto+Serif:400,400i,700,700i" type="text/css">
   <link rel="stylesheet" href="https://brick.a.ssl.fastly.net/Inconsolata:500" type="text/css">
@@ -32,7 +32,7 @@
         <div id="jsdoc-main" role="main">
           <header class="page-header">
             <div class="symbol-detail-labels"><span class="label label-kind">class</span>&nbsp;<span class="label label-static">static</span></div>
-            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">Circle</span></h1>
+            <h1><small><a href="Sprinting.html">Sprinting</a>.<wbr></small><span class="symbol-name">Img</span></h1>
             <dl class="dl-compact">
             </dl>
           </header>
@@ -42,27 +42,27 @@
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.Circle.html#fill">fill</a></dt>
+                    <dt><a href="Sprinting.Img.html#_src">_src</a></dt>
                     <dd>
                     </dd>
-                    <dt><a href="Sprinting.Circle.html#height">height</a></dt>
-                    <dd>
-                    </dd>
-                  </dl>
-                </div>
-                <div class="summary-column">
-                  <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.Circle.html#stroke">stroke</a></dt>
-                    <dd>
-                    </dd>
-                    <dt><a href="Sprinting.Circle.html#strokeWidth">strokeWidth</a></dt>
+                    <dt><a href="Sprinting.Img.html#img">img</a></dt>
                     <dd>
                     </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.Circle.html#width">width</a></dt>
+                    <dt><a href="Sprinting.Img.html#load">load</a></dt>
+                    <dd>
+                    </dd>
+                    <dt><a href="Sprinting.Img.html#loaded">loaded</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Img.html#src">src</a></dt>
                     <dd>
                     </dd>
                   </dl>
@@ -74,7 +74,7 @@
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.Circle.html#draw">draw()</a></dt>
+                    <dt><a href="Sprinting.Img.html#draw">draw()</a></dt>
                     <dd>
                     </dd>
                   </dl>
@@ -87,25 +87,20 @@
             </div>
           </section>
           <section>
-            <h2 id="Circle">new&nbsp;<span class="symbol-name">Circle</span><span class="signature"><span class="signature-params">([width][, height][, stroke][, fill][, strokeWidth])</span></span></h2>
-            <p>Circles are <a href="Sprinting.Shape.html"><code>Shapes</code></a> that have a radius.</p>
+            <h2 id="Img">new&nbsp;<span class="symbol-name">Img</span><span class="signature"><span class="signature-params">(src)</span></span></h2>
+            <p>Images are <a href="Sprinting.Thing.html"><code>Things</code></a> that are drawn with a URI. <strong>Warning: due to browser security, you must use <a href="http://www.tecmint.com/python-simplehttpserver-to-create-webserver-or-serve-files-instantly/">some kind of webserver</a> to load images correctly</strong>.</p>
             <section>
               <h3>
-            Examples
+            Example
         </h3>
               <div>
-                <pre><code class='js'>// draws a circle with 100px diameter
-let world &#x3D; new World(&#x27;#world&#x27;)
-world.add(new Circle).draw()</code></pre>
-              </div>
-              <div>
-                <pre><code class='js'>// draws a semicircle with 200px diameter
-let world &#x3D; new World(&#x27;#world&#x27;)
-world.add(new Circle(200, 200, 180)).draw()</code></pre>
+                <pre><code class='js'>// display an image of Donald Trump (of course)
+let img &#x3D; new Sprinting.Img(&#x27;trump.jpg&#x27;)
+world.add(img)</code></pre>
               </div>
             </section>
             <section>
-              <h3>Parameters</h3>
+              <h3>Parameter</h3>
               <table class="jsdoc-details-table">
                 <thead>
                   <tr>
@@ -118,112 +113,49 @@ world.add(new Circle(200, 200, 180)).draw()</code></pre>
                 <tbody>
                   <tr>
                     <td>
-                      <p>width</p>
-                    </td>
-                    <td>
-                      <p>Number</p>
-                    </td>
-                    <td>
-                      <p>Yes</p>
-                    </td>
-                    <td>
-                      <p>Defaults to <code>100</code>.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>height</p>
-                    </td>
-                    <td>
-                      <p>Number</p>
-                    </td>
-                    <td>
-                      <p>Yes</p>
-                    </td>
-                    <td>
-                      <p>Defaults to <code>100</code>.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>stroke</p>
+                      <p>src</p>
                     </td>
                     <td>
                       <p>String</p>
                     </td>
                     <td>
-                      <p>Yes</p>
+                      <p>&nbsp;</p>
                     </td>
                     <td>
-                      <p>Stroke color.</p>
-                      <p>Defaults to <code>'#000'</code>.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>fill</p>
-                    </td>
-                    <td>
-                      <p>String</p>
-                    </td>
-                    <td>
-                      <p>Yes</p>
-                    </td>
-                    <td>
-                      <p>Fill color.</p>
-                      <p>Defaults to <code>'transparent'</code>.</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p>strokeWidth</p>
-                    </td>
-                    <td>
-                      <p>Number</p>
-                    </td>
-                    <td>
-                      <p>Yes</p>
-                    </td>
-                    <td>
-                      <p>Stroke width in pixels.</p>
-                      <p>Defaults to <code>1</code>.</p>
+                      <p>Image to display.</p>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </section>
             <dl class="dl-compact">
-              <dt>Extends</dt>
-              <dd><a href="Sprinting.Shape.html">Sprinting.Shape</a></dd>
             </dl>
           </section>
           <section>
             <h2>Properties</h2>
             <section>
-              <h3 id="fill"><span class="symbol-name">fill</span><small class="property-type">
-            &nbsp;unknown</small></h3>
-              <dl class="dl-compact">
-                <dt>Inherited from</dt>
-                <dd><a href="Sprinting.Shape.html#fill">Sprinting.Shape#fill</a></dd>
-              </dl>
-              <h3 id="height"><span class="symbol-name">height</span><small class="property-type">
-            &nbsp;Number</small></h3>
+              <div class="symbol-detail-labels"><span class="label label-private">private</span></div>
+              <h3 id="_src"><span class="symbol-name">_src</span><small class="property-type">
+            &nbsp;Image</small></h3>
               <dl class="dl-compact">
               </dl>
-              <h3 id="stroke"><span class="symbol-name">stroke</span><small class="property-type">
-            &nbsp;unknown</small></h3>
+              <div class="symbol-detail-labels"><span class="label label-private">private</span></div>
+              <h3 id="img"><span class="symbol-name">img</span><small class="property-type">
+            &nbsp;Image</small></h3>
               <dl class="dl-compact">
-                <dt>Inherited from</dt>
-                <dd><a href="Sprinting.Shape.html#stroke">Sprinting.Shape#stroke</a></dd>
               </dl>
-              <h3 id="strokeWidth"><span class="symbol-name">strokeWidth</span><small class="property-type">
-            &nbsp;unknown</small></h3>
+              <h3 id="load"><span class="symbol-name">load</span><small class="property-type">
+            &nbsp;function()</small></h3>
+              <p>Load this image. Called automatically.</p>
               <dl class="dl-compact">
-                <dt>Inherited from</dt>
-                <dd><a href="Sprinting.Shape.html#strokeWidth">Sprinting.Shape#strokeWidth</a></dd>
               </dl>
-              <h3 id="width"><span class="symbol-name">width</span><small class="property-type">
-            &nbsp;Number</small></h3>
+              <h3 id="loaded"><span class="symbol-name">loaded</span><small class="property-type">
+            &nbsp;Boolean</small></h3>
+              <p><code>true</code> once <a href="Sprinting.Img.html#src"><code>src</code></a> has loaded.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="src"><span class="symbol-name">src</span><small class="property-type">
+            &nbsp;String</small></h3>
               <dl class="dl-compact">
               </dl>
             </section>
