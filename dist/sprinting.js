@@ -4537,9 +4537,6 @@ window.Sprinting = (function(S) {
       this.el.setAttribute('tabindex', 0);
       this.canvas.setAttribute('width', this.w);
       this.canvas.setAttribute('height', this.h);
-      this.canvas.innerHTML = 'Looks like your web browser doesn\'t support the <b>&lt;canvas&gt;</b> tag. <a href="https://browser-update.org/update.html">Update your web browser</a> now!';
-      this.canvas.style.width = '100%';
-      this.canvas.style.height = '100%';
       this.el.addEventListener('contextmenu', function(e) {
         if (!$__5.focus)
           return;
@@ -4658,10 +4655,9 @@ window.Sprinting = (function(S) {
         return this;
       },
       scale: function() {
-        this.el.style.width = 'auto';
-        this.el.style.height = 'auto';
+        this.el.style.width = '100%';
+        this.el.style.height = '100%';
         this.el.style.objectFit = 'contain';
-        this.canvas.style.objectFit = 'fill';
         return this;
       }
     }, {});

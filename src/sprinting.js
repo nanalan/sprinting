@@ -73,9 +73,7 @@ window.Sprinting = (function(S) {
       
       this.canvas.setAttribute('width', this.w)
       this.canvas.setAttribute('height', this.h)
-      this.canvas.innerHTML = 'Looks like your web browser doesn\'t support the <b>&lt;canvas&gt;</b> tag. <a href="https://browser-update.org/update.html">Update your web browser</a> now!'
-      this.canvas.style.width = '100%'
-      this.canvas.style.height = '100%'
+      //this.canvas.innerHTML = 'Looks like your web browser doesn\'t support the <b>&lt;canvas&gt;</b> tag. <a href="https://browser-update.org/update.html">Update your web browser</a> now!'
 
       this.el.addEventListener('contextmenu', e => {
         if(!this.focus) return
@@ -309,10 +307,9 @@ window.Sprinting = (function(S) {
       window.addEventListener('resize', resize, false)
       */
      
-      this.el.style.width = 'auto'
-      this.el.style.height = 'auto'
+      this.el.style.width = '100%'
+      this.el.style.height = '100%'
       this.el.style.objectFit = 'contain'
-      this.canvas.style.objectFit = 'fill'
 
       return this
     }

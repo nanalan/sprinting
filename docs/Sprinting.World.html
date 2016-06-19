@@ -42,35 +42,32 @@
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#canvas">canvas</a></dt>
-                    <dd>
-                    </dd>
                     <dt><a href="Sprinting.World.html#ctx">ctx</a></dt>
                     <dd>
                     </dd>
                     <dt><a href="Sprinting.World.html#el">el</a></dt>
                     <dd>
                     </dd>
+                    <dt><a href="Sprinting.World.html#focus">focus</a></dt>
+                    <dd>
+                    </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#focus">focus</a></dt>
-                    <dd>
-                    </dd>
                     <dt><a href="Sprinting.World.html#h">h</a></dt>
                     <dd>
                     </dd>
                     <dt><a href="Sprinting.World.html#subLoops">subLoops</a></dt>
                     <dd>
                     </dd>
+                    <dt><a href="Sprinting.World.html#things">things</a></dt>
+                    <dd>
+                    </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#things">things</a></dt>
-                    <dd>
-                    </dd>
                     <dt><a href="Sprinting.World.html#w">w</a></dt>
                     <dd>
                     </dd>
@@ -93,15 +90,20 @@
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#drawLoop">drawLoop()</a></dt>
+                    <dt><a href="Sprinting.World.html#drawLoop">drawLoop(fn)</a></dt>
                     <dd>
                     </dd>
-                    <dt><a href="Sprinting.World.html#setFrameRate">setFrameRate()</a></dt>
+                    <dt><a href="Sprinting.World.html#scale">scale()</a></dt>
                     <dd>
                     </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
+                  <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.World.html#setFrameRate">setFrameRate()</a></dt>
+                    <dd>
+                    </dd>
+                  </dl>
                 </div>
               </div>
             </div>
@@ -184,18 +186,13 @@ world.draw()</code></pre>
           <section>
             <h2>Properties</h2>
             <section>
-              <h3 id="canvas"><span class="symbol-name">canvas</span><small class="property-type">
-            &nbsp;HTMLElement</small></h3>
-              <p>Canvas that is being drawn to.</p>
-              <dl class="dl-compact">
-              </dl>
               <h3 id="ctx"><span class="symbol-name">ctx</span><small class="property-type">
             &nbsp;CanvasRenderingContext2D</small></h3>
               <dl class="dl-compact">
               </dl>
               <h3 id="el"><span class="symbol-name">el</span><small class="property-type">
             &nbsp;HTMLElement</small></h3>
-              <p>Element container for this World.</p>
+              <p>Element.</p>
               <dl class="dl-compact">
               </dl>
               <h3 id="focus"><span class="symbol-name">focus</span><small class="property-type">
@@ -264,8 +261,41 @@ world.draw()</code></pre>
                 <dt>To do</dt>
                 <dd>A draw loop</dd>
               </dl>
-              <h3 id="drawLoop"><span class="symbol-name">drawLoop</span><span class="signature"><span class="signature-params">()</span></span></h3>
-              <p>Pushes a loop called each tick.</p>
+              <h3 id="drawLoop"><span class="symbol-name">drawLoop</span><span class="signature"><span class="signature-params">(fn)</span></span></h3>
+              <p>Calls <code>fn</code> every frame.</p>
+              <section>
+                <h4>Parameter</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>fn</p>
+                      </td>
+                      <td>
+                        <p>function()</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                        <p>Called each frame.</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="scale"><span class="symbol-name">scale</span><span class="signature"><span class="signature-params">()</span></span></h3>
+              <p>Automatically scale this World as big as possible (that fits inside the viewport). <a href="/sprinting/examples/games">Here's an example.</a></p>
               <dl class="dl-compact">
               </dl>
               <h3 id="setFrameRate"><span class="symbol-name">setFrameRate</span><span class="signature"><span class="signature-params">()</span></span></h3>
