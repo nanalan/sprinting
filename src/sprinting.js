@@ -42,22 +42,25 @@ window.Sprinting = (function(S) {
       /**
        * Width, in pixels, of draw window.
        * @name #w
+       * @alias #width
        * @memberof Sprinting.World
        * @type Number
        */
-      this.w = width
+      this.width = width
 
       /**
        * Height, in pixels, of draw window.
        * @name #h
+       * @alias #height
        * @memberof Sprinting.World
        * @type Number
        */
-      this.h = height
+      this.height = height
 
       /**
-       * Element container for this World.
+       * Element.
        * @name #el
+       * @alias #canvas
        * @memberof Sprinting.World
        * @type HTMLElement
        */
@@ -67,25 +70,19 @@ window.Sprinting = (function(S) {
       this.el.style.cursor = 'default'
       this.el.style.outline = 'initial'
       this.el.setAttribute('tabindex', 0)
+      
+      this.canvas.setAttribute('width', this.w)
+      this.canvas.setAttribute('height', this.h)
+      this.canvas.innerHTML = 'Looks like your web browser doesn\'t support the <b>&lt;canvas&gt;</b> tag. <a href="https://browser-update.org/update.html">Update your web browser</a> now!'
+      this.canvas.style.width = '100%'
+      this.canvas.style.height = '100%'
+
       this.el.addEventListener('contextmenu', e => {
         if(!this.focus) return
         e.preventDefault()
         e.stopPropagation()
         return false
       })
-
-      /**
-       * Canvas that is being drawn to.
-       * @name #canvas
-       * @memberof Sprinting.World
-       * @type HTMLElement
-       */
-      this.canvas = element.appendChild(document.createElement('canvas'))
-      this.canvas.setAttribute('width', this.w)
-      this.canvas.setAttribute('height', this.h)
-      this.canvas.innerHTML = 'Looks like your web browser doesn\'t support the <b>&lt;canvas&gt;</b> tag. <a href="https://browser-update.org/update.html">Update your web browser</a> now!'
-      this.canvas.style.width = '100%'
-      this.canvas.style.height = '100%'
 
       /**
        * @name #ctx
@@ -139,6 +136,30 @@ window.Sprinting = (function(S) {
       })
 
       this.new = true // will be deleted after one draw
+    }
+
+    get w() {
+      return this.width
+    }
+
+    set w(w) {
+      this.width = w
+    }
+
+    get h() {
+      return this.height
+    }
+
+    set h(h) {
+      this.height = h
+    }
+
+    get el() {
+      return this.canvas
+    }
+
+    set el(el) {
+      this.canvas = el
     }
 
     /**
@@ -204,7 +225,6 @@ window.Sprinting = (function(S) {
             let el = thing._el
             let observer = thing._observer
 
-            thing._el.style.display = 'none'
             for(let attr in thing) {
               thing._el.setAttribute(attr, thing[attr])
             }
@@ -250,19 +270,52 @@ window.Sprinting = (function(S) {
        return this
      }
 
-     /**
-      * Pushes a loop called each tick.
-      *
-      * @method #drawLoop
-      * @memberOf Sprinting.World
-      * @chainable
+    /**
+     * Calls `fn` every frame.
+     *
+     * @method #drawLoop
+     * @param {Function} fn Called each frame.
+     * @memberOf Sprinting.World
+     * @chainable
+     */
+    drawLoop(fn) {
+      this.subLoops.push(fn)
+
+      return this
+    }
+
+    /**
+     * Automatically scale this World as big as possible (that fits inside the viewport). [Here's an example.](/sprinting/examples/games)
+     * 
+     * @method #scale
+     * @memberOf Sprinting.World
+     * @chainable
+     */
+    scale() {
+      /*
+      const resize = () => {
+        let height = window.innerHeight
+        let ratio = this.canvas.width / this.canvas.height
+        let width = height * ratio
+
+        this.canvas.style.width = width + 'px'
+        this.canvas.style.height = height + 'px'
+
+        this.el.style.width = width + 'px'
+        this.el.style.height = height + 'px'
+      }
+
+      resize()
+      window.addEventListener('resize', resize, false)
       */
+     
+      this.el.style.width = 'auto'
+      this.el.style.height = 'auto'
+      this.el.style.objectFit = 'contain'
+      this.canvas.style.objectFit = 'fill'
 
-     drawLoop(fn) {
-       this.subLoops.push(fn)
-
-       return this
-     }
+      return this
+    }
   }
 
   class Thing {
@@ -509,12 +562,14 @@ window.Sprinting = (function(S) {
      * @class Img
      * @memberOf Sprinting
      * @param {String} src - Image to display.
+     * @param {Number|'auto'} [width='auto']
+     * @param {Number|'auto'} [height='auto']
      * @example
      * // display an image of Donald Trump (of course)
      * let img = new Sprinting.Img('trump.jpg')
      * world.add(img)
      */
-    constructor(src) {
+    constructor(src, width='auto', height='auto') {
       super(true)
 
       /**
@@ -573,6 +628,24 @@ window.Sprinting = (function(S) {
        * @type {Boolean}
        */
       this.loaded = false
+
+      /**
+       * @name #width
+       * @memberOf Sprinting.Img
+       * @type {Number|'auto'}
+       */
+      if(typeof width !== 'number' && width !== 'auto')
+        throw TypeError('width must be a Number or "auto"')
+      this.width = width
+
+      /**
+       * @name #height
+       * @memberOf Sprinting.Img
+       * @type {Number|'auto'}
+       */
+      if(typeof width !== 'number' && height !== 'auto')
+        throw TypeError('height must be a Number or "auto"')
+      this.height = height
     }
 
     /**
@@ -587,7 +660,12 @@ window.Sprinting = (function(S) {
       if(this._src !== this.src) this.loaded = false
 
       if(this.loaded) {
-        world.ctx.drawImage(this.img, this.x, this.y) // this might be broken? it should be rendering at 0,0
+        world.ctx.drawImage(
+          this.img,
+          this.x, this.y, // this might be broken? it should be rendering at 0,0
+          this.width === 'auto' ? this.img.width : this.width,
+          this.height === 'auto' ? this.img.height : this.height
+        )
       } else {
         this.load()
       }

@@ -4509,7 +4509,7 @@ window.Sprinting = (function(S) {
     function World(element) {
       var width = arguments[1] !== (void 0) ? arguments[1] : 800;
       var height = arguments[2] !== (void 0) ? arguments[2] : 600;
-      var $__4 = this;
+      var $__5 = this;
       switch ((typeof element === 'undefined' ? 'undefined' : $traceurRuntime.typeof(element))) {
         case 'string':
           if (element = document.querySelector(element)) {} else
@@ -4527,40 +4527,39 @@ window.Sprinting = (function(S) {
         throw TypeError('width must be a Number');
       if (typeof height !== 'number')
         throw TypeError('height must be a Number');
-      this.w = width;
-      this.h = height;
+      this.width = width;
+      this.height = height;
       this.el = element;
       this.el.style.width = this.w + 'px';
       this.el.style.height = this.h + 'px';
       this.el.style.cursor = 'default';
       this.el.style.outline = 'initial';
       this.el.setAttribute('tabindex', 0);
-      this.el.addEventListener('contextmenu', function(e) {
-        if (!$__4.focus)
-          return;
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-      });
-      this.canvas = element.appendChild(document.createElement('canvas'));
       this.canvas.setAttribute('width', this.w);
       this.canvas.setAttribute('height', this.h);
       this.canvas.innerHTML = 'Looks like your web browser doesn\'t support the <b>&lt;canvas&gt;</b> tag. <a href="https://browser-update.org/update.html">Update your web browser</a> now!';
       this.canvas.style.width = '100%';
       this.canvas.style.height = '100%';
+      this.el.addEventListener('contextmenu', function(e) {
+        if (!$__5.focus)
+          return;
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      });
       this.ctx = this.canvas.getContext('2d', {alpha: true});
       this.things = [];
       this.subLoops = [];
       this.initLoop();
       this.focus = true;
       this.el.addEventListener('blur', function(e) {
-        $__4.focus = false;
+        $__5.focus = false;
       });
       this.el.addEventListener('focus', function(e) {
-        $__4.focus = true;
-        $__4.things.forEach(function(thing) {
+        $__5.focus = true;
+        $__5.things.forEach(function(thing) {
           if (thing._el) {
-            $__4.el.removeChild(thing._el);
+            $__5.el.removeChild(thing._el);
             delete thing._el;
             thing._observer.disconnect();
             delete thing._observer;
@@ -4570,12 +4569,30 @@ window.Sprinting = (function(S) {
       this.new = true;
     }
     return ($traceurRuntime.createClass)(World, {
+      get w() {
+        return this.width;
+      },
+      set w(w) {
+        this.width = w;
+      },
+      get h() {
+        return this.height;
+      },
+      set h(h) {
+        this.height = h;
+      },
+      get el() {
+        return this.canvas;
+      },
+      set el(el) {
+        this.canvas = el;
+      },
       add: function(thing) {
         this.things.push(thing);
         return this;
       },
       draw: function() {
-        var $__4 = this;
+        var $__5 = this;
         if (this.focus || this.new) {
           this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
           this.things.forEach(function(thing) {
@@ -4583,7 +4600,7 @@ window.Sprinting = (function(S) {
             world.ctx.translate(thing.x - thing.width * thing.rx, thing.y - thing.height * thing.ry);
             if (thing.r)
               world.ctx.rotate(thing.r * Math.PI / 180);
-            thing.draw($__4);
+            thing.draw($__5);
             world.ctx.restore();
           });
           if (this.new)
@@ -4602,13 +4619,12 @@ window.Sprinting = (function(S) {
                 value: new MutationObserver(function(mutation) {
                   var attr = mutation[0].attributeName;
                   thing[attr] = thing._el.getAttribute(attr);
-                  $__4.new = true;
-                  $__4.draw();
+                  $__5.new = true;
+                  $__5.draw();
                 })
               });
               var el = thing._el;
               var observer = thing._observer;
-              thing._el.style.display = 'none';
               for (var attr in thing) {
                 thing._el.setAttribute(attr, thing[attr]);
               }
@@ -4621,14 +4637,14 @@ window.Sprinting = (function(S) {
       },
       initLoop: function() {
         var tick = function() {
-          var $__4 = this;
+          var $__5 = this;
           this.draw();
           if (this.focus)
             this.subLoops.forEach(function(loop) {
               return loop();
             });
           window.setTimeout(function() {
-            return window.requestAnimationFrame(tick.bind($__4));
+            return window.requestAnimationFrame(tick.bind($__5));
           }, this.msPerTick);
         };
         tick.call(this);
@@ -4639,6 +4655,13 @@ window.Sprinting = (function(S) {
       },
       drawLoop: function(fn) {
         this.subLoops.push(fn);
+        return this;
+      },
+      scale: function() {
+        this.el.style.width = 'auto';
+        this.el.style.height = 'auto';
+        this.el.style.objectFit = 'contain';
+        this.canvas.style.objectFit = 'fill';
         return this;
       }
     }, {});
@@ -4681,6 +4704,24 @@ window.Sprinting = (function(S) {
         throw Error('Shapes cannot be drawn unless extended.');
       }}, {}, $__super);
   }(Thing);
+  var SizedShape = function($__super) {
+    function SizedShape() {
+      var width = arguments[0] !== (void 0) ? arguments[0] : 50;
+      var height = arguments[1] !== (void 0) ? arguments[1] : 50;
+      var stroke = arguments[2] !== (void 0) ? arguments[2] : '#000';
+      var fill = arguments[3] !== (void 0) ? arguments[3] : 'transparent';
+      var strokeWidth = arguments[4] !== (void 0) ? arguments[4] : 1;
+      var quiet = arguments[5] !== (void 0) ? arguments[5] : false;
+      $traceurRuntime.superConstructor(SizedShape).call(this, stroke, fill, strokeWidth, quiet);
+      if (!(typeof width === 'number'))
+        throw new TypeError('width must be a Number');
+      this.width = width;
+      if (!(typeof height === 'number'))
+        throw new TypeError('height must be a Number');
+      this.height = height;
+    }
+    return ($traceurRuntime.createClass)(SizedShape, {}, {}, $__super);
+  }(Shape);
   var Rectangle = function($__super) {
     function Rectangle() {
       var width = arguments[0] !== (void 0) ? arguments[0] : 100;
@@ -4688,13 +4729,7 @@ window.Sprinting = (function(S) {
       var stroke = arguments[2] !== (void 0) ? arguments[2] : '#000';
       var fill = arguments[3] !== (void 0) ? arguments[3] : 'transparent';
       var strokeWidth = arguments[4] !== (void 0) ? arguments[4] : 1;
-      $traceurRuntime.superConstructor(Rectangle).call(this, stroke, fill, strokeWidth, true);
-      if (!width instanceof Number)
-        throw TypeError('width must be a Number');
-      this.width = width;
-      if (!height instanceof Number)
-        throw TypeError('height must be a Number');
-      this.height = height;
+      $traceurRuntime.superConstructor(Rectangle).call(this, width, height, stroke, fill, strokeWidth, true);
     }
     return ($traceurRuntime.createClass)(Rectangle, {draw: function(world) {
         if (!world instanceof World)
@@ -4705,7 +4740,7 @@ window.Sprinting = (function(S) {
         world.ctx.fillRect(0, 0, this.width, this.height);
         world.ctx.strokeRect(0, 0, this.width, this.height);
       }}, {}, $__super);
-  }(Shape);
+  }(SizedShape);
   var Circle = function($__super) {
     function Circle() {
       var width = arguments[0] !== (void 0) ? arguments[0] : 100;
@@ -4713,13 +4748,7 @@ window.Sprinting = (function(S) {
       var stroke = arguments[2] !== (void 0) ? arguments[2] : '#000';
       var fill = arguments[3] !== (void 0) ? arguments[3] : 'transparent';
       var strokeWidth = arguments[4] !== (void 0) ? arguments[4] : 1;
-      $traceurRuntime.superConstructor(Circle).call(this, stroke, fill, strokeWidth, true);
-      if (!(typeof width === 'number'))
-        throw TypeError('width must be a Number');
-      this.width = width;
-      if (!(typeof height === 'number'))
-        throw TypeError('height must be a Number');
-      this.height = height;
+      $traceurRuntime.superConstructor(Circle).call(this, width, height, stroke, fill, strokeWidth, true);
     }
     return ($traceurRuntime.createClass)(Circle, {draw: function(world) {
         if (!world instanceof World)
@@ -4743,23 +4772,25 @@ window.Sprinting = (function(S) {
         world.ctx.fill();
         world.ctx.stroke();
       }}, {}, $__super);
-  }(Shape);
+  }(SizedShape);
   var Img = function($__super) {
     function Img(src) {
+      var width = arguments[1] !== (void 0) ? arguments[1] : 'auto';
+      var height = arguments[2] !== (void 0) ? arguments[2] : 'auto';
       $traceurRuntime.superConstructor(Img).call(this, true);
       Object.defineProperty(this, '_src', {
         writable: true,
         value: src
       });
       Object.defineProperty(this, 'load', {value: function() {
-          var $__4;
+          var $__5;
           Object.defineProperty(this, 'img', {
             writable: true,
             value: new Image()
           });
           this.loaded = false;
-          this.img.addEventListener('load', ($__4 = this, function() {
-            return $__4.loaded = true;
+          this.img.addEventListener('load', ($__5 = this, function() {
+            return $__5.loaded = true;
           }));
           this.img.src = src;
           this._src = src;
@@ -4770,6 +4801,12 @@ window.Sprinting = (function(S) {
         throw TypeError('src must be a String');
       this.src = src;
       this.loaded = false;
+      if (typeof width !== 'number' && width !== 'auto')
+        throw TypeError('width must be a Number or "auto"');
+      this.width = width;
+      if (typeof width !== 'number' && height !== 'auto')
+        throw TypeError('height must be a Number or "auto"');
+      this.height = height;
     }
     return ($traceurRuntime.createClass)(Img, {draw: function(world) {
         if (!world instanceof World)
@@ -4777,7 +4814,7 @@ window.Sprinting = (function(S) {
         if (this._src !== this.src)
           this.loaded = false;
         if (this.loaded) {
-          world.ctx.drawImage(this.img, this.x, this.y);
+          world.ctx.drawImage(this.img, this.x, this.y, this.width === 'auto' ? this.img.width : this.width, this.height === 'auto' ? this.img.height : this.height);
         } else {
           this.load();
         }

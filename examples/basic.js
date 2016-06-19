@@ -26,4 +26,5 @@ let i = 0
 world.drawLoop(function() {
   i++
   rect.x = Math.sin(i * 0.05) * 200 + 300
+  trump.x--
 })
