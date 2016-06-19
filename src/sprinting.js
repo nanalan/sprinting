@@ -167,8 +167,8 @@ window.Sprinting = (function(S) {
         this.things.forEach(thing => {
           world.ctx.save()
 
-          // rotation
-          world.ctx.translate((thing.x - thing.width / 2) + thing.rx + thing.x, (thing.y - thing.height / 2) + thing.ry + thing.y)
+          // rotatio
+          world.ctx.translate(thing.x - thing.width * thing.rx, thing.y - thing.height * thing.ry)
           world.ctx.rotate(thing.r * Math.PI/180)
 
           thing.draw(this) // render @ (0, 0)
@@ -304,20 +304,20 @@ window.Sprinting = (function(S) {
       this.r = 0
 
       /**
-       * Rotation offset x.
+       * Rotation offset x, from zero to one where zero is no offset (top-left corner) and one is full offset (bottom-right corner).
        * @name #rx
        * @memberof Sprinting.Thing
        * @type {Number}
        */
-      this.rx = 0
+      this.rx = 0.5
 
       /**
-       * Rotation offset y.
+       * Rotation offset y, from zero to one where zero is no offset (top-left corner) and one is full offset (bottom-right corner).
        * @name #ry
        * @memberof Sprinting.Thing
        * @type {Number}
        */
-      this.ry = 0
+      this.ry = 0.5
     }
 
     /**
@@ -450,15 +450,15 @@ window.Sprinting = (function(S) {
      * @param {String} [fill='transparent'] - Fill color.
      * @param {Number} [strokeWidth=1] - Stroke width in pixels.
      * @example
-     * // draws a circle with 50px radius (width: 100px)
+     * // draws a circle with 100px diameter
      * let world = new World('#world')
      * world.add(new Circle).draw()
      * @example
-     * // draws a semicircle with 200px radius
+     * // draws a semicircle with 200px diameter
      * let world = new World('#world')
-     * world.add(new Circle(200, 180)).draw()
+     * world.add(new Circle(200, 200, 180)).draw()
      */
-    constructor(radius=50, angle=360, stroke='#000', fill='transparent', strokeWidth=1) {
+    constructor(width=100, height=100, stroke='#000', fill='transparent', strokeWidth=1) {
       super(stroke, fill, strokeWidth, true)
 
       /**
@@ -466,21 +466,10 @@ window.Sprinting = (function(S) {
        * @memberof Sprinting.Circle
        * @type {radius}
        */
-      if(!radius instanceof Number) throw TypeError('radius must be a Number')
-      this.radius = radius
-
-      /**
-       * Angle, in degrees, of the circle to draw. `180` is a semicircle, for example.
-       * @name #angle
-       * @memberof Sprinting.Circle
-       * @type {angle}
-       * @example
-       * // draws a semicircle with 200px radius
-       * let world = new World('#world')
-       * world.add(new Circle(200, 180)).draw()
-       */
-      if(!angle instanceof Number) throw TypeError('angle must be a Number')
-      this.angle = angle
+      if(!(typeof width === 'number')) throw TypeError('width must be a Number')
+      this.width = width
+      if(!(typeof height === 'number')) throw TypeError('height must be a Number')
+      this.height = height
     }
 
     /**
@@ -492,12 +481,22 @@ window.Sprinting = (function(S) {
     draw(world) {
       if(!world instanceof World) throw TypeError('world must be a World')
 
+      const specialConst = .5522848,
+            cpOffsetX    = (this.width / 2)  * specialConst,
+            cpOffsetY    = (this.height / 2) * specialConst,
+            greatestX    = this.width,
+            greatestY    = this.height,
+            centerX      = this.width / 2,
+            centerY      = this.height / 2
+
       world.ctx.beginPath()
-      world.ctx.arc(0, 0, this.radius, 0, this.angle * Math.PI/180, false)
-      world.ctx.closePath()
-      world.ctx.strokeStyle = this.stroke
-      world.ctx.fillStyle = this.fill
-      world.ctx.lineWidth = this.strokeWidth
+      world.ctx.moveTo(0, centerY)
+
+      world.ctx.bezierCurveTo(0,centerY - cpOffsetY, centerX - cpOffsetX,0, centerX,0)
+      world.ctx.bezierCurveTo(centerX + cpOffsetX,0, greatestX,centerY - cpOffsetY, greatestX,centerY)
+      world.ctx.bezierCurveTo(greatestX,centerY+cpOffsetY, centerX+cpOffsetX,greatestY, centerX,greatestY)
+      world.ctx.bezierCurveTo(centerX - cpOffsetX,greatestY, 0,centerY+cpOffsetY, 0,centerY)
+
       world.ctx.fill()
       world.ctx.stroke()
     }

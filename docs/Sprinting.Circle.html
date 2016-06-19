@@ -42,30 +42,25 @@
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.Circle.html#angle">angle</a></dt>
-                    <dd>
-                    </dd>
                     <dt><a href="Sprinting.Circle.html#fill">fill</a></dt>
                     <dd>
                     </dd>
-                  </dl>
-                </div>
-                <div class="summary-column">
-                  <dl class="dl-summary-callout">
                     <dt><a href="Sprinting.Circle.html#radius">radius</a></dt>
                     <dd>
                     </dd>
-                    <dt><a href="Sprinting.Circle.html#stroke">stroke</a></dt>
-                    <dd>
-                    </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
+                    <dt><a href="Sprinting.Circle.html#stroke">stroke</a></dt>
+                    <dd>
+                    </dd>
                     <dt><a href="Sprinting.Circle.html#strokeWidth">strokeWidth</a></dt>
                     <dd>
                     </dd>
                   </dl>
+                </div>
+                <div class="summary-column">
                 </div>
               </div>
             </div>
@@ -94,14 +89,14 @@
             Examples
         </h3>
               <div>
-                <pre><code class='js'>// draws a circle with 50px radius (width: 100px)
+                <pre><code class='js'>// draws a circle with 100px diameter
 let world &#x3D; new World(&#x27;#world&#x27;)
 world.add(new Circle).draw()</code></pre>
               </div>
               <div>
-                <pre><code class='js'>// draws a semicircle with 200px radius
+                <pre><code class='js'>// draws a semicircle with 200px diameter
 let world &#x3D; new World(&#x27;#world&#x27;)
-world.add(new Circle(200, 180)).draw()</code></pre>
+world.add(new Circle(200, 200, 180)).draw()</code></pre>
               </div>
             </section>
             <section>
@@ -201,21 +196,6 @@ world.add(new Circle(200, 180)).draw()</code></pre>
           <section>
             <h2>Properties</h2>
             <section>
-              <h3 id="angle"><span class="symbol-name">angle</span><small class="property-type">
-            &nbsp;angle</small></h3>
-              <p>Angle, in degrees, of the circle to draw. <code>180</code> is a semicircle, for example.</p>
-              <section>
-                <h4>
-            Example
-        </h4>
-                <div>
-                  <pre><code class='js'>// draws a semicircle with 200px radius
-let world &#x3D; new World(&#x27;#world&#x27;)
-world.add(new Circle(200, 180)).draw()</code></pre>
-                </div>
-              </section>
-              <dl class="dl-compact">
-              </dl>
               <h3 id="fill"><span class="symbol-name">fill</span><small class="property-type">
             &nbsp;unknown</small></h3>
               <dl class="dl-compact">
