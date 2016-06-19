@@ -382,7 +382,29 @@ window.Sprinting = (function(S) {
     }
   }
 
-  class Rectangle extends Shape {
+  class SizedShape extends Shape {
+      constructor(width=50, height=50, stroke='#000', fill='transparent', strokeWidth=1, quiet=false) {
+        super(stroke, fill, strokeWidth, quiet)
+
+        /**
+         * @name #width
+         * @memberof Sprinting.SizedShape
+         * @type {Number}
+         */
+        if(!(typeof width === 'number')) throw new TypeError('width must be a Number')
+        this.width = width
+
+        /**
+         * @name #height
+         * @memberof Sprinting.SizedShape
+         * @type {Number}
+         */
+        if(!(typeof height === 'number')) throw new TypeError('height must be a Number')
+        this.height = height
+      }
+  }
+
+  class Rectangle extends SizedShape {
     /**
      * Rectangles are {@link Sprinting.Shape|Shapes} that have a width and height.
      *
@@ -399,23 +421,7 @@ window.Sprinting = (function(S) {
      * world.add(new Rectangle).draw()
      */
     constructor(width=100, height=75, stroke='#000', fill='transparent', strokeWidth=1) {
-      super(stroke, fill, strokeWidth, true)
-
-      /**
-       * @name #width
-       * @memberof Sprinting.Rectangle
-       * @type {Number}
-       */
-      if(!width instanceof Number) throw TypeError('width must be a Number')
-      this.width = width
-
-      /**
-       * @name #height
-       * @memberof Sprinting.Rectangle
-       * @type {Number}
-       */
-      if(!height instanceof Number) throw TypeError('height must be a Number')
-      this.height = height
+      super(width, height, stroke, fill, strokeWidth, true)
     }
 
     /**
@@ -438,7 +444,7 @@ window.Sprinting = (function(S) {
     }
   }
 
-  class Circle extends Shape {
+  class Circle extends SizedShape {
     /**
      * Circles are {@link Sprinting.Shape|Shapes} that have a radius.
      *
@@ -459,23 +465,7 @@ window.Sprinting = (function(S) {
      * world.add(new Circle(200, 200, 180)).draw()
      */
     constructor(width=100, height=100, stroke='#000', fill='transparent', strokeWidth=1) {
-      super(stroke, fill, strokeWidth, true)
-
-      /**
-       * @name #width
-       * @memberof Sprinting.Circle
-       * @type {Number}
-       */
-      if(!(typeof width === 'number')) throw TypeError('width must be a Number')
-      this.width = width
-
-      /**
-       * @name #height
-       * @memberof Sprinting.Circle
-       * @type {Number}
-       */
-      if(!(typeof height === 'number')) throw TypeError('height must be a Number')
-      this.height = height
+      super(width, height, stroke, fill, strokeWidth, true)
     }
 
     /**
@@ -560,7 +550,7 @@ window.Sprinting = (function(S) {
           this.loaded = false
           this.img.addEventListener('load', () => this.loaded = true)
           this.img.src = src
-          
+
           this._src = src
           this.src = src
         }
