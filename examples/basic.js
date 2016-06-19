@@ -25,11 +25,11 @@ trump.rx = 1
 trump.ry = 1
 
 let i = 0
-world.add(rect)
-     .add(circ)
-     .add(trump)
-     .drawLoop(
-function  Loop() {
-  i++
-  trump.r++
-})
+world.
+  .add(rect)
+  .add(circ)
+  .add(trump)
+  .drawLoop(function() {
+    i++
+    trump.r++
+  })

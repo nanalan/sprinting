@@ -683,6 +683,48 @@ window.Sprinting = (function(S) {
     }
   }
 
+  /**
+   * Mouse and touch states/positions are stored here.
+   * @namespace Sprinting.pointer
+   * @alias Sprinting.touch
+   * @alias Sprinting.mouse
+   * @type {Object}
+   * @todo Implement!
+   */
+  const pointer = {
+    /**
+     * Mouse xpos or last touched x.
+     * @type {Number}
+     * @memberOf Sprinting.pointer
+     */
+    x: 0,
+
+    /**
+     * Mouse ypos or last touched y.
+     * @type {Number}
+     * @memberOf Sprinting.pointer
+     */
+    y: 0,
+
+    /**
+     * Checks to see if ``
+     * @type {Object}
+     * @param {String} [] `'left'`, `'right'`, `'middle'`. Pass `undefined` to recieve any button or tap type.
+     * @returns {Boolean} [description]
+     * @memberOf Sprinting.pointer
+     * @example
+     * if(world.pointer.down('any'))
+     *   console.log(world.pointer.down )
+     */
+    down: function(which) {
+      return false
+    }
+  }
+
+  S.pointer = pointer
+  S.touch = pointer
+  S.mouse = pointer
+  
   S.World = World
   S.Thing = Thing
   S.Shape = Shape

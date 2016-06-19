@@ -4847,6 +4847,16 @@ window.Sprinting = (function(S) {
         }
       }}, {}, $__super);
   }(Thing);
+  var pointer = {
+    x: 0,
+    y: 0,
+    down: function(which) {
+      return false;
+    }
+  };
+  S.pointer = pointer;
+  S.touch = pointer;
+  S.mouse = pointer;
   S.World = World;
   S.Thing = Thing;
   S.Shape = Shape;
