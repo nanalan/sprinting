@@ -14,8 +14,8 @@ circ.x = 100
 circ.y = 100
 
 let trump = new Img('trump.jpg')
-trump.x = 500
-trump.y = 500
+trump.x = 240
+trump.y = 240
 
 world.add(rect)
 world.add(circ)
