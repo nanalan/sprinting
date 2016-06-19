@@ -2,7 +2,7 @@ Object.assign(window, Sprinting)
 
 let world = new World('#world', 534, 401)
 
-let bg = new Img('trump.jpg')
+let bg = new Img('darth-vader.jpg')
 bg.stroke = 'transparent'
 bg.fill = '#44cc00'
 
