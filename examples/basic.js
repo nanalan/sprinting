@@ -25,7 +25,7 @@ trump.rx = 1
 trump.ry = 1
 
 let i = 0
-world.
+world
   .add(rect)
   .add(circ)
   .add(trump)

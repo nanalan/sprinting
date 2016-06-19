@@ -70,6 +70,49 @@ window.Sprinting = (function(S) {
       this.el.style.cursor = 'default'
       this.el.style.outline = 'initial'
       this.el.setAttribute('tabindex', 0)
+
+      /**
+       * Mouse and touch states/positions are stored here.
+       * @alias Sprinting.World.touch
+       * @alias Sprinting.World.mouse
+       * @type {Object}
+       * @memberof Sprinting.World
+       * @todo Implement!
+       */
+      this.pointer = {
+        /**
+         * Mouse xpos or last touched x.
+         * @type {Number}
+         * @memberOf Sprinting.World.pointer
+         */
+        x: 0,
+
+        /**
+         * Mouse ypos or last touched y.
+         * @type {Number}
+         * @memberOf Sprinting.World.pointer
+         */
+        y: 0,
+
+        /**
+         * Checks to see if `which` is currently down.
+         * @type {Object}
+         * @param {String} [which] `'left'`, `'right'`, `'middle'`. Pass `undefined` or `'any'` to recieve any button or tap type.
+         * @returns {Boolean} [description]
+         * @memberOf Sprinting.World.pointer
+         * @example
+         * if(world.pointer.down('any'))
+         *   console.log(world.pointer.down )
+         */
+        down: function(which='any') {
+          return false
+        }
+      }
+
+      this.canvas.addEventListener('mousemove', (evt) => {
+        this.pointer.x = evt.pageX - this.canvas.offsetLeft
+        this.pointer.y = evt.pageY - this.canvas.offsetTop
+      })
       
       this.canvas.setAttribute('width', this.w)
       this.canvas.setAttribute('height', this.h)
@@ -104,7 +147,7 @@ window.Sprinting = (function(S) {
        * @memberof Sprinting.World
        * @type Array
        */
-       this.subLoops = []
+      this.subLoops = []
 
       this.initLoop()
 
@@ -682,48 +725,6 @@ window.Sprinting = (function(S) {
       }
     }
   }
-
-  /**
-   * Mouse and touch states/positions are stored here.
-   * @namespace Sprinting.pointer
-   * @alias Sprinting.touch
-   * @alias Sprinting.mouse
-   * @type {Object}
-   * @todo Implement!
-   */
-  const pointer = {
-    /**
-     * Mouse xpos or last touched x.
-     * @type {Number}
-     * @memberOf Sprinting.pointer
-     */
-    x: 0,
-
-    /**
-     * Mouse ypos or last touched y.
-     * @type {Number}
-     * @memberOf Sprinting.pointer
-     */
-    y: 0,
-
-    /**
-     * Checks to see if `which` is currently down.
-     * @type {Object}
-     * @param {String} [which] `'left'`, `'right'`, `'middle'`. Pass `undefined` or `'any'` to recieve any button or tap type.
-     * @returns {Boolean} [description]
-     * @memberOf Sprinting.pointer
-     * @example
-     * if(world.pointer.down('any'))
-     *   console.log(world.pointer.down )
-     */
-    down: function(which='any') {
-      return false
-    }
-  }
-
-  S.pointer = pointer
-  S.touch = pointer
-  S.mouse = pointer
 
   S.World = World
   S.Thing = Thing
