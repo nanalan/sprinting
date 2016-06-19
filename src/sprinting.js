@@ -178,7 +178,6 @@ window.Sprinting = (function(S) {
      * @method #draw
      * @memberOf Sprinting.World
      * @chainable
-     * @todo A draw loop
      */
     draw() {
       if(this.focus || this.new) {
@@ -187,8 +186,11 @@ window.Sprinting = (function(S) {
           world.ctx.save()
 
           // rotation
-          world.ctx.translate(thing.x - thing.width * thing.rx, thing.y - thing.height * thing.ry)
-          if(thing.r) world.ctx.rotate(thing.r * Math.PI/180)
+          {
+            world.ctx.translate(thing.x, thing.y)
+            if(thing.r) world.ctx.rotate(thing.r * Math.PI/180)
+            world.ctx.translate(-thing.width * thing.rx, -thing.height * thing.ry)
+          }
 
           thing.draw(this)
           world.ctx.restore()
@@ -633,7 +635,7 @@ window.Sprinting = (function(S) {
        */
       if(typeof width !== 'number' && width !== 'auto')
         throw TypeError('width must be a Number or "auto"')
-      this.width = width
+      Object.defineProperty(this, '_width', { value: width, writable: true })
 
       /**
        * @name #height
@@ -642,7 +644,19 @@ window.Sprinting = (function(S) {
        */
       if(typeof width !== 'number' && height !== 'auto')
         throw TypeError('height must be a Number or "auto"')
-      this.height = height
+      Object.defineProperty(this, '_height', { value: height, writable: true })
+
+      Object.defineProperty(this, 'width', {
+        get: () => this._width === 'auto' ? this.img.width : this._width,
+        set: w => this._width = w,
+        enumerable: true
+      })
+
+      Object.defineProperty(this, 'height', {
+        get: () => this._height === 'auto' ? this.img.height : this._height,
+        set: h => this._height = h,
+        enumerable: true
+      })
     }
 
     /**
@@ -659,9 +673,9 @@ window.Sprinting = (function(S) {
       if(this.loaded) {
         world.ctx.drawImage(
           this.img,
-          this.x, this.y, // this might be broken? it should be rendering at 0,0
-          this.width === 'auto' ? this.img.width : this.width,
-          this.height === 'auto' ? this.img.height : this.height
+          0, 0,
+          this.width,
+          this.height
         )
       } else {
         this.load()

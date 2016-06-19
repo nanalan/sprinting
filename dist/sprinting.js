@@ -4594,9 +4594,12 @@ window.Sprinting = (function(S) {
           this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
           this.things.forEach(function(thing) {
             world.ctx.save();
-            world.ctx.translate(thing.x - thing.width * thing.rx, thing.y - thing.height * thing.ry);
-            if (thing.r)
-              world.ctx.rotate(thing.r * Math.PI / 180);
+            {
+              world.ctx.translate(thing.x, thing.y);
+              if (thing.r)
+                world.ctx.rotate(thing.r * Math.PI / 180);
+              world.ctx.translate(-thing.width * thing.rx, -thing.height * thing.ry);
+            }
             thing.draw($__5);
             world.ctx.restore();
           });
@@ -4773,6 +4776,10 @@ window.Sprinting = (function(S) {
     function Img(src) {
       var width = arguments[1] !== (void 0) ? arguments[1] : 'auto';
       var height = arguments[2] !== (void 0) ? arguments[2] : 'auto';
+      var $__5,
+          $__6,
+          $__7,
+          $__8;
       $traceurRuntime.superConstructor(Img).call(this, true);
       Object.defineProperty(this, '_src', {
         writable: true,
@@ -4799,10 +4806,34 @@ window.Sprinting = (function(S) {
       this.loaded = false;
       if (typeof width !== 'number' && width !== 'auto')
         throw TypeError('width must be a Number or "auto"');
-      this.width = width;
+      Object.defineProperty(this, '_width', {
+        value: width,
+        writable: true
+      });
       if (typeof width !== 'number' && height !== 'auto')
         throw TypeError('height must be a Number or "auto"');
-      this.height = height;
+      Object.defineProperty(this, '_height', {
+        value: height,
+        writable: true
+      });
+      Object.defineProperty(this, 'width', {
+        get: ($__5 = this, function() {
+          return $__5._width === 'auto' ? $__5.img.width : $__5._width;
+        }),
+        set: ($__6 = this, function(w) {
+          return $__6._width = w;
+        }),
+        enumerable: true
+      });
+      Object.defineProperty(this, 'height', {
+        get: ($__7 = this, function() {
+          return $__7._height === 'auto' ? $__7.img.height : $__7._height;
+        }),
+        set: ($__8 = this, function(h) {
+          return $__8._height = h;
+        }),
+        enumerable: true
+      });
     }
     return ($traceurRuntime.createClass)(Img, {draw: function(world) {
         if (!world instanceof World)
@@ -4810,7 +4841,7 @@ window.Sprinting = (function(S) {
         if (this._src !== this.src)
           this.loaded = false;
         if (this.loaded) {
-          world.ctx.drawImage(this.img, this.x, this.y, this.width === 'auto' ? this.img.width : this.width, this.height === 'auto' ? this.img.height : this.height);
+          world.ctx.drawImage(this.img, 0, 0, this.width, this.height);
         } else {
           this.load();
         }
