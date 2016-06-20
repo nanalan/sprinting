@@ -4509,7 +4509,7 @@ window.Sprinting = (function(S) {
     function World(element) {
       var width = arguments[1] !== (void 0) ? arguments[1] : 800;
       var height = arguments[2] !== (void 0) ? arguments[2] : 600;
-      var $__4 = this;
+      var $__2 = this;
       switch ((typeof element === 'undefined' ? 'undefined' : $traceurRuntime.typeof(element))) {
         case 'string':
           if (element = document.querySelector(element)) {} else
@@ -4535,22 +4535,44 @@ window.Sprinting = (function(S) {
       this.el.style.cursor = 'default';
       this.el.style.outline = 'initial';
       this.el.setAttribute('tabindex', 0);
-      this.pointer = {
+      this.pointer = this.mouse = this.touch = {
         x: 0,
         y: 0,
         down: function() {
           var which = arguments[0] !== (void 0) ? arguments[0] : 'any';
+          if ((which === 'any' || which === 'left') && $__2.mouse._down.left)
+            return true;
+          if ((which === 'any' || which === 'right') && $__2.mouse._down.right)
+            return true;
+          if ((which === 'any' || which === 'middle') && $__2.mouse._down.middle)
+            return true;
+          if ((which === 'any' || which === 'touch') && $__2.touch._down.touch)
+            return true;
           return false;
         }
       };
-      this.canvas.addEventListener('mousemove', function(evt) {
-        $__4.pointer.x = evt.pageX - $__4.canvas.offsetLeft;
-        $__4.pointer.y = evt.pageY - $__4.canvas.offsetTop;
+      Object.defineProperty(this.pointer, '_down', {
+        writable: true,
+        value: []
+      });
+      window.addEventListener('touchmove', function(evt) {
+        $__2.pointer.x = evt.changedTouches[0].pageX - $__2.canvas.offsetLeft;
+        $__2.pointer.y = evt.changedTouches[0].pageY - $__2.canvas.offsetTop;
+        evt.preventDefault();
+        evt.stopPropagation();
+        return false;
+      });
+      window.addEventListener('mousemove', function(evt) {
+        $__2.pointer.x = evt.pageX - $__2.canvas.offsetLeft;
+        $__2.pointer.y = evt.pageY - $__2.canvas.offsetTop;
+        evt.preventDefault();
+        evt.stopPropagation();
+        return false;
       });
       this.canvas.setAttribute('width', this.w);
       this.canvas.setAttribute('height', this.h);
       this.el.addEventListener('contextmenu', function(e) {
-        if (!$__4.focus)
+        if (!$__2.focus)
           return;
         e.preventDefault();
         e.stopPropagation();
@@ -4559,23 +4581,41 @@ window.Sprinting = (function(S) {
       this.ctx = this.canvas.getContext('2d', {alpha: true});
       this.things = [];
       this.subLoops = [];
+      Object.defineProperty(this, 'initLoop', {value: function() {
+          var tick = function() {
+            $__2.draw();
+            if ($__2.focus)
+              $__2.subLoops.forEach(function(loop) {
+                return loop();
+              });
+            window.setTimeout(function() {
+              return window.requestAnimationFrame(tick.bind($__2));
+            }, $__2.msPerTick);
+          };
+          tick.call($__2);
+        }});
       this.initLoop();
-      this.focus = true;
       this.el.addEventListener('blur', function(e) {
-        $__4.focus = false;
+        $__2.focus = false;
       });
       this.el.addEventListener('focus', function(e) {
-        $__4.focus = true;
-        $__4.things.forEach(function(thing) {
+        $__2.focus = true;
+        $__2.things.forEach(function(thing) {
           if (thing._el) {
-            $__4.el.removeChild(thing._el);
+            $__2.el.removeChild(thing._el);
             delete thing._el;
             thing._observer.disconnect();
             delete thing._observer;
           }
         });
       });
-      this.new = true;
+      this.el.addEventListener('mousemove', function(e) {
+        $__2.el.focus();
+      });
+      this.el.addEventListener('touchstart', function(e) {
+        $__2.el.focus();
+      });
+      this.el.focus();
     }
     return ($traceurRuntime.createClass)(World, {
       get w() {
@@ -4601,7 +4641,7 @@ window.Sprinting = (function(S) {
         return this;
       },
       draw: function() {
-        var $__4 = this;
+        var $__2 = this;
         if (this.focus || this.new) {
           this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
           this.things.forEach(function(thing) {
@@ -4612,7 +4652,7 @@ window.Sprinting = (function(S) {
                 world.ctx.rotate(thing.r * Math.PI / 180);
               world.ctx.translate(-thing.width * thing.rx, -thing.height * thing.ry);
             }
-            thing.draw($__4);
+            thing.draw($__2);
             world.ctx.restore();
           });
           if (this.new)
@@ -4631,8 +4671,8 @@ window.Sprinting = (function(S) {
                 value: new MutationObserver(function(mutation) {
                   var attr = mutation[0].attributeName;
                   thing[attr] = thing._el.getAttribute(attr);
-                  $__4.new = true;
-                  $__4.draw();
+                  $__2.new = true;
+                  $__2.draw();
                 })
               });
               var el = thing._el;
@@ -4646,20 +4686,6 @@ window.Sprinting = (function(S) {
           });
         }
         return this;
-      },
-      initLoop: function() {
-        var tick = function() {
-          var $__4 = this;
-          this.draw();
-          if (this.focus)
-            this.subLoops.forEach(function(loop) {
-              return loop();
-            });
-          window.setTimeout(function() {
-            return window.requestAnimationFrame(tick.bind($__4));
-          }, this.msPerTick);
-        };
-        tick.call(this);
       },
       setFrameRate: function(fps) {
         this.msPerTick = 1000 / fps;
@@ -4788,24 +4814,24 @@ window.Sprinting = (function(S) {
     function Img(src) {
       var width = arguments[1] !== (void 0) ? arguments[1] : 'auto';
       var height = arguments[2] !== (void 0) ? arguments[2] : 'auto';
-      var $__4,
-          $__5,
-          $__6,
-          $__7;
+      var $__2,
+          $__3,
+          $__4,
+          $__5;
       $traceurRuntime.superConstructor(Img).call(this, true);
       Object.defineProperty(this, '_src', {
         writable: true,
         value: src
       });
       Object.defineProperty(this, 'load', {value: function() {
-          var $__4;
+          var $__2;
           Object.defineProperty(this, 'img', {
             writable: true,
             value: new Image()
           });
           this.loaded = false;
-          this.img.addEventListener('load', ($__4 = this, function() {
-            return $__4.loaded = true;
+          this.img.addEventListener('load', ($__2 = this, function() {
+            return $__2.loaded = true;
           }));
           this.img.src = src;
           this._src = src;
@@ -4829,20 +4855,20 @@ window.Sprinting = (function(S) {
         writable: true
       });
       Object.defineProperty(this, 'width', {
-        get: ($__4 = this, function() {
-          return $__4._width === 'auto' ? $__4.img.width : $__4._width;
+        get: ($__2 = this, function() {
+          return $__2._width === 'auto' ? $__2.img.width : $__2._width;
         }),
-        set: ($__5 = this, function(w) {
-          return $__5._width = w;
+        set: ($__3 = this, function(w) {
+          return $__3._width = w;
         }),
         enumerable: true
       });
       Object.defineProperty(this, 'height', {
-        get: ($__6 = this, function() {
-          return $__6._height === 'auto' ? $__6.img.height : $__6._height;
+        get: ($__4 = this, function() {
+          return $__4._height === 'auto' ? $__4.img.height : $__4._height;
         }),
-        set: ($__7 = this, function(h) {
-          return $__7._height = h;
+        set: ($__5 = this, function(h) {
+          return $__5._height = h;
         }),
         enumerable: true
       });

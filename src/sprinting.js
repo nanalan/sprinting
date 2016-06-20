@@ -72,46 +72,72 @@ window.Sprinting = (function(S) {
       this.el.setAttribute('tabindex', 0)
 
       /**
-       * Mouse and touch states/positions are stored here.
-       * @alias Sprinting.World.touch
-       * @alias Sprinting.World.mouse
+       * Mouse and touch states/positions are stored here. 
+       * Can also be referred to as both `World#mouse` and `World#touch`.
+       * @alias Sprinting.World#touch
+       * @alias Sprinting.World#mouse
        * @type {Object}
+       * @name #pointer
        * @memberof Sprinting.World
-       * @todo Implement!
        */
-      this.pointer = {
+      this.pointer = this.mouse = this.touch = {
         /**
          * Mouse xpos or last touched x.
          * @type {Number}
-         * @memberOf Sprinting.World.pointer
+         * @memberOf Sprinting.World#pointer
          */
         x: 0,
 
         /**
          * Mouse ypos or last touched y.
          * @type {Number}
-         * @memberOf Sprinting.World.pointer
+         * @memberOf Sprinting.World#pointer
          */
         y: 0,
 
         /**
          * Checks to see if `which` is currently down.
          * @type {Object}
-         * @param {String} [which] `'left'`, `'right'`, `'middle'`. Pass `undefined` or `'any'` to recieve any button or tap type.
+         * @param {String} [which='any'] `'left'`, `'right'`, `'touch'`, or `'middle'`. Pass `'any'` to recieve any button or tap/touch.
          * @returns {Boolean} [description]
-         * @memberOf Sprinting.World.pointer
+         * @memberOf Sprinting.World#pointer
          * @example
-         * if(world.pointer.down('any'))
-         *   console.log(world.pointer.down )
+         * let world = new Sprinting.World('#world')
+         * world.drawLoop(function() {
+         *   if(world.pointer.down('any'))
+         *     console.log('mouse/touch down')
+         * })
+         * 
          */
-        down: function(which='any') {
-          return false
+        down: (which='any') => {
+          if((which === 'any' || which === 'left')   && this.mouse._down.left)   return true
+          if((which === 'any' || which === 'right')  && this.mouse._down.right)  return true
+          if((which === 'any' || which === 'middle') && this.mouse._down.middle) return true
+          if((which === 'any' || which === 'touch')  && this.touch._down.touch)  return true
+                                                                                 return false
         }
       }
 
-      this.canvas.addEventListener('mousemove', (evt) => {
+      Object.defineProperty(this.pointer, '_down', {
+        writable: true,
+        value: []
+      })
+
+      window.addEventListener('touchmove', (evt) => {
+        this.pointer.x = evt.changedTouches[0].pageX - this.canvas.offsetLeft
+        this.pointer.y = evt.changedTouches[0].pageY - this.canvas.offsetTop
+        evt.preventDefault()
+        evt.stopPropagation()
+        return false
+      })
+
+      // listen on window allows corners to be moved to
+      window.addEventListener('mousemove', (evt) => {
         this.pointer.x = evt.pageX - this.canvas.offsetLeft
         this.pointer.y = evt.pageY - this.canvas.offsetTop
+        evt.preventDefault()
+        evt.stopPropagation()
+        return false
       })
       
       this.canvas.setAttribute('width', this.w)
@@ -126,6 +152,7 @@ window.Sprinting = (function(S) {
       })
 
       /**
+       * Canvas context.
        * @name #ctx
        * @memberof Sprinting.World
        * @type CanvasRenderingContext2D
@@ -149,18 +176,40 @@ window.Sprinting = (function(S) {
        */
       this.subLoops = []
 
+      /**
+       * Starts the main loop of in which all the sub-loops are called and draws all it's {@link Sprinting.Thing|things}.
+       *
+       * @method #initLoop
+       * @memberOf Sprinting.World
+       * @private
+       * @ignore
+       */
+      Object.defineProperty(this, 'initLoop', {
+        value: () => {
+          let tick = () => {
+            this.draw()
+            if(this.focus) this.subLoops.forEach(loop => loop())
+
+            window.setTimeout(() => window.requestAnimationFrame(tick.bind(this)), this.msPerTick)
+          }
+
+          tick.call(this)
+        }
+      })
+
       this.initLoop()
 
       /**
-       * `true` when the World is in focus. When `false`, the World will enter **debug mode**.
+       * `true` when the World is in focus. When `false`, the World will enter **debug mode**. Don't modify if you can help it.
        * @name #focus
        * @memberof Sprinting.World
        * @type {Boolean}
+       * @protected
        */
-      this.focus = true
       this.el.addEventListener('blur', e => {
         this.focus = false
       })
+
       this.el.addEventListener('focus', e => {
         this.focus = true
 
@@ -176,7 +225,15 @@ window.Sprinting = (function(S) {
         })
       })
 
-      this.new = true // will be deleted after one draw
+      this.el.addEventListener('mousemove', e => {
+        this.el.focus()
+      })
+
+      this.el.addEventListener('touchstart', e => {
+        this.el.focus()
+      })
+
+      this.el.focus()
     }
 
     get w() {
@@ -282,36 +339,18 @@ window.Sprinting = (function(S) {
     }
 
     /**
-     * Starts the main loop of in which all the sub-loops are called and draws all it's {@link Sprinting.Thing|things}.
-     *
-     * @method #initLoop
-     * @memberOf Sprinting.World
-     * @private
-     * @ignore
-     */
-    initLoop() {
-      let tick = function() {
-        this.draw()
-        if(this.focus) this.subLoops.forEach(loop => loop())
-
-        window.setTimeout(() => window.requestAnimationFrame(tick.bind(this)), this.msPerTick)
-      }
-
-      tick.call(this)
-    }
-
-    /**
-     * Sets the frame-rate of the main loop.
+     * Sets the frame-rate of the draw loop.
      *
      * @method #setFrameRate
      * @memberOf Sprinting.World
      * @chainable
+     * @param {Number} fps
      */
-     setFrameRate(fps) {
-       this.msPerTick = 1000 / fps
+    setFrameRate(fps) {
+      this.msPerTick = 1000 / fps
 
-       return this
-     }
+      return this
+    }
 
     /**
      * Calls `fn` every frame.

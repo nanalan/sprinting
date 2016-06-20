@@ -42,23 +42,23 @@
               <div class="summary-content">
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#.mouse">mouse</a></dt>
-                    <dd>
-                    </dd>
                     <dt><a href="Sprinting.World.html#ctx">ctx</a></dt>
                     <dd>
                     </dd>
                     <dt><a href="Sprinting.World.html#el">el</a></dt>
                     <dd>
                     </dd>
+                    <dt><a href="Sprinting.World.html#focus">focus</a></dt>
+                    <dd>
+                    </dd>
                   </dl>
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#focus">focus</a></dt>
+                    <dt><a href="Sprinting.World.html#h">h</a></dt>
                     <dd>
                     </dd>
-                    <dt><a href="Sprinting.World.html#h">h</a></dt>
+                    <dt><a href="Sprinting.World.html#pointer">pointer</a></dt>
                     <dd>
                     </dd>
                     <dt><a href="Sprinting.World.html#subLoops">subLoops</a></dt>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="summary-column">
                   <dl class="dl-summary-callout">
-                    <dt><a href="Sprinting.World.html#setFrameRate">setFrameRate()</a></dt>
+                    <dt><a href="Sprinting.World.html#setFrameRate">setFrameRate(fps)</a></dt>
                     <dd>
                     </dd>
                   </dl>
@@ -189,16 +189,9 @@ world.draw()</code></pre>
           <section>
             <h2>Properties</h2>
             <section>
-              <div class="symbol-detail-labels"><span class="label label-static">static</span></div>
-              <h3 id=".mouse"><span class="symbol-name">mouse</span><small class="property-type">
-            &nbsp;Object</small></h3>
-              <p>Mouse and touch states/positions are stored here.</p>
-              <dl class="dl-compact">
-                <dt>To do</dt>
-                <dd>Implement!</dd>
-              </dl>
               <h3 id="ctx"><span class="symbol-name">ctx</span><small class="property-type">
             &nbsp;CanvasRenderingContext2D</small></h3>
+              <p>Canvas context.</p>
               <dl class="dl-compact">
               </dl>
               <h3 id="el"><span class="symbol-name">el</span><small class="property-type">
@@ -206,14 +199,20 @@ world.draw()</code></pre>
               <p>Element.</p>
               <dl class="dl-compact">
               </dl>
+              <div class="symbol-detail-labels"><span class="label label-protected">protected</span></div>
               <h3 id="focus"><span class="symbol-name">focus</span><small class="property-type">
             &nbsp;Boolean</small></h3>
-              <p><code>true</code> when the World is in focus. When <code>false</code>, the World will enter <strong>debug mode</strong>.</p>
+              <p><code>true</code> when the World is in focus. When <code>false</code>, the World will enter <strong>debug mode</strong>. Don't modify if you can help it.</p>
               <dl class="dl-compact">
               </dl>
               <h3 id="h"><span class="symbol-name">h</span><small class="property-type">
             &nbsp;Number</small></h3>
               <p>Height, in pixels, of draw window.</p>
+              <dl class="dl-compact">
+              </dl>
+              <h3 id="pointer"><span class="symbol-name">pointer</span><small class="property-type">
+            &nbsp;Object</small></h3>
+              <p>Mouse and touch states/positions are stored here. Can also be referred to as both <code>World#mouse</code> and <code>World#touch</code>.</p>
               <dl class="dl-compact">
               </dl>
               <h3 id="subLoops"><span class="symbol-name">subLoops</span><small class="property-type">
@@ -307,8 +306,36 @@ world.draw()</code></pre>
               <p>Automatically scale this World as big as possible (that fits inside the viewport). <a href="/sprinting/examples/games">Here's an example.</a></p>
               <dl class="dl-compact">
               </dl>
-              <h3 id="setFrameRate"><span class="symbol-name">setFrameRate</span><span class="signature"><span class="signature-params">()</span></span></h3>
-              <p>Sets the frame-rate of the main loop.</p>
+              <h3 id="setFrameRate"><span class="symbol-name">setFrameRate</span><span class="signature"><span class="signature-params">(fps)</span></span></h3>
+              <p>Sets the frame-rate of the draw loop.</p>
+              <section>
+                <h4>Parameter</h4>
+                <table class="jsdoc-details-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Optional</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p>fps</p>
+                      </td>
+                      <td>
+                        <p>Number</p>
+                      </td>
+                      <td>
+                        <p>&nbsp;</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
               <dl class="dl-compact">
               </dl>
             </section>
