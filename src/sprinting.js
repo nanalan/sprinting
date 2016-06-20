@@ -72,26 +72,34 @@ window.Sprinting = (function(S) {
       this.el.setAttribute('tabindex', 0)
 
       /**
-       * Mouse and touch states/positions are stored here. 
-       * Can also be referred to as both `World#mouse` and `World#touch`.
+       * Mouse and touch states/positions are stored here.  
+       * <small style='font-size:16px'>Can also be referred to as both `World#mouse` and `World#touch`.</small>
        * @alias Sprinting.World#touch
        * @alias Sprinting.World#mouse
        * @type {Object}
-       * @name #pointer
+       * @namespace #pointer
        * @memberof Sprinting.World
        */
       this.pointer = this.mouse = this.touch = {
         /**
          * Mouse xpos or last touched x.
          * @type {Number}
+         * @name #x
          * @memberOf Sprinting.World#pointer
+         * @example
+         * let world = new World('#world')
+         * console.log(world.mouse.x)
          */
         x: 0,
 
         /**
          * Mouse ypos or last touched y.
+         * @name #y
          * @type {Number}
          * @memberOf Sprinting.World#pointer
+         * @example
+         * let world = new World('#world')
+         * console.log(world.mouse.y)
          */
         y: 0,
 
@@ -101,13 +109,14 @@ window.Sprinting = (function(S) {
          * @param {String} [which='any'] `'left'`, `'right'`, `'touch'`, or `'middle'`. Pass `'any'` to recieve any button or tap/touch.
          * @returns {Boolean} [description]
          * @memberOf Sprinting.World#pointer
+         * @function #down
          * @example
          * let world = new Sprinting.World('#world')
          * world.drawLoop(function() {
          *   if(world.pointer.down('any'))
          *     console.log('mouse/touch down')
          * })
-         * 
+         * @todo Implement events
          */
         down: (which='any') => {
           if((which === 'any' || which === 'left')   && this.mouse._down.left)   return true
