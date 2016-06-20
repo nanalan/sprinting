@@ -11,4 +11,4 @@ bg.ry = 0
 bg.width = world.width
 bg.height = world.height
 
-world.scale().add(bg)
+world.scale().antialias(false).add(bg)

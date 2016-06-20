@@ -4636,6 +4636,17 @@ window.Sprinting = (function(S) {
       set el(el) {
         this.canvas = el;
       },
+      antialias: function() {
+        var on = arguments[0] !== (void 0) ? arguments[0] : true;
+        on = on === true ? true : false;
+        if (typeof this.ctx.imageSmoothingEnabled === 'undefined') {
+          this.ctx.webkitImageSmoothingEnabled = on;
+          this.ctx.mozImageSmoothingEnabled = on;
+        } else {
+          this.ctx.imageSmoothingEnabled = on;
+        }
+        return this;
+      },
       add: function(thing) {
         this.things.push(thing);
         return this;

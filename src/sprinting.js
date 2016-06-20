@@ -270,6 +270,27 @@ window.Sprinting = (function(S) {
     }
 
     /**
+     * Turns on/off [antialiasing](https://www.wikiwand.com/en/Supersampling).
+     * @method #antialias
+     * @memberOf Sprinting.World
+     * @param {Boolean} on
+     * @default true
+     * @chainable
+     */
+    antialias(on=true) {
+      on = on === true ? true : false
+
+      if(typeof this.ctx.imageSmoothingEnabled === 'undefined') {
+        this.ctx.webkitImageSmoothingEnabled = on
+        this.ctx.mozImageSmoothingEnabled = on
+      } else {
+        this.ctx.imageSmoothingEnabled = on
+      }
+
+      return this
+    }
+
+    /**
      * Add {@link Sprinting.Thing|something} to this World, which will be drawn when {@link Sprinting.World#draw|World#draw} is called.
      * @method #add
      * @memberOf Sprinting.World
