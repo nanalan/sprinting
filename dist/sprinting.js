@@ -4677,6 +4677,9 @@ window.Sprinting = (function(S) {
         var $__3 = this;
         if (this.focus || this.new) {
           this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          this.things.sort(function(a, b) {
+            return a.z - b.z;
+          });
           this.things.forEach(function(thing) {
             world.ctx.save();
             {
@@ -4744,6 +4747,7 @@ window.Sprinting = (function(S) {
       this.x = 0;
       this.y = 0;
       this.r = 0;
+      this.z = 0;
       this.rx = 0.5;
       this.ry = 0.5;
     }

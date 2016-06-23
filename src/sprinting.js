@@ -41,8 +41,8 @@ window.Sprinting = (function(S) {
 
       /**
        * Width, in pixels, of draw window.
-       * @name #w
-       * @alias #width
+       * @name #width
+       * @alias #w
        * @memberof Sprinting.World
        * @type Number
        */
@@ -50,8 +50,8 @@ window.Sprinting = (function(S) {
 
       /**
        * Height, in pixels, of draw window.
-       * @name #h
-       * @alias #height
+       * @name #height
+       * @alias #h
        * @memberof Sprinting.World
        * @type Number
        */
@@ -332,6 +332,12 @@ window.Sprinting = (function(S) {
     draw() {
       if(this.focus || this.new) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+
+        // sort by z
+        this.things.sort((a, b) => {
+          return a.z - b.z
+        })
+
         this.things.forEach(thing => {
           world.ctx.save()
 
@@ -486,6 +492,14 @@ window.Sprinting = (function(S) {
        * @type {Number}
        */
       this.r = 0
+
+      /**
+       * Z position - higher means this'll be drawn *after* others.
+       * @name #z
+       * @memberof Sprinting.Thing
+       * @type Number
+       */
+      this.z = 0
 
       /**
        * Rotation offset x, from zero to one where zero is no offset (top-left corner) and one is full offset (bottom-right corner).
