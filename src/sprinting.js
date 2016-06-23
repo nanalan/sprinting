@@ -116,7 +116,7 @@ window.Sprinting = (function(S) {
          *   if(world.pointer.down('any'))
          *     console.log('mouse/touch down')
          * })
-         * @todo Implement events
+         * @todo Implement `touch`
          */
         down: (which='any') => {
           if((which === 'any' || which === 'left')   && this.mouse._down.left)   return true
@@ -129,7 +129,7 @@ window.Sprinting = (function(S) {
 
       Object.defineProperty(this.pointer, '_down', {
         writable: true,
-        value: []
+        value: {}
       })
 
       window.addEventListener('touchmove', (evt) => {
@@ -146,6 +146,26 @@ window.Sprinting = (function(S) {
         this.pointer.y = evt.pageY - this.canvas.offsetTop
         evt.preventDefault()
         evt.stopPropagation()
+        return false
+      })
+
+      window.addEventListener('mousedown', e => {
+        if(e.button == 0) this.mouse._down.left = true
+        if(e.button == 2) this.mouse._down.right = true
+        if(e.button == 1) this.mouse._down.middle = true
+
+        e.preventDefault()
+        e.stopPropagation()
+        return false
+      })
+
+      window.addEventListener('mouseup', e => {
+        if(e.button == 0) this.mouse._down.left = false
+        if(e.button == 2) this.mouse._down.right = false
+        if(e.button == 1) this.mouse._down.middle = false
+
+        e.preventDefault()
+        e.stopPropagation()
         return false
       })
       

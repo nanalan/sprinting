@@ -4509,7 +4509,7 @@ window.Sprinting = (function(S) {
     function World(element) {
       var width = arguments[1] !== (void 0) ? arguments[1] : 800;
       var height = arguments[2] !== (void 0) ? arguments[2] : 600;
-      var $__2 = this;
+      var $__3 = this;
       switch ((typeof element === 'undefined' ? 'undefined' : $traceurRuntime.typeof(element))) {
         case 'string':
           if (element = document.querySelector(element)) {} else
@@ -4540,39 +4540,61 @@ window.Sprinting = (function(S) {
         y: 0,
         down: function() {
           var which = arguments[0] !== (void 0) ? arguments[0] : 'any';
-          if ((which === 'any' || which === 'left') && $__2.mouse._down.left)
+          if ((which === 'any' || which === 'left') && $__3.mouse._down.left)
             return true;
-          if ((which === 'any' || which === 'right') && $__2.mouse._down.right)
+          if ((which === 'any' || which === 'right') && $__3.mouse._down.right)
             return true;
-          if ((which === 'any' || which === 'middle') && $__2.mouse._down.middle)
+          if ((which === 'any' || which === 'middle') && $__3.mouse._down.middle)
             return true;
-          if ((which === 'any' || which === 'touch') && $__2.touch._down.touch)
+          if ((which === 'any' || which === 'touch') && $__3.touch._down.touch)
             return true;
           return false;
         }
       };
       Object.defineProperty(this.pointer, '_down', {
         writable: true,
-        value: []
+        value: {}
       });
       window.addEventListener('touchmove', function(evt) {
-        $__2.pointer.x = evt.changedTouches[0].pageX - $__2.canvas.offsetLeft;
-        $__2.pointer.y = evt.changedTouches[0].pageY - $__2.canvas.offsetTop;
+        $__3.pointer.x = evt.changedTouches[0].pageX - $__3.canvas.offsetLeft;
+        $__3.pointer.y = evt.changedTouches[0].pageY - $__3.canvas.offsetTop;
         evt.preventDefault();
         evt.stopPropagation();
         return false;
       });
       window.addEventListener('mousemove', function(evt) {
-        $__2.pointer.x = evt.pageX - $__2.canvas.offsetLeft;
-        $__2.pointer.y = evt.pageY - $__2.canvas.offsetTop;
+        $__3.pointer.x = evt.pageX - $__3.canvas.offsetLeft;
+        $__3.pointer.y = evt.pageY - $__3.canvas.offsetTop;
         evt.preventDefault();
         evt.stopPropagation();
+        return false;
+      });
+      window.addEventListener('mousedown', function(e) {
+        if (e.button == 0)
+          $__3.mouse._down.left = true;
+        if (e.button == 2)
+          $__3.mouse._down.right = true;
+        if (e.button == 1)
+          $__3.mouse._down.middle = true;
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      });
+      window.addEventListener('mouseup', function(e) {
+        if (e.button == 0)
+          $__3.mouse._down.left = false;
+        if (e.button == 2)
+          $__3.mouse._down.right = false;
+        if (e.button == 1)
+          $__3.mouse._down.middle = false;
+        e.preventDefault();
+        e.stopPropagation();
         return false;
       });
       this.canvas.setAttribute('width', this.w);
       this.canvas.setAttribute('height', this.h);
       this.el.addEventListener('contextmenu', function(e) {
-        if (!$__2.focus)
+        if (!$__3.focus)
           return;
         e.preventDefault();
         e.stopPropagation();
@@ -4583,26 +4605,26 @@ window.Sprinting = (function(S) {
       this.subLoops = [];
       Object.defineProperty(this, 'initLoop', {value: function() {
           var tick = function() {
-            $__2.draw();
-            if ($__2.focus)
-              $__2.subLoops.forEach(function(loop) {
+            $__3.draw();
+            if ($__3.focus)
+              $__3.subLoops.forEach(function(loop) {
                 return loop();
               });
             window.setTimeout(function() {
-              return window.requestAnimationFrame(tick.bind($__2));
-            }, $__2.msPerTick);
+              return window.requestAnimationFrame(tick.bind($__3));
+            }, $__3.msPerTick);
           };
-          tick.call($__2);
+          tick.call($__3);
         }});
       this.initLoop();
       this.el.addEventListener('blur', function(e) {
-        $__2.focus = false;
+        $__3.focus = false;
       });
       this.el.addEventListener('focus', function(e) {
-        $__2.focus = true;
-        $__2.things.forEach(function(thing) {
+        $__3.focus = true;
+        $__3.things.forEach(function(thing) {
           if (thing._el) {
-            $__2.el.removeChild(thing._el);
+            $__3.el.removeChild(thing._el);
             delete thing._el;
             thing._observer.disconnect();
             delete thing._observer;
@@ -4610,10 +4632,10 @@ window.Sprinting = (function(S) {
         });
       });
       this.el.addEventListener('mousemove', function(e) {
-        $__2.el.focus();
+        $__3.el.focus();
       });
       this.el.addEventListener('touchstart', function(e) {
-        $__2.el.focus();
+        $__3.el.focus();
       });
       this.el.focus();
     }
@@ -4652,7 +4674,7 @@ window.Sprinting = (function(S) {
         return this;
       },
       draw: function() {
-        var $__2 = this;
+        var $__3 = this;
         if (this.focus || this.new) {
           this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
           this.things.forEach(function(thing) {
@@ -4663,7 +4685,7 @@ window.Sprinting = (function(S) {
                 world.ctx.rotate(thing.r * Math.PI / 180);
               world.ctx.translate(-thing.width * thing.rx, -thing.height * thing.ry);
             }
-            thing.draw($__2);
+            thing.draw($__3);
             world.ctx.restore();
           });
           if (this.new)
@@ -4682,8 +4704,8 @@ window.Sprinting = (function(S) {
                 value: new MutationObserver(function(mutation) {
                   var attr = mutation[0].attributeName;
                   thing[attr] = thing._el.getAttribute(attr);
-                  $__2.new = true;
-                  $__2.draw();
+                  $__3.new = true;
+                  $__3.draw();
                 })
               });
               var el = thing._el;
@@ -4825,24 +4847,24 @@ window.Sprinting = (function(S) {
     function Img(src) {
       var width = arguments[1] !== (void 0) ? arguments[1] : 'auto';
       var height = arguments[2] !== (void 0) ? arguments[2] : 'auto';
-      var $__2,
-          $__3,
+      var $__3,
           $__4,
-          $__5;
+          $__5,
+          $__6;
       $traceurRuntime.superConstructor(Img).call(this, true);
       Object.defineProperty(this, '_src', {
         writable: true,
         value: src
       });
       Object.defineProperty(this, 'load', {value: function() {
-          var $__2;
+          var $__3;
           Object.defineProperty(this, 'img', {
             writable: true,
             value: new Image()
           });
           this.loaded = false;
-          this.img.addEventListener('load', ($__2 = this, function() {
-            return $__2.loaded = true;
+          this.img.addEventListener('load', ($__3 = this, function() {
+            return $__3.loaded = true;
           }));
           this.img.src = src;
           this._src = src;
@@ -4866,20 +4888,20 @@ window.Sprinting = (function(S) {
         writable: true
       });
       Object.defineProperty(this, 'width', {
-        get: ($__2 = this, function() {
-          return $__2._width === 'auto' ? $__2.img.width : $__2._width;
+        get: ($__3 = this, function() {
+          return $__3._width === 'auto' ? $__3.img.width : $__3._width;
         }),
-        set: ($__3 = this, function(w) {
-          return $__3._width = w;
+        set: ($__4 = this, function(w) {
+          return $__4._width = w;
         }),
         enumerable: true
       });
       Object.defineProperty(this, 'height', {
-        get: ($__4 = this, function() {
-          return $__4._height === 'auto' ? $__4.img.height : $__4._height;
+        get: ($__5 = this, function() {
+          return $__5._height === 'auto' ? $__5.img.height : $__5._height;
         }),
-        set: ($__5 = this, function(h) {
-          return $__5._height = h;
+        set: ($__6 = this, function(h) {
+          return $__6._height = h;
         }),
         enumerable: true
       });
