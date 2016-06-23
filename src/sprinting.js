@@ -226,6 +226,11 @@ window.Sprinting = (function(S) {
         }
       })
 
+      Object.defineProperty(this, '_nostop', {
+        writable: true,
+        value: false
+      })
+
       this.initLoop()
 
       /**
@@ -236,10 +241,14 @@ window.Sprinting = (function(S) {
        * @protected
        */
       this.el.addEventListener('blur', e => {
+        if(this._nostop) return
+
         this.focus = false
       })
 
       this.el.addEventListener('focus', e => {
+        if(this._nostop) return
+
         this.focus = true
 
         // hide debug elements
@@ -324,13 +333,25 @@ window.Sprinting = (function(S) {
     }
 
     /**
+     * Don't enter debug mode. Ever.
+     * @method #neverStop
+     * @memberOf Sprinting.World
+     * @param {Boolean} [to=true]
+     * @chainable
+     */
+    neverStop(to=true) {
+      this._neverstop = to
+      return this
+    }
+
+    /**
      * Draw {@link Sprinting.Thing|everything}.
      * @method #draw
      * @memberOf Sprinting.World
      * @chainable
      */
     draw() {
-      if(this.focus || this.new) {
+      if(this.focus || this.new || this._neverstop) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         // sort by z

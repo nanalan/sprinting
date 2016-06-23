@@ -4616,11 +4616,19 @@ window.Sprinting = (function(S) {
           };
           tick.call($__3);
         }});
+      Object.defineProperty(this, '_nostop', {
+        writable: true,
+        value: false
+      });
       this.initLoop();
       this.el.addEventListener('blur', function(e) {
+        if ($__3._nostop)
+          return;
         $__3.focus = false;
       });
       this.el.addEventListener('focus', function(e) {
+        if ($__3._nostop)
+          return;
         $__3.focus = true;
         $__3.things.forEach(function(thing) {
           if (thing._el) {
@@ -4673,9 +4681,14 @@ window.Sprinting = (function(S) {
         this.things.push(thing);
         return this;
       },
+      neverStop: function() {
+        var to = arguments[0] !== (void 0) ? arguments[0] : true;
+        this._neverstop = to;
+        return this;
+      },
       draw: function() {
         var $__3 = this;
-        if (this.focus || this.new) {
+        if (this.focus || this.new || this._neverstop) {
           this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
           this.things.sort(function(a, b) {
             return a.z - b.z;
