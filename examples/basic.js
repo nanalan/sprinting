@@ -26,7 +26,6 @@ trump.ry = 1
 
 let i = 0
 world
-  .neverStop()
   .add(rect)
   .add(circ)
   .add(trump)

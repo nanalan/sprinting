@@ -333,6 +333,19 @@ window.Sprinting = (function(S) {
     }
 
     /**
+     * Remove an existing {@link Sprinting.Thing|something} from this World.
+     * @method #remove
+     * @memberOf Sprinting.World
+     * @param {Sprinting.Thing} thing
+     * @chainable
+     */
+    remove(thing) {
+      this.things = this.things.filter(should => should !== thing)
+
+      return this
+    }
+
+    /**
      * Don't enter debug mode. Ever.
      * @method #neverStop
      * @memberOf Sprinting.World

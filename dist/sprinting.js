@@ -4681,6 +4681,12 @@ window.Sprinting = (function(S) {
         this.things.push(thing);
         return this;
       },
+      remove: function(thing) {
+        this.things = this.things.filter(function(should) {
+          return should !== thing;
+        });
+        return this;
+      },
       neverStop: function() {
         var to = arguments[0] !== (void 0) ? arguments[0] : true;
         this._neverstop = to;
