@@ -4606,7 +4606,7 @@ window.Sprinting = (function(S) {
       Object.defineProperty(this, 'initLoop', {value: function() {
           var tick = function() {
             $__3.draw();
-            if ($__3.focus)
+            if ($__3.focus || $__3.new || $__3._neverstop)
               $__3.subLoops.forEach(function(loop) {
                 return loop();
               });
@@ -4622,12 +4622,12 @@ window.Sprinting = (function(S) {
       });
       this.initLoop();
       this.el.addEventListener('blur', function(e) {
-        if ($__3._nostop)
+        if ($__3._neverstop)
           return;
         $__3.focus = false;
       });
       this.el.addEventListener('focus', function(e) {
-        if ($__3._nostop)
+        if ($__3._neverstop)
           return;
         $__3.focus = true;
         $__3.things.forEach(function(thing) {

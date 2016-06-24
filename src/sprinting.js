@@ -217,7 +217,7 @@ window.Sprinting = (function(S) {
         value: () => {
           let tick = () => {
             this.draw()
-            if(this.focus) this.subLoops.forEach(loop => loop())
+            if(this.focus || this.new || this._neverstop) this.subLoops.forEach(loop => loop())
 
             window.setTimeout(() => window.requestAnimationFrame(tick.bind(this)), this.msPerTick)
           }
@@ -241,13 +241,13 @@ window.Sprinting = (function(S) {
        * @protected
        */
       this.el.addEventListener('blur', e => {
-        if(this._nostop) return
+        if(this._neverstop) return
 
         this.focus = false
       })
 
       this.el.addEventListener('focus', e => {
-        if(this._nostop) return
+        if(this._neverstop) return
 
         this.focus = true
 
